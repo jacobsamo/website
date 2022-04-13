@@ -6,3 +6,13 @@ Color pallete
 - 040F16
 
 
+Header tabs:
+- Home 
+- About
+- My Work
+- Contact
+
+HTML pages:
+-Home paage
+-About and my Work page
+- maybe a private page showing docs for addons or anything else
