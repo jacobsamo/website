@@ -4,14 +4,11 @@ body{
     background-image: url(../images/1.jpg);
 }
 
-.menu{
-    width: 400px;
-    float: left;
-    height: 70px;
-
-}
-
-.list{
+.navbar {
     list-style: none;
     text-align: center;
+}
+
+ul{
+    list-style-type: none;
 }
