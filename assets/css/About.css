@@ -1,0 +1,26 @@
+/* important parts for all of the webs~ite*/
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-image: url(assets/images/1.jpg);
+    width: 100%;
+    height: 100%;
+    
+}
+
+nav li{
+    list-style-type: none;
+    text-align: center;
+    float: left;
+    width: 8%;
+    margin-right: 20px;
+}
+nav li a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* start of items for just the page */

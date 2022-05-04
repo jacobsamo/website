@@ -1,4 +1,8 @@
 /* important parts for all of the website*/
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background-image: url(.assets/images/1.jpg);
     width: 100%;
