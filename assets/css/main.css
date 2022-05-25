@@ -7,17 +7,57 @@ body{
     font-family: 'Times New Roman', Times, serif, sans-serif; 
 }
 
-nav li{
-    list-style-type: none;
+nav{
+    background: #353535;
+    padding: 32px 0;
     text-align: center;
-    float: left;
-    width: 8%;
-    margin-right: 20px;
+    color: #868686;
+    font-size: 12px;
 }
-nav li a {
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav li{
+    display: inline-block;
+}
+nav li a{
+    padding: 6px;
+    font-size: 14px;
     text-decoration: none;
-    color: black;
+    color: #c3c3c3;
 }
-
+nav li a:hover{
+    color: white;
+}
+section{
+    padding: 40px 0;
+    text-align: center;
+}
 
 /* ======================== */
+.sildermywork{
+    background: #5900ff;
+    color: #000000;
+}
+.aboutme{
+    background: #ff0000;
+    color: #000000;
+}
+
+@media  screen and (max-width:600px){
+    ul{
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    ul li{
+        list-style: none;
+        margin-left: 62px;
+        margin-top: 27px;
+        font-size: 14px;
+    }
+}
