@@ -15,6 +15,13 @@ body{
     min-height: 100vh;
 }
 
+
+
+section{
+    padding: 40px 0;
+    text-align: center;
+}
+/*==========================*/
 .navbar{
     display: flex; 
     flex-wrap: wrap;
@@ -43,11 +50,6 @@ body{
     opacity: 0;
 }
 
-section{
-    padding: 40px 0;
-    text-align: center;
-}
-/*==========================*/
 @media screen and (max-width: 600px){
     .logo{
         margin-right: 20px;
