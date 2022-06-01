@@ -7,23 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
     <link rel="stylesheet" href="./assets/css/main.css">
-    <script src="./assets/Js/navbar.js"></script>
     </head> 
     <body>
         <!-- defining the navbar -->
 
-        <nav class="navbar container">
-            <a href="" class="Logo">LOGO</a>
-            <input type="checkbox" id="toggler">
-            
-            <label for="toggler"><i class="ri-menu-line"></i></label>
-            <ul>
-                <li><a href="./index.html">HomePage</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./about.html">My Work</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-             
+        <nav class="navbar">
+            <!--Add a logo-->
+            <a href="#" class="logo">LOGO</a>
+            <!--deine a button to refence form javascript-->
+            <button type="button" class="nav-menu">
+                <!--make the 3 lines-->
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <!--import javascript-->
+            <script src="./assets/Js/nav.js"></script>
+            <div class="menu">
+                <ul class="list">
+                    <li><a href="./index.html">HomePage</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./about.html">My Work</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+              
         </nav>  
 
         <section class="slidermywork">
