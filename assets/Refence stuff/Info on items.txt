@@ -5,6 +5,12 @@ Color pallete
 - FCB5B5 
 - 040F16
 
+color pallete 2:
+- 303041
+- 3D3A50
+- 0EA2F6
+- F4FCFE
+
 
 Header tabs:
 - Home 

@@ -14,19 +14,22 @@ body{
     background: #272727;
 }
 
+a{
+    text-decoration: none;
+}
+
 header {
     background-color: #262626;
 }
 
 nav li{
+    text-align: center;
     list-style: none;
 }
 nav a{
     color: white;
     text-decoration: none;
 }
-
-
 
 section{
     padding: 40px 0;
@@ -38,9 +41,11 @@ section{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     padding: 0 24px;
 }
 .nav-menu{
+    padding-right: 40%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +62,9 @@ section{
 }
 
 .hamburger{
+    border: none;
+    outline: none;
+    background: transparent;
     display: none;
     cursor: pointer;
 }
@@ -86,6 +94,7 @@ section{
     }
 
     .nav-menu{
+        padding: 0;
         position: fixed;
         left: -100%;
         top: 70px;
@@ -106,4 +115,24 @@ section{
 
 
 
+.slider{
+    background: #3D3A50;
+    color: white;
+}
 
+
+.about-me{
+    background: #0EA2F6;
+    color: white;
+}
+
+footer{
+    list-style: none;
+    background-color: #262626;
+    color: #fff;
+    text-align: center;
+}
+footer li{
+    text-align: center;
+    list-style: none;
+}
