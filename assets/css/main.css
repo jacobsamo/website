@@ -67,6 +67,9 @@ section{
     background: transparent;
     display: none;
     cursor: pointer;
+    padding: 3px;
+    padding-right: 4px;
+    padding-left: 4px;
 }
 .bar{
     display: block;
