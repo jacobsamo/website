@@ -22,3 +22,7 @@ HTML pages:
 -Home paage
 -About and my Work page
 - maybe a private page showing docs for addons or anything else
+
+
+Ideas:
+- https://ec1931a146c365ae.demo.carrd.co/
