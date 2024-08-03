@@ -3,27 +3,42 @@ import { Image } from 'astro:assets';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { socials } from '../lib/config';
 import Socials from '../components/Socials.astro';
+
+const today = new Date();
+const birthday = new Date('2007-06-03');
+
+let age = today.getFullYear() - birthday.getFullYear();
+const monthDifference = today.getMonth() - birthday.getMonth();
+
+if (
+  monthDifference < 0 ||
+  (monthDifference === 0 && today.getDate() < birthday.getDate())
+) {
+  age--;
+}
 ---
 
 <SiteLayout>
   <main class='flex flex-col items-center justify-center'>
     <div id='about' class='items-start rounded-md border p-2'>
-      <div
-        id='about-me'
-        class='flex flex-row items-center justify-center gap-4'
-      >
-        <Image
-          src='/profile-picture.jpg'
-          alt="Jacob's profile"
-          width={128}
-          height={128}
-          class='rounded-full'
-        />
+      <div id='about-me' class=''>
+        <span class='justify-left flex flex-row items-center gap-4 pb-1'>
+          <Image
+            src='/profile-picture.jpg'
+            alt="Jacob's profile"
+            width={128}
+            height={128}
+            class='rounded-full'
+          />
+          <span>
+            <h1 class='text-2xl'>Hello</h1>
+            <h2 class='text-xl'>I'm Jacob Samorowski</h2>
+          </span>
+        </span>
         <div>
-          <h1>About Me</h1>
           <p>
-            My name is Jacob Samorowski i am a software developer and
-            photographer. i am currently based in Queensland, Australia.
+            I am {age} year old photography and software developer based in Queensland,
+            Australia.
           </p>
           <p>
             I am a self-taught developer and have been programming since 2021. I
@@ -32,7 +47,9 @@ import Socials from '../components/Socials.astro';
           </p>
         </div>
       </div>
-      <Socials />
+      <span class='items-left flex'>
+        <Socials />
+      </span>
     </div>
   </main>
 </SiteLayout>

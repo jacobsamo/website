@@ -1,6 +1,6 @@
 ---
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 import { siteConfig } from '../lib/config';
 
 interface Props {
@@ -57,14 +57,16 @@ const {
     <meta property='twitter:title' content={title} />
     <meta property='twitter:description' content={description} />
     <meta property='twitter:image' content={new URL(image, Astro.url)} />
+    
   </head>
   <body>
+    
     <slot name='before-header' />
     <Header />
 
     <slot />
 
-    <Footer />
+    <!-- <Footer /> -->
     <slot name='after-footer' />
   </body>
 </html>
