@@ -10,6 +10,20 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://jacobsamo.com',
   integrations: [mdx(), sitemap(), tailwind(), react()],
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      configPath: 'wrangler.toml',
+    },
+    imageService: "passthrough"
+  }),
   output: 'server',
-  adapter: cloudflare(),
+  vite: {
+    ssr: {
+      external: ['node:buffer'],
+    },
+    build: {
+      minify: false,
+    },
+  },
 });
