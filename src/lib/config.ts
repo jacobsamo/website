@@ -7,29 +7,29 @@ type Social = {
 export const socials: Social[] = [
   {
     platform: "twitter",
-    handle: "@jacobsamorowski",
-    url: "https://twitter.com/jacobsamorowski"
+    handle: "@Eirfire1",
+    url: "https://x.com/Eirfire1"
   },
   {
     platform: "github",
-    handle: "jacobsamorowski",
-    url: "https://github.com/jacobsamorowski"
+    handle: "jacobsamo",
+    url: "https://github.com/jacobsamo"
   },
-  {
-    platform: "youtube",
-    handle: "jacobsamorowski",
-    url: "https://youtube.com/jacobsamorowski"
-  },
+  // {
+  //   platform: "youtube",
+  //   handle: "jacobsamorowski",
+  //   url: "https://youtube.com/jacobsamorowski"
+  // },
   {
     platform: "linkedin",
     handle: "jacobsamorowski",
-    url: "https://linkedin.com/jacobsamorowski"
+    url: "https://www.linkedin.com/in/jacob-samorowski"
   },
-  {
-    platform: "instagram",
-    handle: "jacobsamorowski",
-    url: "https://instagram.com/jacobsamorowski"
-  }
+  // {
+  //   platform: "instagram",
+  //   handle: "jacobsamorowski",
+  //   url: "https://instagram.com/jacobsamorowski"
+  // }
 ]
 
 export const siteConfig = {
