@@ -1,0 +1,24 @@
+---
+import { socials } from '../lib/config';
+interface Props {
+  size?: number;
+}
+const { size = 24 } = Astro.props;
+---
+
+<span id='social-links' class='flex flex-row items-center justify-center gap-4'>
+  {
+    socials.map((s) => {
+      return (
+        <a href={s.url} target='_blank' rel='noopener noreferrer'>
+          <img
+            src={`/socials/${s.platform}.svg`}
+            alt={`${s.platform} icon`}
+            width={size}
+            height={size}
+          />
+        </a>
+      );
+    })
+  }
+</span>

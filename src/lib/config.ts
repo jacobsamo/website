@@ -1,3 +1,37 @@
+type Social = {
+  platform: "twitter" | "github" | "youtube" | "linkedin" | "instagram" | "youtube" | "medium";
+  handle: string;
+  url: string;
+}
+
+export const socials: Social[] = [
+  {
+    platform: "twitter",
+    handle: "@jacobsamorowski",
+    url: "https://twitter.com/jacobsamorowski"
+  },
+  {
+    platform: "github",
+    handle: "jacobsamorowski",
+    url: "https://github.com/jacobsamorowski"
+  },
+  {
+    platform: "youtube",
+    handle: "jacobsamorowski",
+    url: "https://youtube.com/jacobsamorowski"
+  },
+  {
+    platform: "linkedin",
+    handle: "jacobsamorowski",
+    url: "https://linkedin.com/jacobsamorowski"
+  },
+  {
+    platform: "instagram",
+    handle: "jacobsamorowski",
+    url: "https://instagram.com/jacobsamorowski"
+  }
+]
+
 export const siteConfig = {
   title: 'Jacob Samorowski',
   description: "Jacob Samorowski's personal website",
