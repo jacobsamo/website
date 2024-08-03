@@ -3,31 +3,37 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../lib/config';
 
-const {title = siteConfig.title, description = siteConfig.description, ogImage, keywords = siteConfig.keywords, noIndex = false} = Astro.props;
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  ogImage,
+  keywords = siteConfig.keywords,
+  noIndex = false,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>{title}</title>
-        {noIndex && <meta name='robots' content='noindex' />}
-        <meta name='keywords' content={keywords.join(', ')} />
-        <meta name='description' content={description} />
-        <meta name='author' content='Jacob Samorowski' />
-        <meta http-equiv='Content-Language' content='en' />
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>{title}</title>
+    {noIndex && <meta name='robots' content='noindex' />}
+    <meta name='keywords' content={keywords.join(', ')} />
+    <meta name='description' content={description} />
+    <meta name='author' content='Jacob Samorowski' />
+    <meta http-equiv='Content-Language' content='en' />
 
-        <!-- OG -->
-        <!-- <meta property='og:image' content={description} /> -->
-        <meta property='og:site_name' content='jacobsamo.com' />
-        <meta property='og:title' content={title} />
-        <meta property='og:description' content={description} />
-        <meta property='og:type' content='website' />
-	</head>
-	<body>
-		<Header />
-		<slot />
-		<Footer />
-	</body>
+    <!-- OG -->
+    <!-- <meta property='og:image' content={description} /> -->
+    <meta property='og:site_name' content='jacobsamo.com' />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:type' content='website' />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>

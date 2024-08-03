@@ -4,14 +4,29 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 ---
 
 <SiteLayout>
-	<main class="flex flex-col items-center justify-center">
-		<div class="flex flex-row items-center justify-center gap-4 rounded-md border p-2">
-			<Image src="/profile-picture.jpg" alt="Jacob's profile" width={128} height={128} class="rounded-full" />
-			<div>
-				<h1>About Me</h1>
-				<p>My name is Jacob Samorowski i am a software developer and photographer. i am currently based in Queensland, Australia.</p>
-				<p>I am a self-taught developer and have been programming since 2021. I love being able to share my knowledge and capture experiences for others, i also love building tools that help others.</p>
-			</div>
-		</div>
-	</main>
+  <main class='flex flex-col items-center justify-center'>
+    <div
+      class='flex flex-row items-center justify-center gap-4 rounded-md border p-2'
+    >
+      <Image
+        src='/profile-picture.jpg'
+        alt="Jacob's profile"
+        width={128}
+        height={128}
+        class='rounded-full'
+      />
+      <div>
+        <h1>About Me</h1>
+        <p>
+          My name is Jacob Samorowski i am a software developer and
+          photographer. i am currently based in Queensland, Australia.
+        </p>
+        <p>
+          I am a self-taught developer and have been programming since 2021. I
+          love being able to share my knowledge and capture experiences for
+          others, i also love building tools that help others.
+        </p>
+      </div>
+    </div>
+  </main>
 </SiteLayout>
