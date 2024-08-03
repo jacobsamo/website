@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const posts = await getCollection('daily-ui');
+---
+
+<SiteLayout
+  title='Daily Ui'
+  description='Daily UI is a collection of daily UI designs'
+>
+  <h1>Daily UI</h1>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/daily-ui/${post.slug}/`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</SiteLayout>

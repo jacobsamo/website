@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Socials from '../components/Socials.astro';
+
+const today = new Date();
+const birthday = new Date('2007-06-03');
+
+let age = today.getFullYear() - birthday.getFullYear();
+const monthDifference = today.getMonth() - birthday.getMonth();
+
+if (
+  monthDifference < 0 ||
+  (monthDifference === 0 && today.getDate() < birthday.getDate())
+) {
+  age--;
+}
+---
+
+<SiteLayout>
+  <main class='flex flex-col items-center justify-center'>
+    <div id='about' class='items-start rounded-md border p-2'>
+      <div id='about-me' class=''>
+        <span class='justify-left flex flex-row items-center gap-4 pb-1'>
+          <Image
+            src='/profile-picture.jpg'
+            alt="Jacob's profile"
+            width={128}
+            height={128}
+            class='rounded-full'
+          />
+          <span>
+            <h1 class='text-2xl'>Hello</h1>
+            <h2 class='text-xl'>I'm Jacob Samorowski</h2>
+          </span>
+        </span>
+        <div>
+          <p>
+            I am {age} year old photography and software developer based in Queensland,
+            Australia.
+          </p>
+          <p>
+            I am a self-taught developer and have been programming since 2021. I
+            love being able to share my knowledge and capture experiences for
+            others, i also love building tools that help others.
+          </p>
+        </div>
+      </div>
+      <span class='items-left flex pt-4'>
+        <Socials />
+      </span>
+    </div>
+  </main>
+</SiteLayout>
