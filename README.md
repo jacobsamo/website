@@ -66,3 +66,27 @@ Check out [our documentation](https://docs.astro.build) or jump into our [Discor
 ## Credit
 
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+
+
+### RSS Feed for later:
+The rss feed file should be put in the pages folder.
+
+rss.xml.js
+```js
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../lib/config';
+
+export async function GET(context) {
+  const posts = await getCollection('blog');
+  return rss({
+    title: siteConfig.title,
+    description: siteConfig.description,
+    site: context.site,
+    items: posts.map((post) => ({
+      ...post.data,
+      link: `/blog/${post.slug}/`,
+    })),
+  });
+}
+```

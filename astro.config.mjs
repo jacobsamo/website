@@ -15,15 +15,7 @@ export default defineConfig({
       enabled: true,
       configPath: 'wrangler.toml',
     },
-    imageService: "passthrough"
+    imageService: 'passthrough',
   }),
   output: 'server',
-  vite: {
-    ssr: {
-      external: ['node:buffer'],
-    },
-    build: {
-      minify: false,
-    },
-  },
 });
