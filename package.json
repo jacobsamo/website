@@ -1,14 +1,11 @@
 {
   "name": "website",
-  "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --port=4000",
-    "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro build && wrangler pages dev",
+    "preview": "bun run build && wrangler pages dev",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy",
+    "deploy": "bun run build && wrangler pages deploy",
     "cf-typegen": "wrangler types",
     "format": "prettier --write \"**/*.{ts,tsx,md,astro,mdx}\"",
     "clean": "rm -rf .astro && rm -rf node_modules && rm -rf dist && rm -rf .wrangler"
@@ -36,5 +33,9 @@
     "prettier": "3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.5"
-  }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "bun@1.1.22"
 }
