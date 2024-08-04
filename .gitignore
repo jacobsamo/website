@@ -23,5 +23,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Cloudflare
+# wrangler files
 .wrangler
+.dev.vars
+# bun.lockb
