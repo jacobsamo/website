@@ -9,14 +9,22 @@ const posts = await getCollection('daily-ui');
   title='Daily Ui'
   description='Daily UI is a collection of daily UI designs'
 >
-  <h1>Daily UI</h1>
-  <ul>
+  <div class='mx-auto grid grid-cols-2 justify-center gap-4'>
     {
       posts.map((post) => (
-        <li>
-          <a href={`/daily-ui/${post.slug}/`}>{post.data.title}</a>
-        </li>
+        <a href={`/daily-ui/${post.slug}/`} class='block w-full'>
+          <h3 class='text-md max-w-full text-balance text-center font-bold'>
+            {post.data.title}
+          </h3>
+          {post.data.heroImage && (
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class='-z-20 w-full rounded-xl object-cover object-center'
+            />
+          )}
+        </a>
       ))
     }
-  </ul>
+  </div>
 </SiteLayout>

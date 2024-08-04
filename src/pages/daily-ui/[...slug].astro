@@ -19,5 +19,7 @@ const { Content } = await post.render();
 ---
 
 <SiteLayout title={post.data.title}>
-  <Content />
+  <main class='relative h-full w-full'>
+    <Content />
+  </main>
 </SiteLayout>
