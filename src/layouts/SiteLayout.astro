@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import '../styles/global.css';
 import { siteConfig } from '../lib/config';
+import Footer from '@/components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -57,16 +58,19 @@ const {
     <meta property='twitter:title' content={title} />
     <meta property='twitter:description' content={description} />
     <meta property='twitter:image' content={new URL(image, Astro.url)} />
-    
   </head>
   <body>
-    
     <slot name='before-header' />
     <Header />
 
     <slot />
+    <div
+      class='absolute inset-0 -z-50 h-full w-full bg-[radial-gradient(#797979_1px,transparent_1px)] [background-size:16px_16px]'
+    >
+    </div>
 
     <!-- <Footer /> -->
-    <slot name='after-footer' />
+    <slot name='before-footer' />
+    <Footer />
   </body>
 </html>
