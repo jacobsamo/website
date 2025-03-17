@@ -1,22 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import SiteLayout from '../layouts/SiteLayout.astro';
-import Socials from '../components/Socials.astro';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Video, MessageSquareIcon, ExternalLink } from 'lucide-react';
-import { siteConfig, skills } from '@/lib/config';
-import { format } from 'date-fns';
 import JobList from '@/components/jobs';
-
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card';
-import ProjectCard from '@/components/project-card.astro';
 import Marquee from '@/components/marquee.astro';
+import ProjectCard from '@/components/project-card.astro';
+import { siteConfig, skills } from '@/lib/config';
+import { Image } from 'astro:assets';
+import Socials from '../components/Socials.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 
 const today = new Date();
 const birthday = new Date('2007-06-03');
