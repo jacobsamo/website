@@ -66,7 +66,7 @@ export const siteConfig = {
     },
   },
   og: {
-    url: 'https://www.jacobsamorowski.com/images/profile-picture.jpg',
+    url: '/og.png',
     alt: "Jacob's profile",
     width: 400,
     height: 400,
