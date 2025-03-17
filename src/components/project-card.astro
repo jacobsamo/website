@@ -1,0 +1,61 @@
+---
+import Image from 'astro/components/Image.astro';
+import { buttonVariants } from './ui/button';
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  details: string;
+  link: string;
+}
+
+const { title, description, image, details, link } = Astro.props;
+---
+
+<div
+  class='project-card animate-item overflow-hidden rounded-lg border border-white/10 bg-[#1a1a1a] shadow-xl'
+>
+  <div class='p-6'>
+    <h3 class='text-xl font-bold'>{title}</h3>
+    <p class='text-sm text-gray-400'>{description}</p>
+  </div>
+  <div class='relative aspect-video'>
+    <Image
+      src={image}
+      alt={title}
+      width={320}
+      height={120}
+      class='h-11/12 w-11/12 object-cover mx-auto rounded-md'
+    />
+  </div>
+  <div class='space-y-4 p-6'>
+    <p class='text-gray-300'>
+      {details}
+    </p>
+    <a
+      href={link}
+      class={buttonVariants()}
+    >
+      Visit Project
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='24'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        stroke-width='2'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        class='h-4 w-4'
+        ><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'
+        ></path><polyline points='15 3 21 3 21 9'></polyline><line
+          x1='10'
+          x2='21'
+          y1='14'
+          y2='3'></line></svg
+      >
+    </a>
+  </div>
+</div>

@@ -1,12 +1,32 @@
 ---
-import Socials from "./Socials.astro";
+import { Calendar, Mail } from 'lucide-react';
+import Socials from './Socials.astro';
+import { Button, buttonVariants } from './ui/button';
 
 const today = new Date();
 ---
 
-<footer>
-  &copy; {today.getFullYear()} Your Jacob Samorowski. All rights reserved.
-  <Socials />
+<footer class='bg-muted/50 mt-8 border-t-2 py-20'>
+  <div class='space-y-8 px-4 text-center'>
+    <h2 class='text-3xl font-bold tracking-tight'>Get in Touch</h2>
+    <p class='text-muted-foreground mx-auto max-w-2xl text-lg'>
+      Whether you want to discuss a project, ask a question, or just say hi,
+      I'll try my best to get back to you!
+    </p>
+    <div class='flex justify-center gap-4'>
+      <a class={buttonVariants()} href='https://cal.com/jacob-samorowski'>
+        <Calendar className='mr-2 h-4 w-4' />
+        Schedule a Call</a
+      >
+      <a class={buttonVariants()} href='mailto:jacob@jacobsamo.com'
+        ><Mail className='mr-2 h-4 w-4' /> Contact Me</a
+      >
+    </div>
+    <Socials />
+  </div>
+  <p class='text-muted-foreground mt-6 text-center'>
+    &copy; {today.getFullYear()}, Jacob Samorowski. All rights reserved.
+  </p>
 </footer>
 <style>
   footer {

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import Meteors from '@/components/Meteors.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
@@ -78,28 +79,38 @@ const posts = (await getCollection('blog')).sort(
       }
     }
   </style>
-  <main>
-    <section>
-      <ul>
-        {
-          posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.slug}/`}>
-                <img
-                  width={720}
-                  height={360}
-                  src={post.data.heroImage}
-                  alt=''
-                />
-                <h4 class='title'>{post.data.title}</h4>
-                <p class='date'>
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+  <main
+    class='relative flex h-full w-full flex-col items-center justify-center'
+  >
+    <Meteors number={30} angle={-60} />
+    {
+      posts.length === 0 ? (
+        <div class='items-center justify-center text-center'>
+          <h1>No blog posts from me just yet</h1>
+          <p>Check back in later</p>
+        </div>
+      ) : (
+        <section>
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.slug}/`}>
+                  <img
+                    width={720}
+                    height={360}
+                    src={post.data.heroImage}
+                    alt=''
+                  />
+                  <h4 class='title'>{post.data.title}</h4>
+                  <p class='date'>
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
   </main>
 </SiteLayout>

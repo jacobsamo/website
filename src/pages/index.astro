@@ -1,54 +1,103 @@
 ---
+import JobList from '@/components/jobs';
+import Marquee from '@/components/marquee.astro';
+import ProjectCard from '@/components/project-card.astro';
+import { siteConfig, skills } from '@/lib/config';
 import { Image } from 'astro:assets';
-import SiteLayout from '../layouts/SiteLayout.astro';
 import Socials from '../components/Socials.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 
 const today = new Date();
 const birthday = new Date('2007-06-03');
 
 let age = today.getFullYear() - birthday.getFullYear();
 const monthDifference = today.getMonth() - birthday.getMonth();
-
-if (
-  monthDifference < 0 ||
-  (monthDifference === 0 && today.getDate() < birthday.getDate())
-) {
-  age--;
-}
 ---
 
 <SiteLayout>
+  <!-- <DotGrid /> -->
   <main class='flex flex-col items-center justify-center'>
-    <div id='about' class='items-start rounded-md border p-2'>
-      <div id='about-me' class=''>
-        <span class='justify-left flex flex-row items-center gap-4 pb-1'>
-          <Image
-            src='/profile-picture.jpg'
-            alt="Jacob's profile"
-            width={128}
-            height={128}
-            class='rounded-full'
-          />
-          <span>
-            <h1 class='text-2xl'>Hello</h1>
-            <h2 class='text-xl'>I'm Jacob Samorowski</h2>
-          </span>
+    <div class='container space-y-8'>
+      <div
+        id='about-me'
+        class='mt-16 flex flex-col items-center justify-center text-center'
+      >
+        <Image
+          src='/profile-picture.jpg'
+          alt="Jacob's profile picture"
+          width={128}
+          height={128}
+          class='rounded-full'
+        />
+        <span>
+          <h1 class='text-xl'>Jacob Samorowski</h1>
+          <p class='text-md'>Software Developer & Photographer</p>
         </span>
-        <div>
-          <p>
-            I am {age} year old photography and software developer based in Queensland,
-            Australia.
-          </p>
-          <p>
-            I am a self-taught developer and have been programming since 2021. I
-            love being able to share my knowledge and capture experiences for
-            others, i also love building tools that help others.
-          </p>
+        <Socials />
+      </div>
+      <div>
+        <h2 class='text-center text-2xl'>About Me</h2>
+        <p>
+          I am {age} year old software developer and photographer based in Queensland,
+          Australia. I am a self-taught developer and have been programming since
+          2021. I love being able to share my knowledge and capture experiences for
+          others, I also love building tools that help others.
+        </p>
+      </div>
+      <div id='projects'>
+        <h2 class='text-center text-4xl'>Projects</h2>
+        <div id='projects' class='grid gap-6 sm:grid-cols-2'>
+          {
+            siteConfig.projects.map((project) => (
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                details=''
+                link={project.url}
+              />
+            ))
+          }
         </div>
       </div>
-      <span class='items-left flex pt-4'>
-        <Socials />
-      </span>
+      <div id='skills'>
+        <h2 class='text-center text-4xl'>Skills</h2>
+        <Marquee>
+          {
+            skills
+              .slice(0, Math.ceil(skills.length / 2))
+              .map((skill) => (
+                <div class='bg-muted/50 rounded-md border p-2'>{skill}</div>
+              ))
+          }
+        </Marquee>
+        <Marquee reverse={true}>
+          {
+            skills
+              .slice(Math.ceil(skills.length / 2), skills.length)
+              .map((skill) => (
+                <div class='bg-muted/50 rounded-md border p-2'>{skill}</div>
+              ))
+          }
+        </Marquee>
+      </div>
+      <div id='work'>
+        <h2 class='text-center text-4xl'>Work</h2>
+        <JobList />
+      </div>
+      <div id='education' class='mb-16'>
+        <h2 class='text-center text-4xl'>Education</h2>
+        <div class='items-left flex flex-col justify-center gap-2'>
+          {
+            siteConfig.education.map((ed) => (
+              <div class='bg-muted/50 rounded-md border p-2'>
+                <h3 class='font-bold'>{ed.schoolName}</h3>
+                <p class='text-sm'>{ed.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </main>
 </SiteLayout>
