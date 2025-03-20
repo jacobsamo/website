@@ -14,8 +14,8 @@ type Social = {
 export const socials: Social[] = [
   {
     platform: 'twitter',
-    handle: '@Eirfire1',
-    url: 'https://x.com/Eirfire1',
+    handle: '@jacobsamorowski',
+    url: 'https://x.com/jacobsamorowski',
   },
   {
     platform: 'github',
