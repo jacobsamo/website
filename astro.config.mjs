@@ -12,12 +12,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-      configPath: 'wrangler.jsonc',
-    },
-    imageService: 'passthrough',
-  }),
-  output: 'server',
+  // adapter: cloudflare({
+  //   platformProxy: {
+  //     enabled: true,
+  //     configPath: 'wrangler.jsonc',
+  //   },
+  //   imageService: 'passthrough',
+  // }),
 });
