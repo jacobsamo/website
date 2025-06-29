@@ -23,8 +23,8 @@ export default function JobList() {
           <TimelineHeader>
             <TimelineSeparator />
             <TimelineDate className="inline-flex gap-2 items-center group-data-[orientation=vertical]/timeline:sm:absolute group-data-[orientation=vertical]/timeline:sm:-left-32 group-data-[orientation=vertical]/timeline:sm:w-20 group-data-[orientation=vertical]/timeline:sm:text-right">
-              {format(work.startDate, 'MMMM yyyy')} -{' '}
-              {format(work.endDate, 'MMMM yyyy')}
+              {format(work.startDate, 'MMM yyyy')} -{' '}
+              {work.endDate ? format(work.endDate, 'MMM yyyy') : "present"}
             </TimelineDate>
             <TimelineTitle className="sm:-mt-0.5">
               {work.companyName}

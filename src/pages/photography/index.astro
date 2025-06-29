@@ -2,9 +2,43 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { Image } from 'astro:assets';
 
+import BSAFWriting from '../../../public/assets/images/photography/BSAF_Writing.jpg';
+import BrisbaneMuseum from '../../../public/assets/images/photography/Brisbane_Mesum.jpg';
+import BrisbaneRiverFireC17 from '../../../public/assets/images/photography/Brisbane_River_Fire_C17.jpg';
+import BusesinBrisbane from '../../../public/assets/images/photography/Busess_Brisbane.jpg';
+import BlueBusesinBrisbane from '../../../public/assets/images/photography/Busess_Brisbane_blue.jpg';
+import Butterflies from '../../../public/assets/images/photography/Butterflies.jpg';
+import ColesBaySunset from '../../../public/assets/images/photography/Coles_Bay_Sunset.jpg';
+import Drapal from '../../../public/assets/images/photography/Drapal.jpg';
+import FishLaneMural from '../../../public/assets/images/photography/Fish_Lane_Mural.jpg';
+import FoggyRoad from '../../../public/assets/images/photography/Foggy_road.jpg';
+import HuonRiverFranklin from '../../../public/assets/images/photography/Huon_River_Franklin.jpg';
+import Lighting from '../../../public/assets/images/photography/Lighting.jpg';
+import Lighting2 from '../../../public/assets/images/photography/Lighting_2.jpg';
+import MonaTunnel from '../../../public/assets/images/photography/Mona_Tunnel.jpg';
+import Mushroom from '../../../public/assets/images/photography/Mushroom.jpg';
+import MushroomBlub from '../../../public/assets/images/photography/Mushroom_blub.jpg';
+import Mushrooms from '../../../public/assets/images/photography/Mushrooms.jpg';
+import PaintandSlam from '../../../public/assets/images/photography/Paint_and_Slam.jpg';
+import PaperCranes from '../../../public/assets/images/photography/Paper_cranes.jpg';
+import Plane from '../../../public/assets/images/photography/Plane.jpg';
+import PortArthurSunset from '../../../public/assets/images/photography/Port_Aruther_Sunset.jpg';
+import StoryBridgeGlassBall from '../../../public/assets/images/photography/Story_Bridge_Glass_Ball.jpg';
+import Swirl from '../../../public/assets/images/photography/Swirl.jpg';
+import ToodSamorowski from '../../../public/assets/images/photography/Tood_Samorowski.jpg';
+import WheelonFire from '../../../public/assets/images/photography/Wheel_on_fire.jpg';
+import WheresWallyMuralbyEdwin from '../../../public/assets/images/photography/Wheres_Wally_MuralsByedwin.jpg';
+import WhitsundaysSunset from '../../../public/assets/images/photography/Whit_Sundays_Sunset.jpg';
+import WhitehavenBeachLookout from '../../../public/assets/images/photography/Whitehaven_Beach_lookout.jpg';
+import WoodenFlower from '../../../public/assets/images/photography/Wooden_Flowe.jpg';
+import Wrap from '../../../public/assets/images/photography/Wrap.jpg';
+import BattlesandJams1 from '../../../public/assets/images/photography/jsamophotography_140523_battlesandjams-1.jpg';
+import BattlesandJams10 from '../../../public/assets/images/photography/jsamophotography_140523_battlesandjams-10-2265.jpg';
+import JsamineCrisp from '../../../public/assets/images/photography/jsamophotography_140523_jsamine_crisp-1215.jpg';
+
 const images = [
   {
-    file: '/images/photography/BSAF_Writing.jpg',
+    file: BSAFWriting,
     width: 4000,
     height: 6000,
     title: 'BSAF Writing',
@@ -13,7 +47,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Brisbane_Mesum.jpg',
+    file: BrisbaneMuseum,
     width: 4000,
     height: 6000,
     title: 'Brisbane Museum',
@@ -22,7 +56,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Brisbane_River_Fire_C17.jpg',
+    file: BrisbaneRiverFireC17,
     width: 6000,
     height: 4000,
     title: 'Brisbane River Fire C17',
@@ -31,7 +65,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Busess_Brisbane.jpg',
+    file: BusesinBrisbane,
     width: 4592,
     height: 3056,
     title: 'Buses in Brisbane',
@@ -40,7 +74,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Busess_Brisbane_blue.jpg',
+    file: BlueBusesinBrisbane,
     width: 4592,
     height: 3056,
     title: 'Blue Buses in Brisbane',
@@ -49,7 +83,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Butterflies.jpg',
+    file: Butterflies,
     width: 4592,
     height: 3056,
     title: 'Butterflies',
@@ -58,7 +92,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Coles_Bay_Sunset.jpg',
+    file: ColesBaySunset,
     width: 5865,
     height: 3910,
     title: 'Coles Bay Sunset',
@@ -67,7 +101,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Drapal.jpg',
+    file: Drapal,
     width: 4000,
     height: 4939,
     title: 'Drapal',
@@ -76,7 +110,7 @@ const images = [
     aspect_ratio: 0.81,
   },
   {
-    file: '/images/photography/Fish_Lane_Mural.jpg',
+    file: FishLaneMural,
     width: 1929,
     height: 2340,
     title: 'Fish Lane Mural',
@@ -85,7 +119,7 @@ const images = [
     aspect_ratio: 0.82,
   },
   {
-    file: '/images/photography/Foggy_road.jpg',
+    file: FoggyRoad,
     width: 1600,
     height: 1064,
     title: 'Foggy Road',
@@ -94,7 +128,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Huon_River_Franklin.jpg',
+    file: HuonRiverFranklin,
     width: 3790,
     height: 5516,
     title: 'Huon River Franklin',
@@ -103,7 +137,7 @@ const images = [
     aspect_ratio: 0.69,
   },
   {
-    file: '/images/photography/Lighting.jpg',
+    file: Lighting,
     width: 1920,
     height: 1280,
     title: 'Lighting',
@@ -112,7 +146,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Lighting_2.jpg',
+    file: Lighting2,
     width: 1920,
     height: 1280,
     title: 'Lighting 2',
@@ -121,7 +155,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Mona_Tunnel.jpg',
+    file: MonaTunnel,
     width: 4000,
     height: 6000,
     title: 'Mona Tunnel',
@@ -130,7 +164,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Mushroom.jpg',
+    file: Mushroom,
     width: 3807,
     height: 5710,
     title: 'Mushroom',
@@ -138,7 +172,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Mushroom_blub.jpg',
+    file: MushroomBlub,
     width: 4592,
     height: 3056,
     title: 'Mushroom Blub',
@@ -147,7 +181,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Mushrooms.jpg',
+    file: Mushrooms,
     width: 4000,
     height: 6000,
     title: 'Mushrooms',
@@ -156,7 +190,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Paint_and_Slam.jpg',
+    file: PaintandSlam,
     width: 3161,
     height: 6000,
     title: 'Paint and Slam',
@@ -165,7 +199,7 @@ const images = [
     aspect_ratio: 0.53,
   },
   {
-    file: '/images/photography/Paper_cranes.jpg',
+    file: PaperCranes,
     width: 6000,
     height: 4000,
     title: 'Paper Cranes',
@@ -174,7 +208,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Plane.jpg',
+    file: Plane,
     width: 3974,
     height: 5452,
     title: 'Plane',
@@ -182,7 +216,7 @@ const images = [
     aspect_ratio: 0.73,
   },
   {
-    file: '/images/photography/Port_Aruther_Sunset.jpg',
+    file: PortArthurSunset,
     width: 3968,
     height: 5952,
     title: 'Port Arthur Sunset',
@@ -191,7 +225,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/Story_Bridge_Glass_Ball.jpg',
+    file: StoryBridgeGlassBall,
     width: 6000,
     height: 4000,
     title: 'Story Bridge Glass Ball',
@@ -200,7 +234,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Swirl.jpg',
+    file: Swirl,
     width: 1600,
     height: 1064,
     title: 'Swirl',
@@ -209,7 +243,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Tood_Samorowski.jpg',
+    file: ToodSamorowski,
     width: 5790,
     height: 3860,
     title: 'Tood Samorowski',
@@ -218,7 +252,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Wheel_on_fire.jpg',
+    file: WheelonFire,
     width: 1428,
     height: 1600,
     title: 'Wheel on Fire',
@@ -227,7 +261,7 @@ const images = [
     aspect_ratio: 0.89,
   },
   {
-    file: '/images/photography/Wheres_Wally_MuralsByedwin.jpg',
+    file: WheresWallyMuralbyEdwin,
     width: 3885,
     height: 4783,
     title: "Where's Wally Mural by Edwin",
@@ -236,7 +270,7 @@ const images = [
     aspect_ratio: 0.81,
   },
   {
-    file: '/images/photography/Whit_Sundays_Sunset.jpg',
+    file: WhitsundaysSunset,
     width: 5814,
     height: 3876,
     title: 'Whitsundays Sunset',
@@ -245,7 +279,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/Whitehaven_Beach_lookout.jpg',
+    file: WhitehavenBeachLookout,
     width: 5532,
     height: 3258,
     title: 'Whitehaven Beach Lookout',
@@ -254,7 +288,7 @@ const images = [
     aspect_ratio: 1.7,
   },
   {
-    file: '/images/photography/Wooden_Flowe.jpg',
+    file: WoodenFlower,
     width: 4000,
     height: 5674,
     title: 'Wooden Flower',
@@ -263,7 +297,7 @@ const images = [
     aspect_ratio: 0.7,
   },
   {
-    file: '/images/photography/Wrap.jpg',
+    file: Wrap,
     width: 1600,
     height: 1064,
     title: 'Wrap',
@@ -272,7 +306,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/jsamophotography_140523_battlesandjams-1.jpg',
+    file: BattlesandJams1,
     width: 4000,
     height: 6000,
     title: 'Battles and Jams 1',
@@ -281,7 +315,7 @@ const images = [
     aspect_ratio: 0.67,
   },
   {
-    file: '/images/photography/jsamophotography_140523_battlesandjams-10-2265.jpg',
+    file: BattlesandJams10,
     width: 6000,
     height: 4000,
     title: 'Battles and Jams 10',
@@ -290,7 +324,7 @@ const images = [
     aspect_ratio: 1.5,
   },
   {
-    file: '/images/photography/jsamophotography_140523_jsamine_crisp-1215.jpg',
+    file: JsamineCrisp,
     width: 4000,
     height: 6000,
     title: 'Jsamine Crisp',
@@ -302,7 +336,9 @@ const images = [
 ---
 
 <SiteLayout title='Photography'>
-  <div class='masonry-container columns-2 gap-2 sm:columns-3 lg:columns-5'>
+  <div
+    class='masonry-container mt-16 columns-2 gap-2 sm:columns-3 lg:columns-5'
+  >
     {
       images.map((image) => (
         <div class='mb-1 break-inside-avoid'>
@@ -310,13 +346,14 @@ const images = [
             src={image.file}
             alt={image.description}
             title={image.title}
-            width={image.width}
-            height={image.height}
-            class='h-auto max-h-[400px] w-full max-w-[300px] rounded-lg object-cover'
-            loading='lazy'
+            class='h-auto max-h-[400px] w-full max-w-[300px] rounded-lg object-cover object-center'
             decoding='async'
+            loading='lazy'
             sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-            quality={75}
+            width={400}
+            height={400}
+            format='webp'
+            quality={80}
           />
         </div>
       ))

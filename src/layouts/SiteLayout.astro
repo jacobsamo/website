@@ -42,7 +42,9 @@ const {
     <!--Favicon -->
     <link rel='icon' href='/profile-picture.jpg' />
     <link rel='apple-touch-icon' href='/profile-picture.jpg' />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel='sitemap' href='/sitemap-index.xml' />
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="robots" content="index, follow">
 
     <!-- Canonical URL -->
     <link rel='canonical' href={canonicalURL} />
@@ -50,14 +52,18 @@ const {
     <!-- OG -->
     <!-- <meta property='og:image' content={description} /> -->
     <!-- Open Graph / Facebook -->
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={Astro.url} />
     <meta property='og:title' content={title} />
+    <meta property="og:site_name" content={title}>
+    <meta property="og:locale" content="en_AU">
     <meta property='og:description' content={description} />
+    <meta property='og:url' content={Astro.url} />
+    <meta property='og:type' content='website' />
     <meta property='og:image' content={new URL(image, Astro.url)} />
+    <meta property="og:image:type" content="image/jpg">
 
     <!-- Twitter -->
     <meta property='twitter:card' content='summary_large_image' />
+    <meta name="twitter:creator" content={`@${siteConfig.socials.twitter.handle}`}>
     <meta property='twitter:url' content={Astro.url} />
     <meta property='twitter:title' content={title} />
     <meta property='twitter:description' content={description} />
@@ -68,8 +74,9 @@ const {
     <Header />
 
     <slot />
+    
     <div
-      class='absolute inset-0 -z-50 h-full w-full bg-[radial-gradient(#797979_1px,transparent_1px)] [background-size:16px_16px]'
+      class='absolute inset-0 -z-50 h-full w-full bg-[radial-gradient(#7979792e_1px,transparent_1px)] [background-size:16px_16px]'
     >
     </div>
 
