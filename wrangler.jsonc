@@ -5,10 +5,15 @@
   "compatibility_flags": [
     "nodejs_compat",
     "nodejs_compat_populate_process_env",
-    "nodejs_als"
+    "nodejs_als",
   ],
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
   },
-  "workers_dev": true
+  "workers_dev": true,
+  "observability": {
+    "logs": {
+      "enabled": true,
+    },
+  },
 }
