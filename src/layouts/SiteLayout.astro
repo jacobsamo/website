@@ -63,7 +63,7 @@ const {
 
     <!-- Twitter -->
     <meta property='twitter:card' content='summary_large_image' />
-    <meta name="twitter:creator" content={`@${siteConfig.socials.twitter.handle}`}>
+    <meta name="twitter:creator" content={`@${siteConfig.socials.find((social) => social.platform === 'twitter')?.handle}`}>
     <meta property='twitter:url' content={Astro.url} />
     <meta property='twitter:title' content={title} />
     <meta property='twitter:description' content={description} />
