@@ -6,12 +6,6 @@ import { siteConfig, skills } from '@/lib/config';
 import { Image } from 'astro:assets';
 import Socials from '../components/Socials.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-
-const today = new Date();
-const birthday = new Date('2007-06-03');
-
-let age = today.getFullYear() - birthday.getFullYear();
-const monthDifference = today.getMonth() - birthday.getMonth();
 ---
 
 <SiteLayout>
@@ -27,9 +21,9 @@ const monthDifference = today.getMonth() - birthday.getMonth();
           alt="Jacob's profile picture"
           width={128}
           height={128}
-          class='rounded-full'
+          class='rounded-full object-cover object-center'
         />
-        <span>
+        <span class='mb-2'>
           <h1 class='text-xl'>Jacob Samorowski</h1>
           <p class='text-md'>Software Developer & Photographer</p>
         </span>
@@ -38,14 +32,19 @@ const monthDifference = today.getMonth() - birthday.getMonth();
       <div>
         <h2 class='text-center text-2xl'>About Me</h2>
         <p>
-          I am {age} year old software developer and photographer based in Queensland,
-          Australia. I am a self-taught developer and have been programming since
-          2021. I love being able to share my knowledge and capture experiences for
-          others, I also love building tools that help others.
+          I'm a self-taught software developer and photographer based in
+          Queensland, Australia, with a passion for building meaningful digital
+          experiences. Since 2021, I’ve been combining creativity and
+          problem-solving to design tools that empower others—whether that’s
+          through intuitive software or impactful imagery. My flexibility allows
+          me to work across a wide range of projects, from full-stack web
+          development to visual storytelling. I thrive in fast-paced
+          environments, adapt quickly to new challenges, and love sharing what I
+          learn along the way.
         </p>
       </div>
       <div id='projects'>
-        <h2 class='text-center text-4xl'>Projects</h2>
+        <h2 class='mb-4 text-center text-4xl'>Projects</h2>
         <div id='projects' class='grid gap-6 sm:grid-cols-2'>
           {
             siteConfig.projects.map((project) => (
@@ -82,16 +81,25 @@ const monthDifference = today.getMonth() - birthday.getMonth();
         </Marquee>
       </div>
       <div id='work'>
-        <h2 class='text-center text-4xl'>Work</h2>
+        <h2 class='mb-4 text-center text-4xl'>Work</h2>
         <JobList />
       </div>
       <div id='education' class='mb-16'>
-        <h2 class='text-center text-4xl'>Education</h2>
+        <h2 class='mb-4 text-center text-4xl'>Education</h2>
         <div class='items-left flex flex-col justify-center gap-2'>
           {
             siteConfig.education.map((ed) => (
-              <div class='bg-muted/50 rounded-md border p-2'>
-                <h3 class='font-bold'>{ed.schoolName}</h3>
+              <div class='bg-muted/50 flex flex-col items-start rounded-md border p-2'>
+                <div class='inline-flex items-center gap-2'>
+                  <Image
+                    src={ed.logo}
+                    alt={ed.schoolName}
+                    width={128}
+                    height={128}
+                    class='size-8 object-center'
+                  />
+                  <h3 class='font-bold'>{ed.schoolName}</h3>
+                </div>
                 <p class='text-sm'>{ed.description}</p>
               </div>
             ))

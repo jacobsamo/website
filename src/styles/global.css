@@ -10,8 +10,9 @@ html {
 
 body {
   height: 100vh;
-  background: #1a1a1a;
-  color: whitesmoke;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 h1,
@@ -174,13 +175,21 @@ p {
 
 @theme {
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - var(--gap))); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
   }
-  
+
   @keyframes marquee-vertical {
-    from { transform: translateY(0); }
-    to { transform: translateY(calc(-100% - var(--gap))); }
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
   }
 
   @keyframes meteor {

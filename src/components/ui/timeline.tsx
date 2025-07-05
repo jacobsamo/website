@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 import * as React from "react";
 
 // Types
@@ -83,7 +83,7 @@ interface TimelineDateProps extends React.HTMLAttributes<HTMLTimeElement> {
 }
 
 function TimelineDate({ asChild = false, className, ...props }: TimelineDateProps) {
-  const Comp = asChild ? Slot : "time";
+  const Comp = asChild ? SlotPrimitive.Slot : "time";
 
   return (
     <Comp

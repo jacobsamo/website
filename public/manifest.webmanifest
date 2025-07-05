@@ -1,0 +1,19 @@
+{
+    "name": "Jacob Samorowski",
+    "short_name": "jacobsamo",
+    "id": "jacobsamo",
+    "lang": "en",
+    "description": "Jacob Samorowski's personal website",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a1a1a",
+    "theme_color": "#fff",
+    "icons": [
+      {
+        "src": "/profile-picture.jpg",
+        "sizes": "1440x1440",
+        "type": "image/jpg"
+      }
+    ]
+  }
+  

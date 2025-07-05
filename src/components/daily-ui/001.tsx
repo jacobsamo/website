@@ -4,7 +4,7 @@
  */
 const Day001 = () => {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-opacity-40 bg-[url('/images/daily-ui/001/001-background.jpg')] bg-center bg-no-repeat">
+    <div className="flex h-full w-full items-center justify-center bg-opacity-40 bg-[url('/assets/images/daily-ui/001/001-background.jpg')] bg-center bg-no-repeat">
       <div className="z-10 h-fit w-11/12 gap-3 rounded-3xl bg-slate-500 bg-opacity-20 p-3 text-center shadow backdrop-blur-sm sm:w-2/3">
         <iframe
           className="h-36 w-full"

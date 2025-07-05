@@ -44,7 +44,7 @@ export const siteConfig = {
   description: "Jacob Samorowski's personal website",
   socials: socials,
   og: {
-    url: '/og.png',
+    url: '/og.jpg',
     alt: "Jacob's profile",
     width: 400,
     height: 400,
@@ -78,6 +78,23 @@ export const siteConfig = {
   ],
   work: [
     {
+      id: 'element-photo-video-productions',
+      companyName: 'Element Photo & Video Productions',
+      jobTitle: 'Freelance Photographer & Videographer, Digital Marketing',
+      startDate: new Date('2024-02-24'),
+      endDate: null,
+      present: true,
+      description:
+        'Worked freelancing as a photographer and videographer, and also did digital marketing for the company',
+      skills: [
+        'Photography',
+        'Videography',
+        'Photo Editing',
+        'Video Editing',
+        'Digital Marketing',
+      ],
+    },
+    {
       id: 'ambrose-construct-group',
       companyName: 'Ambrose Construct Group',
       jobTitle: 'Junior Software Developer',
@@ -94,23 +111,6 @@ export const siteConfig = {
       ],
     },
     {
-      id: 'element-photo-video-productions',
-      companyName: 'Element Photo & Video Productions',
-      jobTitle: 'Freelance Photographer & Videographer, Digital Marketing',
-      startDate: new Date('2024-02-24'),
-      endDate: new Date('2025-01-01'),
-      present: false,
-      description:
-        'Worked freelancing as a photographer and videographer, and also did digital marketing for the company',
-      skills: [
-        'Photography',
-        'Videography',
-        'Photo Editing',
-        'Video Editing',
-        'Digital Marketing',
-      ],
-    },
-    {
       id: 'jallas-cafe',
       companyName: "Jalla's Cafe",
       jobTitle: 'Kitchen Hand & Barista',
@@ -124,6 +124,7 @@ export const siteConfig = {
   ],
   education: [
     {
+      logo: "/assets/bussines-logos/immanuel-lutheran-college-logo.svg",
       schoolName: 'Immanuel Lutheran College',
       degree: 'High School Certificate',
       startDate: new Date('2019-01-01'),
@@ -132,6 +133,7 @@ export const siteConfig = {
       description: '',
     },
     {
+      logo: "/assets/bussines-logos/tafe-queensland-logo.svg",
       schoolName: 'Tafe Queensland',
       degree: 'Cert III in Information, Communication and Technology',
       startDate: new Date('2023-12-22'),
