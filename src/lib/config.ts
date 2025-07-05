@@ -22,11 +22,11 @@ export const socials: Social[] = [
     handle: 'jacobsamo',
     url: 'https://github.com/jacobsamo',
   },
-  // {
-  //   platform: "youtube",
-  //   handle: "jacobsamorowski",
-  //   url: "https://youtube.com/jacobsamorowski"
-  // },
+  {
+    platform: 'youtube',
+    handle: 'jacobsamorowski',
+    url: 'https://www.youtube.com/@jacobsamorowski',
+  },
   {
     platform: 'linkedin',
     handle: 'jacobsamorowski',
@@ -42,29 +42,7 @@ export const socials: Social[] = [
 export const siteConfig = {
   title: 'Jacob Samorowski',
   description: "Jacob Samorowski's personal website",
-  socials: {
-    twitter: {
-      handle: '@jacobsamorowski',
-      site: '@jacobsamorowski',
-      cardType: 'summary_large_image',
-    },
-    github: {
-      handle: 'jacobsamorowski',
-      url: 'https://github.com/jacobsamorowski',
-    },
-    youtube: {
-      handle: 'jacobsamorowski',
-      url: 'https://youtube.com/jacobsamorowski',
-    },
-    linkedin: {
-      handle: 'jacobsamorowski',
-      url: 'https://linkedin.com/jacobsamorowski',
-    },
-    instagram: {
-      handle: 'jacobsamorowski',
-      url: 'https://instagram.com/jacobsamorowski',
-    },
-  },
+  socials: socials,
   og: {
     url: '/og.png',
     alt: "Jacob's profile",
