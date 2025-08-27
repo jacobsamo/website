@@ -1,12 +1,14 @@
 type Social = {
   platform:
     | 'twitter'
+    | 'bluesky'
     | 'github'
     | 'youtube'
     | 'linkedin'
     | 'instagram'
+    | 'facebook'
     | 'youtube'
-    | 'medium';
+    | 'tiktok';
   handle: string;
   url: string;
 };
@@ -15,28 +17,43 @@ export const socials: Social[] = [
   {
     platform: 'twitter',
     handle: '@jacobsamorowski',
-    url: 'https://x.com/jacobsamorowski',
+    url: 'https://links.jacobsamo.com/x',
   },
   {
     platform: 'github',
     handle: 'jacobsamo',
-    url: 'https://github.com/jacobsamo',
+    url: 'https://links.jacobsamo.com/github',
   },
   {
     platform: 'youtube',
     handle: 'jacobsamorowski',
-    url: 'https://www.youtube.com/@jacobsamorowski',
+    url: 'https://links.jacobsamo.com/youtube',
   },
   {
     platform: 'linkedin',
     handle: 'jacobsamorowski',
-    url: 'https://www.linkedin.com/in/jacob-samorowski',
+    url: 'https://links.jacobsamo.com/linkedin',
   },
-  // {
-  //   platform: "instagram",
-  //   handle: "jacobsamorowski",
-  //   url: "https://instagram.com/jacobsamorowski"
-  // }
+  {
+    platform: 'instagram',
+    handle: 'jacobsamorowski',
+    url: 'https://links.jacobsamo.com/instagram',
+  },
+  {
+    platform: 'facebook',
+    handle: 'jacobsamorowski',
+    url: 'https://links.jacobsamo.com/facebook',
+  },
+  {
+    platform: 'tiktok',
+    handle: 'jacobsamorowski',
+    url: 'https://links.jacobsamo.com/tiktok',
+  },
+  {
+    platform: 'bluesky',
+    handle: 'jacobsamo.com',
+    url: 'https://links.jacobsamo.com/bluesky',
+  },
 ];
 
 export const siteConfig = {
@@ -124,7 +141,7 @@ export const siteConfig = {
   ],
   education: [
     {
-      logo: "/assets/bussines-logos/immanuel-lutheran-college-logo.svg",
+      logo: '/assets/bussines-logos/immanuel-lutheran-college-logo.svg',
       schoolName: 'Immanuel Lutheran College',
       degree: 'High School Certificate',
       startDate: new Date('2019-01-01'),
@@ -133,7 +150,7 @@ export const siteConfig = {
       description: '',
     },
     {
-      logo: "/assets/bussines-logos/tafe-queensland-logo.svg",
+      logo: '/assets/bussines-logos/tafe-queensland-logo.svg',
       schoolName: 'Tafe Queensland',
       degree: 'Cert III in Information, Communication and Technology',
       startDate: new Date('2023-12-22'),
