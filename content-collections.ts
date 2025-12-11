@@ -11,6 +11,56 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
 
+function createMdxTransform<T extends Record<string, any> & { _meta: any; content: string }>() {
+  return async (document: T, context: any) => {
+    const mdx = await compileMDX(context, document, {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypePrettyCode,
+          {
+            theme: "material-theme-palenight",
+            transformers: [
+              transformerMetaHighlight(),
+              transformerMetaWordHighlight(),
+              transformerNotationDiff({
+                matchAlgorithm: "v3",
+              }),
+            ],
+            onVisitLine(node: any) {
+              // Prevent lines from collapsing in `display: grid` mode, and allow empty
+              // lines to be copy/pasted
+              if (node.children.length === 0) {
+                node.children = [{ type: "text", value: " " }];
+              }
+            },
+            onVisitHighlightedLine(node: any) {
+              node.properties.className.push("line--highlighted");
+            },
+            onVisitHighlightedWord(node: any) {
+              node.properties.className = ["word--highlighted"];
+            },
+          },
+        ],
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ["subheading-anchor"],
+              ariaLabel: "Link to section",
+            },
+          },
+        ],
+      ],
+    });
+    return {
+      ...document,
+      mdx,
+    };
+  };
+}
+
 const posts = defineCollection({
   name: "posts",
   directory: "src/content/posts",
@@ -23,53 +73,7 @@ const posts = defineCollection({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
   }),
-  transform: async (document, context) => {
-    const mdx = await compileMDX(context, document, {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypePrettyCode,
-          {
-            theme: "material-theme-palenight",
-            transformers: [
-              transformerMetaHighlight(),
-              transformerMetaWordHighlight(),
-              transformerNotationDiff({
-                matchAlgorithm: "v3",
-              }),
-            ],
-            onVisitLine(node: any) {
-              // Prevent lines from collapsing in `display: grid` mode, and allow empty
-              // lines to be copy/pasted
-              if (node.children.length === 0) {
-                node.children = [{ type: "text", value: " " }];
-              }
-            },
-            onVisitHighlightedLine(node: any) {
-              node.properties.className.push("line--highlighted");
-            },
-            onVisitHighlightedWord(node: any) {
-              node.properties.className = ["word--highlighted"];
-            },
-          },
-        ],
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              className: ["subheading-anchor"],
-              ariaLabel: "Link to section",
-            },
-          },
-        ],
-      ],
-    });
-    return {
-      ...document,
-      mdx,
-    };
-  },
+  transform: createMdxTransform(),
 });
 
 const animationChanges = defineCollection({
@@ -81,53 +85,7 @@ const animationChanges = defineCollection({
     description: z.string(),
     heroImage: z.string().optional(),
   }),
-  transform: async (document, context) => {
-    const mdx = await compileMDX(context, document, {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypePrettyCode,
-          {
-            theme: "material-theme-palenight",
-            transformers: [
-              transformerMetaHighlight(),
-              transformerMetaWordHighlight(),
-              transformerNotationDiff({
-                matchAlgorithm: "v3",
-              }),
-            ],
-            onVisitLine(node: any) {
-              // Prevent lines from collapsing in `display: grid` mode, and allow empty
-              // lines to be copy/pasted
-              if (node.children.length === 0) {
-                node.children = [{ type: "text", value: " " }];
-              }
-            },
-            onVisitHighlightedLine(node: any) {
-              node.properties.className.push("line--highlighted");
-            },
-            onVisitHighlightedWord(node: any) {
-              node.properties.className = ["word--highlighted"];
-            },
-          },
-        ],
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              className: ["subheading-anchor"],
-              ariaLabel: "Link to section",
-            },
-          },
-        ],
-      ],
-    });
-    return {
-      ...document,
-      mdx,
-    };
-  },
+  transform: createMdxTransform(),
 })
 
 export default defineConfig({
