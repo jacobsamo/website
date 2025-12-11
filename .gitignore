@@ -11,5 +11,5 @@ count.txt
 .wrangler
 .output
 .vinxi
-todos.json
-mcp-todos.json
+.content-collections
+dist

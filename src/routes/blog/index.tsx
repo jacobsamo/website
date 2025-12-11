@@ -1,7 +1,16 @@
+import { seo } from "@/lib/seo";
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/blog/')({
   component: BlogPage,
+  head: () => {
+    const { meta, links } = seo({
+      title: "Blog - Jacob Samorowski",
+      description: "Thoughts, tutorials, and stories from a software developer and photographer",
+      url: "https://jacobsamo.com/blog",
+    });
+    return { meta, links };
+  },
 })
 
 function BlogPage() {

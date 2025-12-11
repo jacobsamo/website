@@ -3,6 +3,7 @@ import { Image } from "@unpic/react";
 import { ExternalLink, Globe2 } from "lucide-react";
 import { socials } from "@/lib/config";
 import { CopyRight } from "@/components/footer";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/links")({
   component: LinksPage,
@@ -10,6 +11,14 @@ export const Route = createFileRoute("/links")({
     meta: {
       showLayout: false,
     },
+  },
+  head: () => {
+    const { meta, links } = seo({
+      title: "Links - Jacob Samorowski",
+      description: "All my social links and ways to connect with me",
+      url: "https://jacobsamo.com/links",
+    });
+    return { meta, links };
   },
 });
 
