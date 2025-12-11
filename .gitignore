@@ -3,9 +3,11 @@ node_modules
 dist
 dist-ssr
 *.local
-*.local*.json
+*.local.*
 count.txt
 .env
+*.env
+*.env.*
 .nitro
 .tanstack
 .wrangler

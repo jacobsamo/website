@@ -30,9 +30,17 @@ export const getRouter = () => {
 	if (!router.isServer && import.meta.env.VITE_SENTRY_DSN) {
 		Sentry.init({
 			dsn: import.meta.env.VITE_SENTRY_DSN,
-			integrations: [],
-			tracesSampleRate: 1.0,
+			integrations: [
+				Sentry.replayIntegration(),
+				Sentry.consoleLoggingIntegration({ levels: ["log", "error", "warn"] }),
+			],
+			tracesSampleRate: 1,
+			replaysSessionSampleRate: 0.1,
+			replaysOnErrorSampleRate: 1.0,
 			sendDefaultPii: true,
+			_experiments: {
+				enableLogs: true,
+			},
 		});
 	}
 
