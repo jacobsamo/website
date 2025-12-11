@@ -1,14 +1,16 @@
-type Social = {
-  platform:
-    | 'twitter'
-    | 'bluesky'
-    | 'github'
-    | 'youtube'
-    | 'linkedin'
-    | 'instagram'
-    | 'facebook'
-    | 'youtube'
-    | 'tiktok';
+export const platforms = [
+	"twitter",
+	"bluesky",
+	"github",
+	"youtube",
+	"linkedin",
+	"instagram",
+	"facebook",
+	"tiktok",
+] as const
+
+export type Social = {
+  platform: typeof platforms[number];
   handle: string;
   url: string;
 };
@@ -79,18 +81,18 @@ export const siteConfig = {
   ],
   projects: [
     {
-      title: 'Mixie Cooking',
-      description:
-        'Mixie is a community-driven recipe platform where home cooks and food enthusiasts can collaborate on unique and delicious recipes',
-      image: 'https://www.mixiecooking.com/images/landing-page.jpg',
-      url: 'https://www.mixiecooking.com',
-    },
-    {
       title: 'BuzzTrip',
       description:
         'BuzzTrip is a open source mapping app allowing travelers, event organizes and photographers create and collaborate on custom maps, anywhere on any device, reimagining effortless mapping',
       image: 'https://buzztrip.co/assets/open-graph.jpg',
       url: 'https://buzztrip.co',
+    },
+    {
+      title: 'Mixie Cooking',
+      description:
+        'Mixie is a community-driven recipe platform where home cooks and food enthusiasts can collaborate on unique and delicious recipes',
+      image: 'https://www.mixiecooking.com/images/landing-page.jpg',
+      url: 'https://www.mixiecooking.com',
     },
   ],
   work: [
