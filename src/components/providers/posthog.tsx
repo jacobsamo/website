@@ -10,8 +10,8 @@ export default function PostHogProvider({
 	children: React.ReactNode;
 }) {
 	useEffect(() => {
-		if (import.meta.env.VITE_POSTHOG_KEY && import.meta.env.VITE_POSTHOG_HOST) {
-			posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
+		if (env.VITE_POSTHOG_KEY && env.VITE_POSTHOG_HOST) {
+			posthog.init(env.VITE_POSTHOG_KEY, {
 				// api_host: "/_proxy/posthog/ingest",
 				ui_host: env.VITE_POSTHOG_HOST,
 				person_profiles: "identified_only",
