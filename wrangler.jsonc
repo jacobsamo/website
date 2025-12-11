@@ -1,19 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "website",
-  "compatibility_date": "2025-05-05",
+  "compatibility_date": "2025-09-02",
   "compatibility_flags": [
     "nodejs_compat",
     "nodejs_compat_populate_process_env",
     "nodejs_als",
   ],
-  "assets": {
-    "directory": "./dist",
-  },
-  "workers_dev": true,
-  "observability": {
-    "logs": {
-      "enabled": true,
-    },
-  },
+  "main": "@tanstack/react-start/server-entry",
 }
