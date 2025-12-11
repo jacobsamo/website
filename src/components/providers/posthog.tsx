@@ -34,7 +34,10 @@ export default function PostHogProvider({
 				},
 			});
 		} else {
-			console.log("Posthog not initialized");
+			console.log("Posthog not initialized", {
+				env,
+				meta: import.meta.env,
+			});
 		}
 	}, []);
 
