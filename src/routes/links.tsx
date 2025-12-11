@@ -64,6 +64,7 @@ function LinksPage() {
           </a>
           {socials.map((social) => (
             <a
+              key={social.url}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"

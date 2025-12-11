@@ -33,6 +33,8 @@ export default function PostHogProvider({
 					}
 				},
 			});
+		} else {
+			console.log("Posthog not initialized");
 		}
 	}, []);
 
