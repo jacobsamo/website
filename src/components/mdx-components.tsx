@@ -1,6 +1,7 @@
 import { useMDXComponent } from "@content-collections/mdx/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { DesignViewer } from "./design-viewer";
 
 const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -151,6 +152,7 @@ const components = {
 			{...props}
 		/>
 	),
+	DesignViewer,
 };
 
 interface MdxProps {

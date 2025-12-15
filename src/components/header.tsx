@@ -32,6 +32,15 @@ export const Header = () => {
           Blog
         </Link>*/}
         <Link
+          to="/design"
+          activeProps={{
+            className: "text-bold underline",
+          }}
+          className="inline-block decoration-0"
+        >
+          Designs
+        </Link>
+        <Link
           to="/links"
           activeProps={{
             className: "text-bold underline",
