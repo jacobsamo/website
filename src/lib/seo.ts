@@ -71,6 +71,11 @@ export function seo({
 				]
 			: []),
 
-		...(url ? [{ property: "og:url", content: url }] : []),
+		...(url
+			? [
+					{ property: "og:url", content: url },
+					{ property: "twitter:url", content: url },
+				]
+			: []),
 	];
 }

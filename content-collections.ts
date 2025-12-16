@@ -81,8 +81,12 @@ const designs = defineCollection({
   include: ["**/*.md", "**/*.mdx"],
   schema: z.object({
     title: z.string(),
-    description: z.string(),
-    heroImage: z.string().optional(),
+    shortDescription: z.string(),
+    tags: z.string().array().min(1),
+    /**
+     * A url to either a image or gif, used for the og image
+     */
+    heroImage: z.string(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {

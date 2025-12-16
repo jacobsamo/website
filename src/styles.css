@@ -161,6 +161,7 @@ code {
   --animate-marquee: marquee var(--duration) linear infinite;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-meteor: meteor 5s linear infinite;
+  --animate-spin-once: spin-once 0.5s ease-in-out forwards;
   --font-sans: 'Inter Variable', sans-serif;
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
@@ -183,6 +184,10 @@ code {
     min-width: 44px;
     z-index: 9999;
   }
+}
+
+@utility rotate-360 {
+  transform: rotate(360deg);
 }
 
 @theme {
@@ -215,6 +220,15 @@ code {
     100% {
       transform: rotate(var(--angle)) translateX(-500px);
       opacity: 0;
+    }
+  }
+
+  @keyframes spin-once {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 }

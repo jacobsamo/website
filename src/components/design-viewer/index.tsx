@@ -5,6 +5,10 @@ import { ToggleThemeButton } from "./toggle-theme";
 
 interface DesignViewerProps {
 	children: React.ReactNode;
+	actions?: {
+		showTheme?: boolean;
+		showRefresh?: boolean;
+	};
 }
 
 export const DesignViewer = ({ children }: DesignViewerProps) => {
@@ -14,7 +18,7 @@ export const DesignViewer = ({ children }: DesignViewerProps) => {
 	return (
 		<div
 			className={cn(
-				"relative flex items-center justify-center w-full h-[40rem] rounded-md border transition-colors duration-300 mb-8 mt-4",
+				"relative w-full h-[40rem] rounded-md border transition-colors duration-300 mb-8 mt-4",
 				{
 					"bg-[oklch(0.141_0.005_285.823)] border-[oklch(0.274_0.006_286.033)]":
 						theme === "dark",
@@ -36,11 +40,15 @@ export const DesignViewer = ({ children }: DesignViewerProps) => {
 				/>
 			</div>
 			<div
+				// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state
 				key={refreshKey}
-				className={cn("transition-colors duration-300", {
-					"text-[oklch(0.985_0_0)]": theme === "dark",
-					"text-gray-900": theme === "light",
-				})}
+				className={cn(
+					"flex items-center justify-center w-full h-full transition-colors duration-300 overflow-y-auto",
+					{
+						"text-[oklch(0.985_0_0)]": theme === "dark",
+						"text-gray-900": theme === "light",
+					},
+				)}
 			>
 				{children}
 			</div>

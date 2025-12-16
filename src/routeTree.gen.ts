@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as PhotographyRouteImport } from './routes/photography'
 import { Route as LinksRouteImport } from './routes/links'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as DesignSlugRouteImport } from './routes/design/$slug'
 import { Route as BlogPostIdRouteImport } from './routes/blog/$postId'
 
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PhotographyRoute = PhotographyRouteImport.update({
   id: '/photography',
   path: '/photography',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/links': typeof LinksRoute
   '/photography': typeof PhotographyRoute
+  '/playground': typeof PlaygroundRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/links': typeof LinksRoute
   '/photography': typeof PhotographyRoute
+  '/playground': typeof PlaygroundRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/links': typeof LinksRoute
   '/photography': typeof PhotographyRoute
+  '/playground': typeof PlaygroundRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/links'
     | '/photography'
+    | '/playground'
     | '/blog/$postId'
     | '/design/$slug'
     | '/blog'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/links'
     | '/photography'
+    | '/playground'
     | '/blog/$postId'
     | '/design/$slug'
     | '/blog'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/links'
     | '/photography'
+    | '/playground'
     | '/blog/$postId'
     | '/design/$slug'
     | '/blog/'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LinksRoute: typeof LinksRoute
   PhotographyRoute: typeof PhotographyRoute
+  PlaygroundRoute: typeof PlaygroundRoute
   BlogPostIdRoute: typeof BlogPostIdRoute
   DesignSlugRoute: typeof DesignSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -123,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/photography': {
       id: '/photography'
       path: '/photography'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LinksRoute: LinksRoute,
   PhotographyRoute: PhotographyRoute,
+  PlaygroundRoute: PlaygroundRoute,
   BlogPostIdRoute: BlogPostIdRoute,
   DesignSlugRoute: DesignSlugRoute,
   BlogIndexRoute: BlogIndexRoute,

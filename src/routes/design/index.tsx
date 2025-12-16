@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { allDesigns } from "content-collections";
 import { seo } from "@/lib/seo";
+import { Image } from "@unpic/react";
 
 export const Route = createFileRoute("/design/")({
 	component: DesignPage,
@@ -22,8 +23,10 @@ function DesignPage() {
 					key={post._meta.path}
 					className="block p-4 rounded-md bg-white text-black"
 				>
+				<Image 
+				  src={post.heroImage}
+					/>
 					<h2>{post.title}</h2>
-					<p>{post.description}</p>
 				</Link>
 			))}
 		</main>

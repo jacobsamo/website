@@ -1,6 +1,7 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { allDesigns } from "content-collections";
 import { Mdx } from "@/components/mdx-components";
+import { Badge } from "@/components/ui/badge";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/design/$slug")({
@@ -20,10 +21,12 @@ export const Route = createFileRoute("/design/$slug")({
 		return { design };
 	},
 	head: ({ loaderData }) => ({
-		meta: seo({
-			title: loaderData?.design.title ?? "Design",
-			description: loaderData?.design.description,
-		}),
+		meta: loaderData
+			? seo({
+					title: loaderData.design.title ?? "Design",
+					description: loaderData.design.shortDescription,
+				})
+			: undefined,
 	}),
 });
 
@@ -31,6 +34,14 @@ function RouteComponent() {
 	const { design } = Route.useLoaderData();
 	return (
 		<main className="min-h-screen container mx-auto px-4 py-8">
+			<h1 className="mt-2 scroll-m-20 text-4xl font-bold tracking-tight">
+				{design.title}
+			</h1>
+			{design.tags.map((tag) => (
+				<Badge key={tag} variant="outline">
+					{tag}
+				</Badge>
+			))}
 			<Mdx code={design.mdx} />
 		</main>
 	);
