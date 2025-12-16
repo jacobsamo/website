@@ -4,14 +4,13 @@ import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/design/")({
 	component: DesignPage,
-	head: () => {
-		const { meta, links } = seo({
+	head: () => ({
+		meta: seo({
 			title: "Design - Jacob Samorowski",
 			description: "Coding challenges and exercises I've completed",
 			url: "https://jacobsamo.com/challenges",
-		});
-		return { meta, links };
-	},
+		}),
+	}),
 });
 
 function DesignPage() {

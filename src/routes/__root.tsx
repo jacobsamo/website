@@ -12,7 +12,7 @@ import { Header } from "@/components/header";
 import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, socials } from "@/lib/config";
 import { seo } from "@/lib/seo";
 import appCss from "../styles.css?url";
 
@@ -22,8 +22,17 @@ interface MyRouterContext {
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	head: () => {
+		const twitterSocial = socials.find((s) => s.platform === "twitter");
+		const twitterHandle = twitterSocial?.handle || "@jacobsamorowski";
 		return {
 			meta: [
+				...seo({
+					title: siteConfig.title,
+					description: siteConfig.description,
+					keywords: siteConfig.keywords,
+					image: siteConfig.og.url,
+					url: "https://jacobsamo.com",
+				}),
 				{
 					charSet: "utf-8",
 				},
@@ -52,10 +61,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 					property: "og:type",
 					content: "website",
 				},
-				...seo({
-					title: siteConfig.title,
-					url: "https://jacobsamo.com",
-				}).meta,
+				{ name: "author", content: "Jacob Samorowski" },
+				{ name: "twitter:creator", content: twitterHandle },
+				{ name: "twitter:site", content: twitterHandle },
+
+				{ name: "twitter:card", content: "summary_large_image" },
 			],
 			links: [
 				{

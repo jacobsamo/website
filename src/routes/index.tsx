@@ -4,18 +4,9 @@ import { ProjectCard } from "@/components/project-card";
 import { Socials } from "@/components/socials";
 import { Marquee } from "@/components/ui/marquee";
 import { siteConfig, skills } from "@/lib/config";
-import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
 	component: MainPage,
-	head: () => {
-		const { meta, links } = seo({
-			title: `${siteConfig.title} - Software Developer & Photographer`,
-			description: siteConfig.description,
-			url: "https://jacobsamo.com",
-		});
-		return { meta, links };
-	},
 });
 
 function MainPage() {

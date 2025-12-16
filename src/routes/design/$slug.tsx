@@ -23,14 +23,14 @@ export const Route = createFileRoute("/design/$slug")({
 		meta: seo({
 			title: loaderData?.design.title ?? "Design",
 			description: loaderData?.design.description,
-		}).meta,
+		}),
 	}),
 });
 
 function RouteComponent() {
 	const { design } = Route.useLoaderData();
 	return (
-		<main className="h-screen container mx-auto px-4 py-8">
+		<main className="min-h-screen container mx-auto px-4 py-8">
 			<Mdx code={design.mdx} />
 		</main>
 	);
