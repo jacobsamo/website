@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { RefreshButton } from "./refresh-button";
 import { ToggleThemeButton } from "./toggle-theme";
@@ -8,6 +8,22 @@ interface DesignViewerProps {
 	showThemeSwitcher?: boolean;
 	showRefreshButton?: boolean;
 }
+
+interface ThemeContextValue {
+	theme: "light" | "dark";
+}
+
+const ThemeContext = React.createContext<ThemeContextValue | undefined>(
+	undefined,
+);
+
+export const useTheme = () => {
+	const context = React.useContext(ThemeContext);
+	if (!context) {
+		throw new Error("useTheme must be used within a DesignViewer");
+	}
+	return context;
+};
 
 export const DesignViewer = ({
 	children,
@@ -27,7 +43,6 @@ export const DesignViewer = ({
 					"bg-white border-gray-200": theme === "light",
 				},
 			)}
-			data-theme={theme}
 		>
 			<div className="absolute right-2 top-2 flex gap-2">
 				{showThemeSwitcher && (
@@ -45,19 +60,21 @@ export const DesignViewer = ({
 					/>
 				)}
 			</div>
-			<div
-				// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state
-				key={refreshKey}
-				className={cn(
-					"flex items-center justify-center w-full h-full transition-colors duration-300 overflow-y-auto",
-					{
-						"text-[oklch(0.985_0_0)]": theme === "dark",
-						"text-gray-900": theme === "light",
-					},
-				)}
-			>
-				{children}
-			</div>
+			<ThemeContext.Provider value={{ theme }}>
+				<div
+					// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state
+					key={refreshKey}
+					className={cn(
+						"flex items-center justify-center w-full h-full transition-colors duration-300 overflow-y-auto",
+						{
+							"text-[oklch(0.985_0_0)]": theme === "dark",
+							"text-gray-900": theme === "light",
+						},
+					)}
+				>
+					{children}
+				</div>
+			</ThemeContext.Provider>
 		</div>
 	);
 };
