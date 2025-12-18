@@ -1,8 +1,8 @@
 ---
 title: "Design Viewer"
-shortDescription: "A detailed description of the design viewer."
-tags: ["animations", "design viewer"]
-heroImage: "/og.jpg"
+shortDescription: "An interactive component for showcasing UI designs with theme switching, animation controls, and more."
+tags: ["animations", "design viewer", "component"]
+heroImage: "/assets/images/01-design-viewer.jpg"
 ---
 import { AnimationComponent } from "@/designs/01-design-viewer/component.tsx";
 
@@ -10,4 +10,126 @@ import { AnimationComponent } from "@/designs/01-design-viewer/component.tsx";
     <AnimationComponent />
 </DesignViewer>
 
-testing
+---
+
+## The Problem with Static Portfolios
+
+Traditional web development portfolios face a fundamental limitation: they show the final result, but rarely the experience. A screenshot of a button tells you what it looks like, but not how it feels to interact with. A code snippet proves you can write React, but doesn't demonstrate your understanding of animation timing, theme consistency, or state management.
+
+I wanted a better way to showcase UI components—one that bridges the gap between static documentation and live demos. That's where the Design Viewer was born.
+
+## What is the Design Viewer?
+
+The Design Viewer is an interactive sandbox component that wraps around UI designs, providing a controlled environment with built-in controls for manipulation and exploration. Think of it as a miniature Storybook or Figma prototype viewer, but integrated directly into my portfolio site.
+
+At its core, it's deceptively simple: a container with some overlay controls. But the power lies in what those controls enable—the ability to see a component in multiple contexts without writing separate demo pages for each variation.
+
+## Architecture and Implementation
+
+The Design Viewer is built as a flexible React component that accepts children and optional configuration props:
+
+```tsx
+<DesignViewer 
+  showThemeSwitcher={true}
+  showRefreshButton={true}
+>
+  <YourComponent />
+</DesignViewer>
+```
+
+### Theme Switching
+
+One of the core features is the theme toggle. The viewer maintains its own theme state (light or dark) and applies appropriate background colors and text colors to the container. This is particularly powerful because it uses CSS custom properties and the `data-theme` attribute, allowing child components to respond to theme changes if they're designed to do so.
+
+The implementation uses OKLCH color space for smooth, perceptually-uniform transitions between themes:
+
+```tsx
+const [theme, setTheme] = useState<"light" | "dark">("light");
+
+// Applied to container
+className={cn({
+  "bg-[oklch(0.141_0.005_285.823)] border-[oklch(0.274_0.006_286.033)]": 
+    theme === "dark",
+  "bg-white border-gray-200": 
+    theme === "light",
+})}
+```
+
+### Animation Refresh
+
+The refresh button is where things get interesting. Rather than calling imperative methods or managing complex state resets, it uses a simple but powerful React pattern: forced remounting through key changes.
+
+```tsx
+const [refreshKey, setRefreshKey] = useState(0);
+
+// Child wrapper
+<div key={refreshKey}>
+  {children}
+</div>
+
+// Refresh handler
+onRefresh={() => setRefreshKey(prev => prev + 1)}
+```
+
+When the key changes, React unmounts the old component and mounts a fresh instance. This resets all component state, including animation timelines from libraries like Motion (formerly Framer Motion). For the staggered box animation you see above, clicking refresh restarts the entire sequence from scratch.
+
+This approach is elegant because it leverages React's reconciliation algorithm rather than requiring components to expose reset methods or manage their own animation lifecycles.
+
+## Design Philosophy
+
+The viewer is built with several key principles:
+
+**Minimal Configuration:** By default, all features are enabled. You only need to pass props when you want to disable something. This makes the common case (showing everything) the easiest case.
+
+**Composability:** The viewer accepts children rather than a named prop like `design` or `render`. This feels more natural in JSX and makes it easy to wrap components, add providers, or compose multiple elements.
+
+**Non-invasive:** The viewer doesn't require child components to know they're being displayed in a viewer. No special props, no wrapper hooks, no context providers. It just works.
+
+**Configurable Presentation:** Props like `showThemeSwitcher` and `showRefreshButton` give fine-grained control. If a design doesn't have animation, disable the refresh button. If it only works in dark mode, hide the theme switcher.
+
+## Use Cases
+
+The Design Viewer shines in several scenarios:
+
+**Animation Showcases:** Components with entrance animations or state transitions benefit from the refresh button, letting visitors replay the animation without page refreshes.
+
+**Theme-Aware Components:** Designs that adapt to light and dark themes can be explored in both contexts immediately, demonstrating responsive design thinking.
+
+**Interactive Components:** Buttons, forms, and other stateful elements can be reset to their initial state, making it easy to demonstrate behavior multiple times.
+
+**Responsive Designs:** The viewer provides a consistent viewport, making it easy to show how components behave at different sizes or with different content.
+
+## Future Enhancements
+
+This is just the beginning. Future iterations could include:
+
+- **Viewport presets** for testing responsive designs (mobile, tablet, desktop)
+- **Code viewing** to show the source of the showcased component
+- **Props inspector** to visualize and modify component props in real-time
+- **State controls** for toggling between different component states (loading, error, success)
+- **Grid overlays** for checking alignment and spacing
+- **Accessibility tools** like color contrast checkers and reduced motion toggles
+- **Export functionality** for generating screenshots or shareable links
+
+## Technical Stack
+
+The Design Viewer leverages several key technologies:
+
+- **React 19** with the React Compiler for optimal performance
+- **Tailwind CSS 4** via Vite plugin for styling
+- **Motion** (Framer Motion) for animations in child components
+- **OKLCH color space** for perceptually-uniform theme transitions
+- **TypeScript** for type-safe props and component interfaces
+
+## Integration with Content Collections
+
+The viewer integrates seamlessly with my content collections setup. Each design lives as an MDX file in `src/content/designs/`, with the actual component implementation in a separate TypeScript file. This separation keeps the documentation clean while maintaining type safety and hot module reloading during development.
+
+The MDX approach also means I can write rich explanations alongside the interactive demos, creating a comprehensive showcase that's part portfolio, part documentation, and part design system.
+
+## Conclusion
+
+The Design Viewer represents my approach to web development: thoughtful, user-focused, and pragmatic. It solves a real problem (showcasing interactive components) with a simple solution that's extensible and maintainable.
+
+More importantly, it demonstrates understanding beyond code—it shows I think about user experience, developer experience, and the details that make interfaces delightful to use. Because in the end, great web development isn't just about making things work; it's about making things that are a joy to experience.
+

@@ -6,6 +6,14 @@
 /*Commented out as we are only using a dark mode on the website at this stage */
 /*@custom-variant dark (&:is(.dark *));*/
 
+@font-face {
+  font-family: 'MatrixSans';
+  src: url('/fonts/MatrixSans-Regular-Print.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -80,6 +88,7 @@ code {
 
   --duration: 10s;
 }
+
 
 /*Commented out as we are only using a dark mode on the website at this stage */
 /*
@@ -162,7 +171,7 @@ code {
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-meteor: meteor 5s linear infinite;
   --animate-spin-once: spin-once 0.5s ease-in-out forwards;
-  --font-sans: 'Inter Variable', sans-serif;
+  --font-sans: 'MatrixSans', 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);

@@ -5,13 +5,15 @@ import { ToggleThemeButton } from "./toggle-theme";
 
 interface DesignViewerProps {
 	children: React.ReactNode;
-	actions?: {
-		showTheme?: boolean;
-		showRefresh?: boolean;
-	};
+	showThemeSwitcher?: boolean;
+	showRefreshButton?: boolean;
 }
 
-export const DesignViewer = ({ children }: DesignViewerProps) => {
+export const DesignViewer = ({
+	children,
+	showThemeSwitcher = true,
+	showRefreshButton = true,
+}: DesignViewerProps) => {
 	const [theme, setTheme] = useState<"light" | "dark">("light");
 	const [refreshKey, setRefreshKey] = useState(0);
 
@@ -28,16 +30,20 @@ export const DesignViewer = ({ children }: DesignViewerProps) => {
 			data-theme={theme}
 		>
 			<div className="absolute right-2 top-2 flex gap-2">
-				<ToggleThemeButton
-					theme={theme}
-					onThemeChange={() =>
-						setTheme((prev) => (prev === "light" ? "dark" : "light"))
-					}
-				/>
-				<RefreshButton
-					theme={theme}
-					onRefresh={() => setRefreshKey((prev) => prev + 1)}
-				/>
+				{showThemeSwitcher && (
+					<ToggleThemeButton
+						theme={theme}
+						onThemeChange={() =>
+							setTheme((prev) => (prev === "light" ? "dark" : "light"))
+						}
+					/>
+				)}
+				{showRefreshButton && (
+					<RefreshButton
+						theme={theme}
+						onRefresh={() => setRefreshKey((prev) => prev + 1)}
+					/>
+				)}
 			</div>
 			<div
 				// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state

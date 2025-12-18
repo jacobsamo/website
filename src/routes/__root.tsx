@@ -72,6 +72,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 					rel: "stylesheet",
 					href: appCss,
 				},
+				// Font preload for faster loading
+				{
+					rel: "preload",
+					href: "/fonts/MatrixSans-Regular-Print.woff2",
+					as: "font",
+					type: "font/woff2",
+					crossOrigin: "anonymous",
+				},
 				// Favicon
 				{
 					rel: "icon",
