@@ -1,18 +1,7 @@
-import { Bell, Divide, Equal, Pause, Play, Plus } from "lucide-react";
-import {
-	AnimatePresence,
-	motion,
-	stagger,
-	useMotionValue,
-	useMotionValueEvent,
-	useSpring,
-	useTransform,
-} from "motion/react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { Bell, Equal, Play, Plus } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { useTheme } from "@/components/design-viewer";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const badgeVariants = {
 	firstLoad: { opacity: 0, scale: 0, x: 0 },
@@ -39,7 +28,6 @@ const badgeVariants = {
 export const AnimationComponent = () => {
 	const [notificationCount, setNotificationCount] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
-	const { theme } = useTheme();
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -61,14 +49,7 @@ export const AnimationComponent = () => {
 
 	return (
 		<div className="flex flex-col items-center justify-between h-30">
-			<div
-				className={cn(
-					"relative ring-2 shadow p-2 rounded-full size-16 flex items-center justify-center cursor-pointer",
-					theme === "light"
-						? "ring-gray-200 bg-white"
-						: "ring-secondary bg-secondary/80",
-				)}
-			>
+			<div className="relative ring-2 shadow p-2 rounded-full size-16 flex items-center justify-center cursor-pointer ring-gray-200 bg-white dark:ring-secondary dark:bg-secondary/80">
 				<AnimatePresence mode="popLayout">
 					{notificationCount !== 0 && (
 						<motion.span
@@ -76,10 +57,7 @@ export const AnimationComponent = () => {
 							initial="firstLoad"
 							animate="animatFirstLoad"
 							layout
-							className={cn(
-								"rounded-full p-2 text-xs absolute -top-2 -right-2 size-8 flex items-center justify-center text-white overflow-hidden",
-								theme === "light" ? "bg-red-500" : "bg-red-400",
-							)}
+							className="rounded-full p-2 text-xs absolute -top-2 -right-2 size-8 flex items-center justify-center text-white overflow-hidden bg-red-500 dark:bg-red-400"
 						>
 							<motion.span
 								key={notificationCount}
@@ -92,7 +70,7 @@ export const AnimationComponent = () => {
 								}}
 								exit={{ filter: "blur(1px)", opacity: 0, scale: 0 }}
 							>
-								{notificationCount}
+								{notificationCount <= 99 ? notificationCount : "99+"}
 							</motion.span>
 						</motion.span>
 					)}

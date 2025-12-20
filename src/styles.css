@@ -3,8 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
-/*Commented out as we are only using a dark mode on the website at this stage */
-/*@custom-variant dark (&:is(.dark *));*/
+/* Custom dark mode variant - supports both .dark class and data-theme="dark" attribute */
+@custom-variant dark (&:is(.dark, [data-theme="dark"], .dark *, [data-theme="dark"] *));
 
 @font-face {
   font-family: 'MatrixSans';

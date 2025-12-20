@@ -1,7 +1,10 @@
+"use client";
+
 import { useMDXComponent } from "@content-collections/mdx/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { DesignViewer } from "./design-viewer";
+import { TweetCard } from "./tweet-card";
 
 const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -153,6 +156,7 @@ const components = {
 		/>
 	),
 	DesignViewer,
+	TweetCard,
 };
 
 interface MdxProps {
