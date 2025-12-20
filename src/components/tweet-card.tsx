@@ -1,6 +1,5 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import {
 	type EnrichedTweet,
 	enrichTweet,
@@ -11,8 +10,31 @@ import {
 	TweetNotFound,
 	type TweetProps,
 	TweetSkeleton,
-	useTweet,
 } from "react-tweet";
+import { type VariantProps, cva } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const tweetCardVariants = cva("tweet-card-wrapper", {
+	variants: {
+		size: {
+			sm: "",
+			md: "",
+			lg: "",
+		},
+	},
+	defaultVariants: {
+		size: "sm",
+	},
+});
+
+export interface TweetCardProps extends Omit<TweetProps, "id"> {
+	/** The tweet ID (e.g., "1629307668568633344") */
+	id: string;
+	/** Size of the tweet card */
+	size?: VariantProps<typeof tweetCardVariants>["size"];
+	/** Optional className for additional styling */
+	className?: string;
+}
 
 /**
  * A minimal tweet card that displays only the header (user details),
@@ -21,9 +43,12 @@ import {
  * Uses React Query for client-side data fetching since TanStack Start
  * doesn't fully support React Server Components yet.
  *
+ * Styled to match the website's secondary color scheme.
+ *
  * @example
  * ```tsx
  * <TweetCard id="1629307668568633344" />
+ * <TweetCard id="1629307668568633344" size="md" />
  * ```
  */
 export function TweetCard({
@@ -32,8 +57,9 @@ export function TweetCard({
 	components,
 	apiUrl,
 	fetchOptions,
-}: TweetProps) {
-	// const { data: tweet, error, isLoading } = useTweet(id);
+	size = "sm",
+	className,
+}: TweetCardProps) {
 	const {
 		data: tweet,
 		error,
@@ -68,12 +94,17 @@ export function TweetCard({
 	const enrichedTweet: EnrichedTweet = enrichTweet(tweet);
 
 	return (
-		<TweetContainer>
-			<TweetHeader tweet={enrichedTweet} />
-			<TweetBody tweet={enrichedTweet} />
-			{enrichedTweet.mediaDetails?.length ? (
-				<TweetMedia tweet={enrichedTweet} />
-			) : null}
-		</TweetContainer>
+		<div
+			className={cn(tweetCardVariants({ size }), className)}
+			data-theme="dark"
+		>
+			<TweetContainer>
+				<TweetHeader tweet={enrichedTweet} />
+				<TweetBody tweet={enrichedTweet} />
+				{enrichedTweet.mediaDetails?.length ? (
+					<TweetMedia tweet={enrichedTweet} />
+				) : null}
+			</TweetContainer>
+		</div>
 	);
 }

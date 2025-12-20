@@ -14,3 +14,24 @@ import { AnimationComponent } from "@/designs/01-design-viewer/component.tsx";
 ## Breakdown
 This animartion is a recreated from a tweet I saw from [Jakub Antalik](https://x.com/Jakubantalik)
 <TweetCard id="2000581109755920500" />
+Taking in the animation values in video I was able to recreate the animaimated notification component, while also extending it for when the notifcation count increases.
+
+There wasn't alot going into this peices however it was a nice starting point for learning journery 
+
+### Learnings
+In [Motion](https://motion.dev/docs/react-transitions) your can define custom transition values, allowing you to create some quite complex variants. for example in this notification animation we need to animate each different value e.g `x`, `scale` and `opacity`. 
+
+we end up with something like this:
+```ts
+transition: {
+	default: { duration: 0.3 },
+	x: { duration: 0.3 },
+	opacity: { duration: 0.3, ease: [0.2, 0, 0, 1] },
+	scale: {
+		duration: 0.35, // total: 150ms + 200ms = 350ms
+		times: [0, 0.43, 1], // 0.15/0.35 = 0.43 (scale to 1.05 at 43% of timeline)
+		ease: [0.2, 0, 0, 1],
+	},
+},
+```
+alowing us to create a custom transition for each propery rather than use the default for all.
