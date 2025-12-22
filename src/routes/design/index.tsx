@@ -7,8 +7,8 @@ export const Route = createFileRoute("/design/")({
 	component: DesignPage,
 	head: () => ({
 		meta: seo({
-			title: "Design - Jacob Samorowski",
-			description: "Coding challenges and exercises I've completed",
+			title: "Designs - Jacob Samorowski",
+			description: "Interactive UI designs and component showcases",
 			url: "https://jacobsamo.com/design",
 		}),
 	}),
@@ -26,13 +26,10 @@ function DesignPage() {
 					aria-label={`View ${post.title} design`}
 				>
 					{post.videoUrl ? (
-						<div
-							className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95"
-							style={{ imageRendering: "auto" }}
-						>
+						<div className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95">
 							<video
 								src={post.videoUrl}
-								poster={post.heroImage}
+								poster={post.image}
 								autoPlay
 								loop
 								muted
@@ -48,11 +45,10 @@ function DesignPage() {
 									if (container) {
 										container.innerHTML = "";
 										const img = document.createElement("img");
-										img.src = post.heroImage;
-										img.alt = post.title;
+										img.src = post.image;
+										img.alt = `${post.title} design preview`;
 										img.className =
 											"w-full h-full rounded-md object-cover object-center";
-										img.style.imageRendering = "auto";
 										container.appendChild(img);
 									}
 								}}
@@ -71,16 +67,13 @@ function DesignPage() {
 							</video>
 						</div>
 					) : (
-						<div
-							className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95"
-							style={{ imageRendering: "auto" }}
-						>
+						<div className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95">
 							<Image
-								src={post.heroImage}
+								src={post.image}
 								width={800}
 								height={600}
 								layout="constrained"
-								alt={post.title}
+								alt={`${post.title} design preview`}
 								className="h-full w-full rounded-md object-cover object-center"
 							/>
 						</div>

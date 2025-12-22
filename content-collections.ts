@@ -101,7 +101,7 @@ const designs = defineCollection({
 		/**
 		 * A url to either a image or gif, used for the og image
 		 */
-		heroImage: z.string(),
+		image: z.string(),
 		/**
 		 * Optional video URL for design showcase
 		 */

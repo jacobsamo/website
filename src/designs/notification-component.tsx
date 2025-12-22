@@ -16,14 +16,14 @@ export const NotificationComponent = () => {
 	}, []);
 
 	useEffect(() => {
-		if (isPaused) return;
+		if (isPaused || notificationCount === 0) return;
 
 		const timeout = setTimeout(() => {
 			setNotificationCount((prevCount) => prevCount + 1);
 		}, 3000);
 
 		return () => clearTimeout(timeout);
-	}, [isPaused]);
+	}, [isPaused, notificationCount]);
 
 	return (
 		<div className="flex h-30 flex-col items-center justify-between">
@@ -75,6 +75,7 @@ export const NotificationComponent = () => {
 					size="icon"
 					onClick={() => setIsPaused(!isPaused)}
 					className="relative overflow-hidden"
+					aria-label={isPaused ? "Resume notifications" : "Pause notifications"}
 				>
 					<motion.span
 						key={`isPaused-${isPaused}`}

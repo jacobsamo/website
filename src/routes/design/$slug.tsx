@@ -26,6 +26,7 @@ export const Route = createFileRoute("/design/$slug")({
 			? seo({
 					title: loaderData.design.title ?? "Design",
 					description: loaderData.design.shortDescription,
+					image: loaderData.design.image,
 				})
 			: undefined,
 	}),
@@ -38,7 +39,7 @@ function RouteComponent() {
 			<h1 className="mt-2 scroll-m-20 font-bold text-4xl tracking-tight">
 				{design.title}
 			</h1>
-			<div className="flex flex-wrap gap-2 mt-1">
+			<div className="mt-1 flex flex-wrap gap-2">
 				{design.tags.map((tag) => (
 					<Badge key={tag} variant="outline">
 						{upperCaseFirstLetter(tag)}
