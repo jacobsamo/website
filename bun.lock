@@ -9,6 +9,7 @@
         "@cloudflare/vite-plugin": "^1.13.8",
         "@fontsource-variable/inter": "^5.2.8",
         "@posthog/react": "^1.5.2",
+        "@rehype-pretty/transformers": "^0.13.2",
         "@sentry/tanstackstart-react": "^10.22.0",
         "@shikijs/transformers": "^3.19.0",
         "@t3-oss/env-core": "^0.13.8",
@@ -462,6 +463,8 @@
     "@posthog/react": ["@posthog/react@1.5.2", "", { "peerDependencies": { "@types/react": ">=16.8.0", "posthog-js": ">=1.257.2", "react": ">=16.8.0" }, "optionalPeers": ["@types/react"] }, "sha512-KHdXbV1yba7Y2l8BVmwXlySWxqKVLNQ5ZiVvWOf7r3Eo7GIFxCM4CaNK/z83kKWn8KTskmKy7AGF6Hl6INWK3g=="],
 
     "@prisma/instrumentation": ["@prisma/instrumentation@6.19.0", "", { "dependencies": { "@opentelemetry/instrumentation": ">=0.52.0 <1" }, "peerDependencies": { "@opentelemetry/api": "^1.8" } }, "sha512-QcuYy25pkXM8BJ37wVFBO7Zh34nyRV1GOb2n3lPkkbRYfl4hWl3PTcImP41P0KrzVXfa/45p6eVCos27x3exIg=="],
+
+    "@rehype-pretty/transformers": ["@rehype-pretty/transformers@0.13.2", "", {}, "sha512-p2ciQSwqy5Ip8aNUa9q6rdS/hJZXrxHYYfDVOHvKOsBu3t9HDmQ65YX6r9Qbl19vi160OAxmGF7MIoCRDJrRhg=="],
 
     "@remix-run/node-fetch-server": ["@remix-run/node-fetch-server@0.8.1", "", {}, "sha512-J1dev372wtJqmqn9U/qbpbZxbJSQrogNN2+Qv1lKlpATpe/WQ9aCZfl/xSb9d2Rgh1IyLSvNxZAXPZxruO6Xig=="],
 

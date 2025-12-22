@@ -3,8 +3,9 @@
 import { useMDXComponent } from "@content-collections/mdx/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { CodeBlock } from "./code-block";
 import { DesignViewer } from "./design-viewer";
-import { TweetCard } from "./tweet-card";
+import { TweetCard, type TweetCardProps } from "./tweet-card";
 
 const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -141,7 +142,7 @@ const components = {
 	pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
 		<pre
 			className={cn(
-				" overflow-x-auto rounded-lg border bg-black py-4",
+				"overflow-x-auto rounded-lg border bg-black py-2",
 				className,
 			)}
 			{...props}
@@ -150,14 +151,18 @@ const components = {
 	code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
 		<code
 			className={cn(
-				"relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm",
+				"relative rounded px-[0.3rem] font-mono text-sm",
 				className,
 			)}
 			{...props}
 		/>
 	),
 	DesignViewer,
-	TweetCard,
+	TweetCard: (props: TweetCardProps) => (
+		<div className="not-prose max-w-xl mx-auto relative py-6">
+			<TweetCard {...props} />
+		</div>
+	),
 };
 
 interface MdxProps {

@@ -4,10 +4,10 @@ shortDescription: "An interactive component for showcasing UI designs with theme
 tags: ["animations", "design viewer", "component"]
 heroImage: "/assets/images/01-design-viewer.jpg"
 ---
-import { AnimationComponent } from "@/designs/01-design-viewer/component.tsx";
+import { NotificationComponent } from "@/designs/notification-component.tsx";
 
 <DesignViewer>
-    <AnimationComponent />
+    <NotificationComponent />
 </DesignViewer>
 
 ---
@@ -19,9 +19,9 @@ Taking in the animation values in video I was able to recreate the animaimated n
 There wasn't alot going into this peices however it was a nice starting point for learning journery 
 
 ### Learnings
-In [Motion](https://motion.dev/docs/react-transitions) your can define custom transition values, allowing you to create some quite complex variants. for example in this notification animation we need to animate each different value e.g `x`, `scale` and `opacity`. 
+In [Motion](https://motion.dev) your can define custom [transition](https://motion.dev/docs/react-transitions) values for each animated property. This give you fined grained controls and let's you build more complex animations without relying on a shared transition value. 
 
-we end up with something like this:
+For example in this notion animations we're animating multiple values (`x`, `scale` and `opacity`) and each one needs slightly different transition values to feel right. Instead of applying a blanket transition value to all properties, we can define custom transitions for each property. we can specify them individually:
 ```ts
 transition: {
 	default: { duration: 0.3 },
@@ -34,4 +34,4 @@ transition: {
 	},
 },
 ```
-alowing us to create a custom transition for each propery rather than use the default for all.
+This apporach let's each property animate on it's own timeline, producing a more natural and fluid animation.

@@ -25,7 +25,7 @@ const badgeVariants = {
 	exitCountChange: {},
 };
 
-export const AnimationComponent = () => {
+export const NotificationComponent = () => {
 	const [notificationCount, setNotificationCount] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
 

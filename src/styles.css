@@ -255,41 +255,51 @@ code {
   }
 }
 
-/* Tweet Card Custom Theme - matches site secondary colors */
-.tweet-card-wrapper {
-  /* Scale down the entire tweet card by 30% */
-  transform: scale(0.7);
-  transform-origin: top left;
-  width: 142.857%; /* Compensate for scale: 100% / 0.7 */
-  margin-bottom: -30%; /* Adjust spacing after scale */
-}
-
 .tweet-card-wrapper .react-tweet-theme {
   /* Override react-tweet CSS variables to match site theme */
-  --tweet-font-color: oklch(0.985 0 0); /* --foreground */
-  --tweet-font-color-secondary: oklch(0.68 0.012 265); /* --muted-foreground */
-  --tweet-bg-color: oklch(0.28 0.008 265); /* --secondary */
-  --tweet-bg-color-hover: oklch(0.32 0.01 265); /* slightly lighter than secondary */
-  --tweet-border: 1px solid oklch(0.28 0.008 265); /* --border */
+  --tweet-font-color: var(--color-foreground);
+  --tweet-font-color-secondary: var(--color-muted-foreground);
+  --tweet-bg-color: var(--color-secondary);
+  --tweet-bg-color-hover: var(--color-accent);
+  --tweet-border: 1px solid var(--color-border);
   --tweet-color-blue-primary: oklch(0.68 0.15 265);
   --tweet-color-blue-secondary: oklch(0.75 0.12 265);
-  --tweet-color-red-primary: oklch(0.60 0.20 25);
+  --tweet-color-red-primary: var(--color-destructive);
   --tweet-color-green-primary: oklch(0.65 0.15 150);
+
+  /* Make the tweet card smaller for blog posts */
+  --tweet-container-margin: 1rem 0;
+  --tweet-header-font-size: 0.8125rem;
+  --tweet-header-line-height: 1.125rem;
+  --tweet-body-font-size: 1rem;
+  --tweet-body-line-height: 1.375rem;
+  --tweet-body-margin: 0;
+  --tweet-info-font-size: 0.8125rem;
+  --tweet-info-line-height: 1.125rem;
+  --tweet-actions-font-size: 0.75rem;
+  --tweet-actions-line-height: 0.875rem;
 }
 
-/* Size variants for tweet cards - override the base scale */
-.tweet-size-sm {
-  /* Already scaled by 0.7 (30% smaller) from base */
+code[data-line-numbers] {
+    counter-reset: line;
 }
-
-.tweet-size-md {
-  transform: scale(0.85);
-  width: 117.647%; /* Compensate for scale: 100% / 0.85 */
-  margin-bottom: -15%;
+ 
+code[data-line-numbers]>[data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+ 
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
 }
-
-.tweet-size-lg {
-  transform: scale(1.0);
-  width: 100%;
-  margin-bottom: 0;
+ 
+code[data-line-numbers-max-digits="2"]>[data-line]::before {
+    width: 2rem;
+}
+ 
+code[data-line-numbers-max-digits="3"]>[data-line]::before {
+    width: 3rem;
 }
