@@ -12,7 +12,7 @@ import { Header } from "@/components/header";
 import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, socials } from "@/lib/config";
 import { seo } from "@/lib/seo";
 import appCss from "../styles.css?url";
 
@@ -22,8 +22,17 @@ interface MyRouterContext {
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	head: () => {
+		const twitterSocial = socials.find((s) => s.platform === "twitter");
+		const twitterHandle = twitterSocial?.handle || "@jacobsamorowski";
 		return {
 			meta: [
+				...seo({
+					title: siteConfig.title,
+					description: siteConfig.description,
+					keywords: siteConfig.keywords,
+					image: siteConfig.og.url,
+					url: "https://jacobsamo.com",
+				}),
 				{
 					charSet: "utf-8",
 				},
@@ -52,15 +61,24 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 					property: "og:type",
 					content: "website",
 				},
-				...seo({
-					title: siteConfig.title,
-					url: "https://jacobsamo.com",
-				}).meta,
+				{ name: "author", content: "Jacob Samorowski" },
+				{ name: "twitter:creator", content: twitterHandle },
+				{ name: "twitter:site", content: twitterHandle },
+
+				{ name: "twitter:card", content: "summary_large_image" },
 			],
 			links: [
 				{
 					rel: "stylesheet",
 					href: appCss,
+				},
+				// Font preload for faster loading
+				{
+					rel: "preload",
+					href: "/fonts/MatrixSans-Regular-Print.woff2",
+					as: "font",
+					type: "font/woff2",
+					crossOrigin: "anonymous",
 				},
 				// Favicon
 				{
@@ -115,7 +133,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				/>
 				<Scripts />
 				{/*This is the div for the dot background*/}
-				<div className="fixed inset-0 -z-50 min-h-screen w-full bg-[radial-gradient(#7979792e_1px,transparent_1px)] [background-size:16px_16px]" />
+				<div className="-z-50 fixed inset-0 min-h-screen w-full bg-[radial-gradient(#7979792e_1px,transparent_1px)] [background-size:16px_16px]" />
 				{showLayout && <Footer />}
 			</body>
 		</html>

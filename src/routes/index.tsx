@@ -4,18 +4,9 @@ import { ProjectCard } from "@/components/project-card";
 import { Socials } from "@/components/socials";
 import { Marquee } from "@/components/ui/marquee";
 import { siteConfig, skills } from "@/lib/config";
-import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
 	component: MainPage,
-	head: () => {
-		const { meta, links } = seo({
-			title: `${siteConfig.title} - Software Developer & Photographer`,
-			description: siteConfig.description,
-			url: "https://jacobsamo.com",
-		});
-		return { meta, links };
-	},
 });
 
 function MainPage() {
@@ -24,7 +15,7 @@ function MainPage() {
 			<div className="container space-y-8">
 				<div
 					id="about-me"
-					className="px-4 mt-16 flex flex-col items-center justify-center text-center"
+					className="mt-16 flex flex-col items-center justify-center px-4 text-center"
 				>
 					<Image
 						src="/profile-picture.jpg"
@@ -70,13 +61,13 @@ function MainPage() {
 				</div>
 			</div>
 
-			<div id="skills" className="w-full my-16 space-y-4">
-				<h2 className="text-center text-4xl mb-4">Skills</h2>
+			<div id="skills" className="my-16 w-full space-y-4">
+				<h2 className="mb-4 text-center text-4xl">Skills</h2>
 				<Marquee>
 					{skills.slice(0, Math.ceil(skills.length / 2)).map((skill) => (
 						<div
 							key={skill}
-							className="bg-muted/50 rounded-md border p-2 whitespace-nowrap"
+							className="whitespace-nowrap rounded-md border bg-muted/50 p-2"
 						>
 							{skill}
 						</div>
@@ -88,7 +79,7 @@ function MainPage() {
 						.map((skill) => (
 							<div
 								key={skill}
-								className="bg-muted/50 rounded-md border p-2 whitespace-nowrap"
+								className="whitespace-nowrap rounded-md border bg-muted/50 p-2"
 							>
 								{skill}
 							</div>

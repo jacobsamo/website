@@ -1,0 +1,38 @@
+---
+title: "Notification"
+shortDescription: "A beautifully subtle notification animation"
+tags: ["animations", "recreation"]
+image: "/assets/images/01-notification.jpg"
+videoUrl: "/assets/images/01-notification.mp4"
+---
+import { NotificationComponent } from "@/designs/notification-component.tsx";
+
+<DesignViewer>
+    <NotificationComponent />
+</DesignViewer>
+
+---
+## Breakdown
+This animation is recreated from a tweet I saw from [Jakub Antalik](https://x.com/Jakubantalik)
+<TweetCard id="2000581109755920500" />
+Taking in the animation values in the video I was able to recreate the animated notification component, while also extending it for when the notification count increases.
+
+There wasn't a lot going into this piece however it was a nice starting point for my learning journey.
+
+### Learnings
+In [Motion](https://motion.dev) you can define custom [transition](https://motion.dev/docs/react-transitions) values for each animated property. This gives you fine-grained control and lets you build more complex animations without relying on a shared transition value.
+
+For example in this notification animation we're animating multiple values (`x`, `scale` and `opacity`) and each one needs slightly different transition values to feel right. Instead of applying a blanket transition value to all properties, we can define custom transitions for each property. We can specify them individually:
+```ts
+transition: {
+	default: { duration: 0.3 },
+	x: { duration: 0.3 },
+	opacity: { duration: 0.3, ease: [0.2, 0, 0, 1] },
+	scale: {
+		duration: 0.35, // total: 150ms + 200ms = 350ms
+		times: [0, 0.43, 1], // 0.15/0.35 = 0.43 (scale to 1.05 at 43% of timeline)
+		ease: [0.2, 0, 0, 1],
+	},
+},
+```
+This approach lets each property animate on its own timeline, producing a more natural and fluid animation.

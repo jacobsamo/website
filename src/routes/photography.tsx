@@ -1,38 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Image } from '@unpic/react'
-import images from "@/lib/data"
+import { Image } from "@unpic/react";
+import images from "@/lib/data";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/photography")({
-  component: PhotographyPage,
-  head: () => {
-    const { meta, links } = seo({
-      title: "Photography - Jacob Samorowski",
-      description: "A collection of my photography work capturing moments and stories",
-      url: "https://jacobsamo.com/photography",
-    });
-    return { meta, links };
-  },
+	component: PhotographyPage,
+	head: () => ({
+		meta: seo({
+			title: "Photography - Jacob Samorowski",
+			description:
+				"A collection of my photography work capturing moments and stories",
+			url: "https://jacobsamo.com/photography",
+		}),
+	}),
 });
 
 function PhotographyPage() {
-  return (
-    <div className="masonry-container mt-16 columns-2 gap-2 sm:columns-3 lg:columns-5 mb-16">
-      {images.map((image) => (
-        <div className="mb-1 break-inside-avoid">
-          <Image
-            src={image.url}
-            alt={image.alt}
-            title={image.title}
-            className="h-auto max-h-[400px] w-full max-w-[300px] rounded-lg object-cover object-center"
-            decoding="async"
-            loading="lazy"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            width={300}
-            height={400}
-          />
-        </div>
-      ))}
-    </div>
-  );
+	return (
+		<div className="masonry-container mt-16 mb-16 columns-2 gap-2 sm:columns-3 lg:columns-5">
+			{images.map((image) => (
+				<Image
+					key={image.fileName}
+					src={image.url}
+					alt={image.alt}
+					title={image.title}
+					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+					width={image.width}
+					height={image.height}
+					loading="lazy"
+					decoding="async"
+					className="mb-1 h-auto w-full break-inside-avoid rounded-lg object-cover object-center"
+					background="linear-gradient(135deg, oklch(0.28 0.008 265) 0%, oklch(0.21 0.01 265) 100%)"
+				/>
+			))}
+		</div>
+	);
 }

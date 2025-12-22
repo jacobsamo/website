@@ -1,8 +1,8 @@
 import * as Sentry from "@sentry/tanstackstart-react";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
+import { env } from "env";
 import { getContext, Providers } from "@/components/providers";
-
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
@@ -27,9 +27,9 @@ export const getRouter = () => {
 		queryClient: rqContext.queryClient,
 	});
 
-	if (!router.isServer && import.meta.env.VITE_SENTRY_DSN) {
+	if (!router.isServer && env.VITE_SENTRY_DSN) {
 		Sentry.init({
-			dsn: import.meta.env.VITE_SENTRY_DSN,
+			dsn: env.VITE_SENTRY_DSN,
 			integrations: [
 				Sentry.replayIntegration(),
 				Sentry.consoleLoggingIntegration({ levels: ["log", "error", "warn"] }),
