@@ -16,12 +16,12 @@ export const Route = createFileRoute("/design/")({
 
 function DesignPage() {
 	return (
-		<main className="h-screen container mx-auto mt-32">
-			{allDesigns.map((post, index) => (
+		<main className="container mx-auto mt-32 h-screen">
+			{allDesigns.map((post, _index) => (
 				<Link
 					to={`/design/${post._meta.path}`}
 					key={post._meta.path}
-					className="group relative block rounded-md w-sm h-60 overflow-hidden bg-linear-270 from-gray-950 from-10% to-transparent to-90% "
+					className="group relative block h-60 w-sm overflow-hidden rounded-md bg-linear-270 from-10% from-gray-950 to-90% to-transparent"
 					aria-label={`View ${post.title} design`}
 				>
 					<Image
@@ -30,9 +30,9 @@ function DesignPage() {
 						height={300}
 						layout="constrained"
 						alt={post.title}
-						className="size-full rounded-md object-center object-cover inset-0 opacity-90 transition group-hover:opacity-85 group-hover:scale-105 duration-500"
+						className="inset-0 size-full rounded-md object-cover object-center opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-85"
 					/>
-					<h2 className="absolute bottom-4 left-4 opacity-0 transition-all group-hover:opacity-100 text-gray-900 duration-300 font-normal text-lg">
+					<h2 className="absolute bottom-4 left-4 font-normal text-gray-900 text-lg transition-all duration-300 group-hover:opacity-100 md:opacity-0">
 						{post.title}
 					</h2>
 				</Link>

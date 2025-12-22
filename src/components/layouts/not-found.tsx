@@ -4,7 +4,7 @@ import { buttonVariants } from "../ui/button";
 
 export default function NotFound({ routeId }: NotFoundRouteProps) {
 	return (
-		<main className="min-h-screen text-center flex items-center justify-center flex-col gap-2">
+		<main className="flex min-h-screen flex-col items-center justify-center gap-2 text-center">
 			<h1>Route {routeId} was not found</h1>
 			<Link to="/" className={buttonVariants()}>
 				<Home /> Go Home

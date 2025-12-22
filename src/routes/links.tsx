@@ -36,10 +36,10 @@ function LinksPage() {
 							className="mx-auto rounded-full object-cover object-center"
 						/>
 					</div>
-					<h1 className="mb-3 font-serif text-4xl font-bold text-balance text-white">
+					<h1 className="mb-3 text-balance font-bold font-serif text-4xl text-white">
 						Jacob Samorowski
 					</h1>
-					<p className="font-sans text-lg text-gray-400">
+					<p className="font-sans text-gray-400 text-lg">
 						Software Developer & Photographer
 					</p>
 				</div>
@@ -48,13 +48,13 @@ function LinksPage() {
 				<div className="space-y-3">
 					<Link
 						to="/"
-						className="text-card-foreground group flex flex-row items-center justify-between gap-6 overflow-hidden rounded-xl border border-white/10 bg-[#1a1a1a] p-4 py-6 shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-gray-700 hover:bg-gray-800/50 active:scale-[0.99]"
+						className="group flex flex-row items-center justify-between gap-6 overflow-hidden rounded-xl border border-white/10 bg-[#1a1a1a] p-4 py-6 text-card-foreground shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-gray-700 hover:bg-gray-800/50 active:scale-[0.99]"
 					>
 						<div className="flex items-center gap-4">
 							<Globe2 />
 
 							<div>
-								<div className="text-base font-semibold text-white capitalize">
+								<div className="font-semibold text-base text-white capitalize">
 									Website
 								</div>
 							</div>
@@ -67,7 +67,7 @@ function LinksPage() {
 							href={social.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-card-foreground group flex flex-row items-center justify-between gap-6 overflow-hidden rounded-xl border border-white/10 bg-[#1a1a1a] p-4 py-6 shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-gray-700 hover:bg-gray-800/50 active:scale-[0.99]"
+							className="group flex flex-row items-center justify-between gap-6 overflow-hidden rounded-xl border border-white/10 bg-[#1a1a1a] p-4 py-6 text-card-foreground shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-gray-700 hover:bg-gray-800/50 active:scale-[0.99]"
 						>
 							<div className="flex items-center gap-4">
 								<img
@@ -77,22 +77,22 @@ function LinksPage() {
 									height={24}
 								/>
 								<div>
-									<div className="text-base font-semibold text-white capitalize">
+									<div className="font-semibold text-base text-white capitalize">
 										{social.platform === "twitter"
 											? "X (Twitter)"
 											: social.platform}
 									</div>
-									<div className="text-sm text-gray-400">{social.handle}</div>
+									<div className="text-gray-400 text-sm">{social.handle}</div>
 								</div>
 							</div>
-							<ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-200" />
+							<ExternalLink className="h-4 w-4 text-gray-400 transition-colors duration-200 group-hover:text-white" />
 						</a>
 					))}
 				</div>
 
 				{/* Footer */}
-				<div className="mt-12 border-t border-secondary pt-8 text-center">
-					<p className="text-sm text-gray-500">
+				<div className="mt-12 border-secondary border-t pt-8 text-center">
+					<p className="text-gray-500 text-sm">
 						<CopyRight />, Jacob Samorowski
 					</p>
 				</div>

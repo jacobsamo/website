@@ -3,7 +3,6 @@
 import { useMDXComponent } from "@content-collections/mdx/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
-import { CodeBlock } from "./code-block";
 import { DesignViewer } from "./design-viewer";
 import { TweetCard, type TweetCardProps } from "./tweet-card";
 
@@ -11,7 +10,7 @@ const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h1
 			className={cn(
-				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+				"mt-2 scroll-m-20 font-bold text-4xl tracking-tight",
 				className,
 			)}
 			{...props}
@@ -20,7 +19,7 @@ const components = {
 	h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h2
 			className={cn(
-				"mt-10 scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0",
+				"mt-10 scroll-m-20 font-semibold text-3xl tracking-tight first:mt-0",
 				className,
 			)}
 			{...props}
@@ -29,7 +28,7 @@ const components = {
 	h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h3
 			className={cn(
-				"mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
+				"mt-8 scroll-m-20 font-semibold text-2xl tracking-tight",
 				className,
 			)}
 			{...props}
@@ -38,7 +37,7 @@ const components = {
 	h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h4
 			className={cn(
-				"mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
+				"mt-8 scroll-m-20 font-semibold text-xl tracking-tight",
 				className,
 			)}
 			{...props}
@@ -47,7 +46,7 @@ const components = {
 	h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h5
 			className={cn(
-				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+				"mt-8 scroll-m-20 font-semibold text-lg tracking-tight",
 				className,
 			)}
 			{...props}
@@ -56,7 +55,7 @@ const components = {
 	h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h6
 			className={cn(
-				"mt-8 scroll-m-20 text-base font-semibold tracking-tight",
+				"mt-8 scroll-m-20 font-semibold text-base tracking-tight",
 				className,
 			)}
 			{...props}
@@ -159,7 +158,7 @@ const components = {
 	),
 	DesignViewer,
 	TweetCard: (props: TweetCardProps) => (
-		<div className="not-prose max-w-xl mx-auto relative py-6">
+		<div className="not-prose relative mx-auto max-w-xl py-6">
 			<TweetCard {...props} />
 		</div>
 	),

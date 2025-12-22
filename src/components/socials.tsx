@@ -1,8 +1,4 @@
-import {
-	socials,
-	type Social,
-	platforms as allPlatforms,
-} from "@/lib/config";
+import { platforms as allPlatforms, type Social, socials } from "@/lib/config";
 
 export interface SocialProps {
 	size?: number;

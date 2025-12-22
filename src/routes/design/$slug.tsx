@@ -33,8 +33,8 @@ export const Route = createFileRoute("/design/$slug")({
 function RouteComponent() {
 	const { design } = Route.useLoaderData();
 	return (
-		<main className="min-h-screen container mx-auto px-4 py-8">
-			<h1 className="mt-2 scroll-m-20 text-4xl font-bold tracking-tight">
+		<main className="container mx-auto min-h-screen px-4 py-8">
+			<h1 className="mt-2 scroll-m-20 font-bold text-4xl tracking-tight">
 				{design.title}
 			</h1>
 			{design.tags.map((tag) => (

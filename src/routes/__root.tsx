@@ -133,7 +133,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				/>
 				<Scripts />
 				{/*This is the div for the dot background*/}
-				<div className="fixed inset-0 -z-50 min-h-screen w-full bg-[radial-gradient(#7979792e_1px,transparent_1px)] [background-size:16px_16px]" />
+				<div className="-z-50 fixed inset-0 min-h-screen w-full bg-[radial-gradient(#7979792e_1px,transparent_1px)] [background-size:16px_16px]" />
 				{showLayout && <Footer />}
 			</body>
 		</html>

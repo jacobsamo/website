@@ -17,7 +17,7 @@ export const Route = createFileRoute("/photography")({
 
 function PhotographyPage() {
 	return (
-		<div className="masonry-container mt-16 columns-2 gap-2 sm:columns-3 lg:columns-5 mb-16">
+		<div className="masonry-container mt-16 mb-16 columns-2 gap-2 sm:columns-3 lg:columns-5">
 			{images.map((image) => (
 				<Image
 					key={image.fileName}
@@ -29,7 +29,7 @@ function PhotographyPage() {
 					height={image.height}
 					loading="lazy"
 					decoding="async"
-					className="mb-1 break-inside-avoid h-auto w-full rounded-lg object-cover object-center"
+					className="mb-1 h-auto w-full break-inside-avoid rounded-lg object-cover object-center"
 					background="linear-gradient(135deg, oklch(0.28 0.008 265) 0%, oklch(0.21 0.01 265) 100%)"
 				/>
 			))}

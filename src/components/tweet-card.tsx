@@ -1,5 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import { cva, type VariantProps } from "class-variance-authority";
 import {
 	type EnrichedTweet,
 	enrichTweet,
@@ -11,7 +12,6 @@ import {
 	type TweetProps,
 	TweetSkeleton,
 } from "react-tweet";
-import { type VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const tweetCardVariants = cva("tweet-card-wrapper", {

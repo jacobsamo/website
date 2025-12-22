@@ -45,11 +45,11 @@ export const NotificationComponent = () => {
 		}, 3000);
 
 		return () => clearTimeout(timeout);
-	}, [notificationCount, isPaused]);
+	}, [isPaused]);
 
 	return (
-		<div className="flex flex-col items-center justify-between h-30">
-			<div className="relative ring-2 shadow p-2 rounded-full size-16 flex items-center justify-center cursor-pointer ring-gray-200 bg-white dark:ring-secondary dark:bg-secondary/80">
+		<div className="flex h-30 flex-col items-center justify-between">
+			<div className="relative flex size-16 cursor-pointer items-center justify-center rounded-full bg-white p-2 shadow ring-2 ring-gray-200 dark:bg-secondary/80 dark:ring-secondary">
 				<AnimatePresence mode="popLayout">
 					{notificationCount !== 0 && (
 						<motion.span
@@ -57,7 +57,7 @@ export const NotificationComponent = () => {
 							initial="firstLoad"
 							animate="animatFirstLoad"
 							layout
-							className="rounded-full p-2 text-xs absolute -top-2 -right-2 size-8 flex items-center justify-center text-white overflow-hidden bg-red-500 dark:bg-red-400"
+							className="-top-2 -right-2 absolute flex size-8 items-center justify-center overflow-hidden rounded-full bg-red-500 p-2 text-white text-xs dark:bg-red-400"
 						>
 							<motion.span
 								key={notificationCount}
