@@ -25,6 +25,9 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"correctness": {
+				"useUniqueElementIds": "info"
+			},
 			"nursery": {
 				"useSortedClasses": {
 					"level": "warn",

@@ -12,13 +12,10 @@ export const env = createEnv({
    * a type-level and at runtime.
    */
   clientPrefix: 'VITE_',
-  server: {
-    SERVER_URL: z.string().url().optional(),
-  },
   client: {
-    VITE_APP_TITLE: z.string().min(1).optional(),
     VITE_POSTHOG_KEY: z.string().optional(),
-    VITE_POSTHOG_HOST: z.url().optional()
+    VITE_POSTHOG_HOST: z.url().optional(),
+    VITE_SENTRY_DSN: z.string().optional()
   },
   /**
    * By default, this library will feed the environment variables directly to
