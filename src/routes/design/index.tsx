@@ -9,7 +9,7 @@ export const Route = createFileRoute("/design/")({
 		meta: seo({
 			title: "Design - Jacob Samorowski",
 			description: "Coding challenges and exercises I've completed",
-			url: "https://jacobsamo.com/challenges",
+			url: "https://jacobsamo.com/design",
 		}),
 	}),
 });
@@ -19,20 +19,73 @@ function DesignPage() {
 		<main className="container mx-auto mt-32 h-screen">
 			{allDesigns.map((post, _index) => (
 				<Link
-					to={`/design/${post._meta.path}`}
+					to="/design/$slug"
+					params={{ slug: post._meta.path }}
 					key={post._meta.path}
 					className="group relative block h-60 w-sm overflow-hidden rounded-md bg-linear-270 from-10% from-gray-950 to-90% to-transparent"
 					aria-label={`View ${post.title} design`}
 				>
-					<Image
-						src={post.heroImage}
-						width={400}
-						height={300}
-						layout="constrained"
-						alt={post.title}
-						className="inset-0 size-full rounded-md object-cover object-center opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-85"
-					/>
-					<h2 className="absolute bottom-4 left-4 font-normal text-gray-900 text-lg transition-all duration-300 group-hover:opacity-100 md:opacity-0">
+					{post.videoUrl ? (
+						<div
+							className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95"
+							style={{ imageRendering: "auto" }}
+						>
+							<video
+								src={post.videoUrl}
+								poster={post.heroImage}
+								autoPlay
+								loop
+								muted
+								playsInline
+								preload="auto"
+								disablePictureInPicture
+								disableRemotePlayback
+								className="h-full w-full rounded-md object-cover object-center"
+								onError={(e) => {
+									// Fallback to image if video fails to load
+									const video = e.target as HTMLVideoElement;
+									const container = video.parentElement;
+									if (container) {
+										container.innerHTML = "";
+										const img = document.createElement("img");
+										img.src = post.heroImage;
+										img.alt = post.title;
+										img.className =
+											"w-full h-full rounded-md object-cover object-center";
+										img.style.imageRendering = "auto";
+										container.appendChild(img);
+									}
+								}}
+								onLoadStart={() => {
+									// Ensure high quality playback
+									const video = document.querySelector(
+										"video",
+									) as HTMLVideoElement;
+									if (video) {
+										video.playbackRate = 1;
+									}
+								}}
+							>
+								{/* Fallback text for browsers that don't support video */}
+								<p className="sr-only">Video: {post.title}</p>
+							</video>
+						</div>
+					) : (
+						<div
+							className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95"
+							style={{ imageRendering: "auto" }}
+						>
+							<Image
+								src={post.heroImage}
+								width={800}
+								height={600}
+								layout="constrained"
+								alt={post.title}
+								className="h-full w-full rounded-md object-cover object-center"
+							/>
+						</div>
+					)}
+					<h2 className="absolute bottom-4 left-4 font-normal text-gray-700 text-lg opacity-100 transition-all duration-300 group-hover:opacity-100 md:opacity-0">
 						{post.title}
 					</h2>
 				</Link>

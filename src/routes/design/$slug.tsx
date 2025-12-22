@@ -3,6 +3,7 @@ import { allDesigns } from "content-collections";
 import { Mdx } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
 import { seo } from "@/lib/seo";
+import { upperCaseFirstLetter } from "@/lib/utils";
 
 export const Route = createFileRoute("/design/$slug")({
 	component: RouteComponent,
@@ -33,15 +34,17 @@ export const Route = createFileRoute("/design/$slug")({
 function RouteComponent() {
 	const { design } = Route.useLoaderData();
 	return (
-		<main className="container mx-auto min-h-screen px-4 py-8">
+		<main className="container mx-auto min-h-screen px-4 pt-8 pb-16">
 			<h1 className="mt-2 scroll-m-20 font-bold text-4xl tracking-tight">
 				{design.title}
 			</h1>
-			{design.tags.map((tag) => (
-				<Badge key={tag} variant="outline">
-					{tag}
-				</Badge>
-			))}
+			<div className="flex flex-wrap gap-2 mt-1">
+				{design.tags.map((tag) => (
+					<Badge key={tag} variant="outline">
+						{upperCaseFirstLetter(tag)}
+					</Badge>
+				))}
+			</div>
 			<Mdx code={design.mdx} />
 		</main>
 	);

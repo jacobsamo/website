@@ -3,28 +3,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const badgeVariants = {
-	firstLoad: { opacity: 0, scale: 0, x: 0 },
-	animatFirstLoad: {
-		opacity: 1,
-		scale: [0, 1.05, 1],
-		x: 4,
-		transition: {
-			default: { duration: 0.3 },
-			x: { duration: 0.3 },
-			opacity: { duration: 0.3, ease: [0.2, 0, 0, 1] },
-			scale: {
-				duration: 0.35, // total: 150ms + 200ms = 350ms
-				times: [0, 0.43, 1], // 0.15/0.35 = 0.43 (scale to 1.05 at 43% of timeline)
-				ease: [0.2, 0, 0, 1],
-			},
-		},
-	},
-	animateCountChange: {},
-	initialCountChange: {},
-	exitCountChange: {},
-};
-
 export const NotificationComponent = () => {
 	const [notificationCount, setNotificationCount] = useState(0);
 	const [isPaused, setIsPaused] = useState(false);
@@ -53,9 +31,22 @@ export const NotificationComponent = () => {
 				<AnimatePresence mode="popLayout">
 					{notificationCount !== 0 && (
 						<motion.span
-							variants={badgeVariants}
-							initial="firstLoad"
-							animate="animatFirstLoad"
+							initial={{ opacity: 0, scale: 0, x: 0 }}
+							animate={{
+								opacity: 1,
+								scale: [0, 1.05, 1],
+								x: 4,
+								transition: {
+									default: { duration: 0.3 },
+									x: { duration: 0.3 },
+									opacity: { duration: 0.3, ease: [0.2, 0, 0, 1] },
+									scale: {
+										duration: 0.35, // total: 150ms + 200ms = 350ms
+										times: [0, 0.43, 1], // 0.15/0.35 = 0.43 (scale to 1.05 at 43% of timeline)
+										ease: [0.2, 0, 0, 1],
+									},
+								},
+							}}
 							layout
 							className="-top-2 -right-2 absolute flex size-8 items-center justify-center overflow-hidden rounded-full bg-red-500 p-2 text-white text-xs dark:bg-red-400"
 						>

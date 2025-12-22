@@ -50,15 +50,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				},
 				// Open Graph / Facebook - Static meta tags
 				{
-					property: "og:site_name",
+					name: "og:site_name",
 					content: siteConfig.title,
 				},
 				{
-					property: "og:locale",
+					name: "og:locale",
 					content: "en_AU",
 				},
 				{
-					property: "og:type",
+					name: "og:type",
 					content: "website",
 				},
 				{ name: "author", content: "Jacob Samorowski" },

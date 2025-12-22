@@ -142,7 +142,7 @@ TanStack Store available for state management:
 - `index.tsx` - homepage
 - `blog/` - blog routes (index and $postId dynamic route)
 - `photography.tsx` - photography gallery
-- `challenges/` - challenges section
+- `design/` - designs section
 - `links.tsx` - links page
 
 **Components:**

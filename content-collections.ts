@@ -58,7 +58,8 @@ const posts = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
+		heroImage: z.string(),
+		videoUrl: z.string().optional(),
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {
@@ -101,6 +102,10 @@ const designs = defineCollection({
 		 * A url to either a image or gif, used for the og image
 		 */
 		heroImage: z.string(),
+		/**
+		 * Optional video URL for design showcase
+		 */
+		videoUrl: z.string().optional(),
 	}),
 	transform: async (document, context) => {
 		const mdx = await compileMDX(context, document, {

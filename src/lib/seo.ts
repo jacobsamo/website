@@ -47,14 +47,14 @@ export function seo({
 	return [
 		// Page title
 		{ title },
-		{ property: "og:title", content: title },
+		{ name: "og:title", content: title },
 		{ name: "twitter:title", content: title },
 
 		...(description
 			? [
 					{ name: "description", content: description },
 					{ name: "twitter:description", content: description },
-					{ property: "og:description", content: description },
+					{ name: "og:description", content: description },
 				]
 			: []),
 
@@ -64,8 +64,8 @@ export function seo({
 		// Open Graph meta tags
 		...(imageUrl
 			? [
-					{ property: "og:image", content: imageUrl },
-					{ property: "og:image:type", content: "image/jpg" },
+					{ name: "og:image", content: imageUrl },
+					{ name: "og:image:type", content: "image/jpg" },
 					{ name: "twitter:image", content: imageUrl },
 					{ name: "twitter:image:alt", content: title },
 				]
@@ -73,8 +73,8 @@ export function seo({
 
 		...(url
 			? [
-					{ property: "og:url", content: url },
-					{ property: "twitter:url", content: url },
+					{ name: "og:url", content: url },
+					{ name: "twitter:url", content: url },
 				]
 			: []),
 	];
