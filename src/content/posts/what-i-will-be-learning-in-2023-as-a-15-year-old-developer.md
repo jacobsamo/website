@@ -1,0 +1,41 @@
+---
+title: What I will be learning in 2023 as a 15-year-old developer
+pubDate: 2023-01-09
+updateDate: 2025-12-27
+image: https://miro.medium.com/v2/resize:fit:1400/format:webp/0*aCF_dyPdtdwopujO
+tags: ["learning", "programming", "career"]
+---
+I'm Jacob over the course of 2022 I learnt so much including React, Javascript, Flutter, Python and C# to name a few. this year I plan on learning so much more here are just a few:
+
+## Rust
+Rust is a static & strongly typed language offering all the power and speed of C and C++ with the simplicity of Dart or C#. And yes you might just say that I'm jumping on the bandwagon and yes I certainly am Rust is an amazing offering a great developer experience with a great community backing it, I plan to use this language on future projects as well as help contribute to open-source projects.
+
+## Machine Learning
+Machine Learning and AI have become so popular in 2022 that you can't seem to go a day without using it or hearing about it, with a lot of the big tech companies offering free courses to learn thing technology why not learn it?
+
+## Nextjs
+Nextjs a framework from the people at Vercel, a high-speed react framework taking speed to the next level. Nextjs has been my main choice of framework since the middle of 2022 and will continue with the all-new features Nextjs 13 offers.
+A side note at the Vercel keynote they released a new web bundler written in Rust called Turbopack offering up to 700x faster load times than traditional webpack bunding.
+With all the new releases from Nextjs and Turbopack, I plan on using this framework for all my future Web projects.
+
+## Angular
+Angular a framework from google released back in September of 2016, if you want to compare it to react this great quote shows it up nicely:
+
+> React is like an unfurnished home and u can add anything u like but angular is like a furnished home where u have limited options to update stuff out of the box comparatively
+
+Angular is a nice framework but the main reason I will be learning this framework is that the business I do my traineeship for uses it throughout their Apps.
+
+## Flutter
+Flutter, another framework from google released back in 2017, has become a huge hit, bringing the ability to code an application that works on any platform whether that is mobile, desktop or even the web.
+I have played around with this framework a little and I love it, really easy to use and has a great community as well as an amazing developer experience, I plan on creating some simple apps with it along with creating my own app.
+
+## Docker
+Docker is a great choice to guarantee that an app will load in any environment without having to fix all the issues that running an app in a new environment comes with.
+The reason why I have chosen to learn this is to guarantee that any of my projects can and will work on any environment with almost every web service now providing a way to run docker images in the cloud
+
+## SQL
+SQL (Standard Query Language) has been around for almost 50 years now. as well as still being very popular today with many popular databases such as MySQL, PostgreSQL, SQLite and many more using SQL as their base.
+Even though in 2023 a lot of the tech world is moving to NoSQL databases learning SQL to help to understand general concepts and exactly why I want to learn thing language.
+To some up
+
+You made it to the end, Thank you so much for reading not only my first blog post but reading all about what I plan to learn in 2023. I can't wait to see what this year has on hold for not only myself but the rest of the tech world.

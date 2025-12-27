@@ -58,7 +58,14 @@ const posts = defineCollection({
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string(),
+		tags: z.string().array().min(1),
+		/**
+		 * A url to either a image or gif, used for the og image
+		 */
+		image: z.string(),
+		/**
+		 * Optional video URL for design showcase
+		 */
 		videoUrl: z.string().optional(),
 	}),
 	transform: async (document, context) => {
