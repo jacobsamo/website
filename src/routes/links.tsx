@@ -16,7 +16,6 @@ export const Route = createFileRoute("/links")({
 		meta: seo({
 			title: "Links - Jacob Samorowski",
 			description: "All my social links and ways to connect with me",
-			url: "https://jacobsamo.com/links",
 		}),
 	}),
 });

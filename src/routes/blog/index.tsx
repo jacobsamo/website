@@ -8,7 +8,6 @@ export const Route = createFileRoute("/blog/")({
 			title: "Blog - Jacob Samorowski",
 			description:
 				"Thoughts, tutorials, and stories from a software developer and photographer",
-			url: "https://jacobsamo.com/blog",
 		}),
 	}),
 });
@@ -21,5 +20,5 @@ function BlogPage() {
 				<p>Check back in later</p>
 			</div>
 		</main>
-	);
+	)
 }

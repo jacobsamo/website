@@ -21,9 +21,18 @@ interface MyRouterContext {
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
-	head: () => {
+	head: ({ matches }) => {
 		const twitterSocial = socials.find((s) => s.platform === "twitter");
 		const twitterHandle = twitterSocial?.handle || "@jacobsamorowski";
+
+		// Get the current (leaf) route's pathname from the last match
+		const currentMatch = matches[matches.length - 1];
+		const rawPathname = currentMatch?.pathname ?? "/";
+
+		// Normalize pathname: remove trailing slash, root becomes empty string for clean URL
+		const pathname = rawPathname === "/" ? "" : rawPathname.replace(/\/$/, "");
+		const canonicalUrl = `https://jacobsamo.com${pathname}`;
+		
 		return {
 			meta: [
 				...seo({
@@ -31,7 +40,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 					description: siteConfig.description,
 					keywords: siteConfig.keywords,
 					image: siteConfig.og.url,
-					url: "https://jacobsamo.com",
+					url: canonicalUrl,
 				}),
 				{
 					charSet: "utf-8",
@@ -68,6 +77,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				{ name: "twitter:card", content: "summary_large_image" },
 			],
 			links: [
+				{
+					rel: "canonical",
+					href: canonicalUrl,
+				},
 				{
 					rel: "stylesheet",
 					href: appCss,

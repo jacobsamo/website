@@ -10,7 +10,6 @@ export const Route = createFileRoute("/photography")({
 			title: "Photography - Jacob Samorowski",
 			description:
 				"A collection of my photography work capturing moments and stories",
-			url: "https://jacobsamo.com/photography",
 		}),
 	}),
 });
