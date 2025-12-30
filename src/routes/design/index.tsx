@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { allDesigns } from "content-collections";
+import { Video } from "@/components/video";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/design/")({
@@ -26,45 +27,20 @@ function DesignPage() {
 					aria-label={`View ${post.title} design`}
 				>
 					{post.videoUrl ? (
-						<div className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95">
-							<video
+						<div className="inset-0 size-full transform-gpu overflow-hidden rounded-md opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95">
+							<Video
 								src={post.videoUrl}
 								poster={post.image}
+								alt={`${post.title} design preview`}
 								autoPlay
 								loop
 								muted
 								playsInline
-								preload="auto"
-								disablePictureInPicture
-								disableRemotePlayback
-								className="h-full w-full rounded-md object-cover object-center"
-								onError={(e) => {
-									// Fallback to image if video fails to load
-									const video = e.target as HTMLVideoElement;
-									const container = video.parentElement;
-									if (container) {
-										container.innerHTML = "";
-										const img = document.createElement("img");
-										img.src = post.image;
-										img.alt = `${post.title} design preview`;
-										img.className =
-											"w-full h-full rounded-md object-cover object-center";
-										container.appendChild(img);
-									}
-								}}
-								onLoadStart={() => {
-									// Ensure high quality playback
-									const video = document.querySelector(
-										"video",
-									) as HTMLVideoElement;
-									if (video) {
-										video.playbackRate = 1;
-									}
-								}}
-							>
-								{/* Fallback text for browsers that don't support video */}
-								<p className="sr-only">Video: {post.title}</p>
-							</video>
+								lazy={false}
+								fill
+								controls={false}
+								videoClassName="rounded-md"
+							/>
 						</div>
 					) : (
 						<div className="inset-0 size-full transform-gpu rounded-md object-cover object-center opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.02] group-hover:opacity-95">

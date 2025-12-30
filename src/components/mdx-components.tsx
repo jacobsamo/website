@@ -4,7 +4,12 @@ import { useMDXComponent } from "@content-collections/mdx/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { DesignViewer } from "./design-viewer";
+import {
+	DesignVideoViewer,
+	type DesignVideoViewerProps,
+} from "./design-viewer/video-viewer";
 import { TweetCard, type TweetCardProps } from "./tweet-card";
+import { Video, type VideoProps } from "./video";
 
 const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -157,9 +162,19 @@ const components = {
 		/>
 	),
 	DesignViewer,
+	DesignVideoViewer: (props: DesignVideoViewerProps) => (
+		<div className="not-prose">
+			<DesignVideoViewer {...props} />
+		</div>
+	),
 	TweetCard: (props: TweetCardProps) => (
 		<div className="not-prose relative mx-auto max-w-xl py-6">
 			<TweetCard {...props} />
+		</div>
+	),
+	Video: (props: VideoProps) => (
+		<div className="not-prose relative my-6">
+			<Video {...props} />
 		</div>
 	),
 };
