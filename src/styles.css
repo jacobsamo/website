@@ -303,3 +303,72 @@ code[data-line-numbers-max-digits="2"]>[data-line]::before {
 code[data-line-numbers-max-digits="3"]>[data-line]::before {
     width: 3rem;
 }
+
+/* Code block styling */
+[data-rehype-pretty-code-figure] pre {
+    @apply border-0 bg-transparent py-0;
+}
+
+[data-rehype-pretty-code-figure] code {
+    @apply grid text-sm;
+    counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+    @apply border-l-2 border-transparent px-4 py-0.5;
+}
+
+/* Line highlighting */
+[data-rehype-pretty-code-figure] .line--highlighted {
+    @apply border-l-blue-400 bg-blue-500/10;
+}
+
+/* Word highlighting */
+[data-rehype-pretty-code-figure] .word--highlighted {
+    @apply rounded-sm bg-blue-500/25 px-1 py-0.5;
+}
+
+/* Diff notation styling */
+[data-rehype-pretty-code-figure] [data-highlighted-line-id="add"] {
+    @apply border-l-green-400 bg-green-500/15;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line-id="remove"] {
+    @apply border-l-red-400 bg-red-500/15;
+}
+
+[data-rehype-pretty-code-figure] [data-diff="+"] {
+    @apply border-l-green-400 bg-green-500/15;
+}
+
+[data-rehype-pretty-code-figure] [data-diff="-"] {
+    @apply border-l-red-400 bg-red-500/15;
+}
+
+/* Focus notation - dim unfocused lines */
+[data-rehype-pretty-code-figure]:has([data-highlighted-line-id="focus"]) [data-line]:not([data-highlighted-line-id="focus"]) {
+    @apply opacity-50 transition-opacity;
+}
+
+[data-rehype-pretty-code-figure]:has([data-highlighted-line-id="focus"]):hover [data-line] {
+    @apply opacity-100;
+}
+
+/* Inline code within prose */
+:not(pre) > code {
+    @apply rounded-md bg-white/10 px-1.5 py-0.5 font-mono text-sm text-[#e6edf3];
+}
+
+/* Code title styling */
+[data-rehype-pretty-code-title] {
+    @apply rounded-t-xl border border-b-0 border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-muted-foreground;
+}
+
+[data-rehype-pretty-code-title] + pre {
+    @apply rounded-t-none;
+}
+
+/* Code caption styling */
+[data-rehype-pretty-code-caption] {
+    @apply mt-2 text-center text-sm text-muted-foreground;
+}
