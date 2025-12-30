@@ -5,6 +5,7 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { DesignViewer } from "./design-viewer";
 import { TweetCard, type TweetCardProps } from "./tweet-card";
+import { Pre, CodeTab, CodeTabs, InlineCode } from "./mdx";
 
 const components = {
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -138,24 +139,39 @@ const components = {
 			{...props}
 		/>
 	),
-	pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-		<pre
-			className={cn(
-				"overflow-x-auto rounded-lg border bg-black py-2",
-				className,
-			)}
-			{...props}
-		/>
-	),
-	code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-		<code
-			className={cn(
-				"relative rounded px-[0.3rem] font-mono text-sm",
-				className,
-			)}
-			{...props}
-		/>
-	),
+	pre: Pre,
+	code: ({
+		className,
+		children,
+		...props
+	}: React.HTMLAttributes<HTMLElement>) => {
+		// Check if this is inline code (not inside a pre element)
+		// rehype-pretty-code adds data-language to code blocks inside pre
+		const isInlineCode = !("data-language" in props);
+
+		if (isInlineCode) {
+			return (
+				<code
+					className={cn(
+						"relative rounded-md bg-white/10 px-1.5 py-0.5 font-mono text-sm text-[#e6edf3]",
+						className,
+					)}
+					{...props}
+				>
+					{children}
+				</code>
+			);
+		}
+
+		return (
+			<code className={cn("font-mono text-sm", className)} {...props}>
+				{children}
+			</code>
+		);
+	},
+	CodeTabs,
+	CodeTab,
+	InlineCode,
 	DesignViewer,
 	TweetCard: (props: TweetCardProps) => (
 		<div className="not-prose relative mx-auto max-w-xl py-6">
