@@ -2,34 +2,26 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { allPosts } from "content-collections";
 import { Mdx } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
-import { seo } from "@/lib/seo";
+import { head } from "@/lib/head";
 import { upperCaseFirstLetter } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/$postId")({
 	component: BlogPostPage,
-	beforeLoad: () => ({
-		allPosts,
-	}),
-	loader: async ({ params, context: { allPosts } }) => {
-		const slug = params.postId;
-		const post = allPosts.find((d) => d._meta.path === slug);
+	loader: ({ params }) => {
+		const post = allPosts.find((d) => d._meta.path === params.postId);
 		if (!post) {
-			throw redirect({
-				to: "/blog",
-			});
+			throw redirect({ to: "/blog" });
 		}
-
 		return { post };
 	},
-	head: ({ loaderData }) => ({
-		meta: loaderData
-			? seo({
-					title: loaderData.post.title ?? "post",
-					description: loaderData.post.description,
-					image: loaderData.post.image,
-				})
-			: undefined,
-	}),
+	head: ({ loaderData }) => {
+		if (!loaderData) return { meta: [] };
+		return head({
+			title: loaderData.post.title ?? "Blog Post",
+			description: loaderData.post.description,
+			image: loaderData.post.image,
+		});
+	},
 });
 
 function BlogPostPage() {

@@ -1,16 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { allDesigns } from "content-collections";
-import { seo } from "@/lib/seo";
+import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/design/")({
 	component: DesignPage,
-	head: () => ({
-		meta: seo({
+	head: () =>
+		head({
 			title: "Designs - Jacob Samorowski",
 			description: "Interactive UI designs and component showcases",
 		}),
-	}),
 });
 
 function DesignPage() {

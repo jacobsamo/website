@@ -1,57 +1,74 @@
 import type { AnyRouteMatch } from "@tanstack/react-router";
 
-type HeadElements = {
-	links?: AnyRouteMatch["links"];
-	scripts?: AnyRouteMatch["headScripts"];
-	meta?: AnyRouteMatch["meta"];
-	styles?: AnyRouteMatch["styles"];
-};
+export interface HeadResult {
+	meta: NonNullable<AnyRouteMatch["meta"]>;
+	links?: NonNullable<AnyRouteMatch["links"]>;
+	scripts?: NonNullable<AnyRouteMatch["scripts"]>;
+	styles?: NonNullable<AnyRouteMatch["styles"]>;
+}
 
-interface HeadProps {
+export interface HeadOptions extends Partial<HeadResult> {
+	/** Page title - will be used for title tag, og:title, twitter:title */
 	title: string;
+	/** Page description - used for meta description, og:description, twitter:description */
 	description?: string;
+	/** Keywords for SEO */
 	keywords?: string[];
+	/** Image URL for social sharing (relative or absolute) */
 	image?: string;
+	/** URL for social sharing (relative or absolute) */
 	url?: string;
 }
 
-export const head = (
-	{ title, description, keywords, image, url }: HeadProps,
-	{ links, scripts, meta, styles }: HeadElements,
-): HeadElements => {
-	// Build the base URL for images (handle both relative and absolute paths)
-	const baseUrl =
-		typeof window !== "undefined"
-			? window.location.origin
-			: "https://jacobsamo.com";
-	const imageUrl = image
-		? image?.startsWith("http")
-			? image
-			: new URL(image, baseUrl).toString()
-		: undefined;
+const BASE_URL = "https://jacobsamo.com";
+
+const buildUrl = (url: string) => {
+	if (url.startsWith("http")) {
+		return url;
+	}
+
+	return new URL(url, BASE_URL).toString().replace(/\/$/, "");
+};
+
+export const head = ({
+	title,
+	description,
+	keywords,
+	image,
+	url,
+	// Extra head elements
+	meta,
+	links,
+	scripts,
+	styles,
+}: HeadOptions): HeadResult => {
+	const imageUrl = image ? buildUrl(image) : undefined;
+
+	// remove trailing slash
+	const normalizedUrl = url ? buildUrl(url).trim() : undefined;
 
 	return {
-		links,
-		scripts,
 		meta: [
-			...(meta ?? []),
-			// Page title
+			// Title tags
 			{ title },
 			{ property: "og:title", content: title },
 			{ name: "twitter:title", content: title },
 
+			// Description tags
 			...(description
 				? [
 						{ name: "description", content: description },
-						{ name: "twitter:description", content: description },
 						{ property: "og:description", content: description },
+						{ name: "twitter:description", content: description },
 					]
 				: []),
 
-			// Basic meta tags
-			...(keywords ? [{ name: "keywords", content: keywords.join(", ") }] : []),
+			// Keywords
+			...(keywords?.length
+				? [{ name: "keywords", content: keywords.join(", ") }]
+				: []),
 
-			// Open Graph meta tags
+			// Image tags
 			...(imageUrl
 				? [
 						{ property: "og:image", content: imageUrl },
@@ -61,13 +78,17 @@ export const head = (
 					]
 				: []),
 
-			...(url
+			// URL tags
+			...(normalizedUrl
 				? [
-						{ property: "og:url", content: url },
-						{ name: "twitter:url", content: url },
+						{ property: "og:url", content: normalizedUrl },
+						{ name: "twitter:url", content: normalizedUrl },
 					]
 				: []),
+			...(meta ?? []),
 		],
+		links,
+		scripts,
 		styles,
 	};
 };

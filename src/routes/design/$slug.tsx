@@ -2,34 +2,26 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { allDesigns } from "content-collections";
 import { Mdx } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
-import { seo } from "@/lib/seo";
+import { head } from "@/lib/head";
 import { upperCaseFirstLetter } from "@/lib/utils";
 
 export const Route = createFileRoute("/design/$slug")({
 	component: RouteComponent,
-	beforeLoad: () => ({
-		allDesigns,
-	}),
-	loader: async ({ params, context: { allDesigns } }) => {
-		const slug = params.slug;
-		const design = allDesigns.find((d) => d._meta.path === slug);
+	loader: ({ params }) => {
+		const design = allDesigns.find((d) => d._meta.path === params.slug);
 		if (!design) {
-			throw redirect({
-				to: "/design",
-			});
+			throw redirect({ to: "/design" });
 		}
-
 		return { design };
 	},
-	head: ({ loaderData }) => ({
-		meta: loaderData
-			? seo({
-					title: loaderData.design.title ?? "Design",
-					description: loaderData.design.shortDescription,
-					image: loaderData.design.image,
-				})
-			: undefined,
-	}),
+	head: ({ loaderData }) => {
+		if (!loaderData) return { meta: [] };
+		return head({
+			title: loaderData.design.title ?? "Design",
+			description: loaderData.design.shortDescription,
+			image: loaderData.design.image,
+		});
+	},
 });
 
 function RouteComponent() {
