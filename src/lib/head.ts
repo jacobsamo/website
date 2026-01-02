@@ -1,4 +1,5 @@
 import type { AnyRouteMatch } from "@tanstack/react-router";
+import { BASE_URL } from "./config";
 
 export interface HeadResult {
 	meta: NonNullable<AnyRouteMatch["meta"]>;
@@ -19,8 +20,6 @@ export interface HeadOptions extends Partial<HeadResult> {
 	/** URL for social sharing (relative or absolute) */
 	url?: string;
 }
-
-const BASE_URL = "https://jacobsamo.com";
 
 const buildUrl = (url: string) => {
 	if (url.startsWith("http")) {

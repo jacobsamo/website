@@ -1,3 +1,5 @@
+export const BASE_URL = "https://jacobsamo.com"
+
 export const platforms = [
 	"twitter",
 	"bluesky",

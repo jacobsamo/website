@@ -12,15 +12,13 @@ import { Header } from "@/components/header";
 import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
-import { siteConfig, socials } from "@/lib/config";
+import { siteConfig, socials, BASE_URL } from "@/lib/config";
 import { head } from "@/lib/head";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
 }
-
-const BASE_URL = "https://jacobsamo.com";
 
 /**
  * Generate a human-readable title from a pathname
@@ -77,17 +75,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				{ name: "robots", content: "index, follow" },
 				{ name: "author", content: "Jacob Samorowski" },
 
-				// Fallback title (child routes override via deduping)
-				{ title: fallbackTitle },
-
 				// Open Graph - Static site-wide values
 				{ property: "og:site_name", content: siteConfig.title },
 				{ property: "og:locale", content: "en_AU" },
 				{ property: "og:type", content: "website" },
-
-				// Canonical URL meta (always generated)
-				{ property: "og:url", content: canonicalUrl },
-				{ name: "twitter:url", content: canonicalUrl },
 
 				// Twitter - Static site-wide values
 				{ name: "twitter:card", content: "summary_large_image" },
