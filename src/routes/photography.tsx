@@ -1,18 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import images from "@/lib/data";
-import { seo } from "@/lib/seo";
+import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/photography")({
 	component: PhotographyPage,
-	head: () => ({
-		meta: seo({
+	head: () =>
+		head({
 			title: "Photography - Jacob Samorowski",
 			description:
 				"A collection of my photography work capturing moments and stories",
-			url: "https://jacobsamo.com/photography",
 		}),
-	}),
 });
 
 function PhotographyPage() {

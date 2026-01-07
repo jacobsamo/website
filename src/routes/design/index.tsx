@@ -1,17 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { allDesigns } from "content-collections";
-import { seo } from "@/lib/seo";
+import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/design/")({
 	component: DesignPage,
-	head: () => ({
-		meta: seo({
+	head: () =>
+		head({
 			title: "Designs - Jacob Samorowski",
 			description: "Interactive UI designs and component showcases",
-			url: "https://jacobsamo.com/design",
 		}),
-	}),
 });
 
 function DesignPage() {
@@ -43,22 +41,22 @@ function DesignPage() {
 									const video = e.target as HTMLVideoElement;
 									const container = video.parentElement;
 									if (container) {
-										container.innerHTML = "";
+										container.innerHTML = ""
 										const img = document.createElement("img");
-										img.src = post.image;
+										img.src = post.image
 										img.alt = `${post.title} design preview`;
 										img.className =
 											"w-full h-full rounded-md object-cover object-center";
-										container.appendChild(img);
+										container.appendChild(img)
 									}
 								}}
 								onLoadStart={() => {
 									// Ensure high quality playback
 									const video = document.querySelector(
 										"video",
-									) as HTMLVideoElement;
+									) as HTMLVideoElement
 									if (video) {
-										video.playbackRate = 1;
+										video.playbackRate = 1
 									}
 								}}
 							>
@@ -84,5 +82,5 @@ function DesignPage() {
 				</Link>
 			))}
 		</main>
-	);
+	)
 }

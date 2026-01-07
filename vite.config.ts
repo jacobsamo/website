@@ -3,20 +3,17 @@ import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
-import viteTsConfigPaths from 'vite-tsconfig-paths'
+import tsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 import { cloudflare } from '@cloudflare/vite-plugin'
 
 const config = defineConfig({
   plugins: [
-      contentCollections(),
-    devtools(),
-    cloudflare({ viteEnvironment: { name: 'ssr' } }),
-    // this is the plugin that enables path aliases
-    viteTsConfigPaths({
-      projects: ['./tsconfig.json'],
-    }),
-    tailwindcss(),
+    contentCollections(),
+      tsConfigPaths({
+        projects: ["./tsconfig.json"],
+      }),
+      cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tanstackStart({
       sitemap: {
         enabled: true,
@@ -27,11 +24,13 @@ const config = defineConfig({
         crawlLinks: true,
       },
     }),
+    devtools(),
     viteReact({
       babel: {
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
+    tailwindcss(),
   ],
 })
 
