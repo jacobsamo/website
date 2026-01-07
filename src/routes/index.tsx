@@ -4,17 +4,9 @@ import { ProjectCard } from "@/components/project-card";
 import { Socials } from "@/components/socials";
 import { Marquee } from "@/components/ui/marquee";
 import { siteConfig, skills } from "@/lib/config";
-import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/")({
 	component: MainPage,
-	head: () =>
-		head({
-			title: siteConfig.title,
-			description: siteConfig.description,
-			keywords: siteConfig.keywords,
-			image: siteConfig.og.url,
-		}),
 });
 
 function MainPage() {

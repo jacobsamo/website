@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				{ rel: "icon", href: "/profile-picture.jpg" },
 				{ rel: "apple-touch-icon", href: "/profile-picture.jpg" },
 				// Discovery
-				{ rel: "sitemap", href: "/sitemap-index.xml" },
+				{ rel: "sitemap", href: "/sitemap.xml" },
 				{ rel: "manifest", href: "/manifest.webmanifest" },
 			],
 		});
