@@ -41,22 +41,22 @@ function DesignPage() {
 									const video = e.target as HTMLVideoElement;
 									const container = video.parentElement;
 									if (container) {
-										container.innerHTML = ""
+										container.innerHTML = "";
 										const img = document.createElement("img");
-										img.src = post.image
+										img.src = post.image;
 										img.alt = `${post.title} design preview`;
 										img.className =
 											"w-full h-full rounded-md object-cover object-center";
-										container.appendChild(img)
+										container.appendChild(img);
 									}
 								}}
 								onLoadStart={() => {
 									// Ensure high quality playback
 									const video = document.querySelector(
 										"video",
-									) as HTMLVideoElement
+									) as HTMLVideoElement;
 									if (video) {
-										video.playbackRate = 1
+										video.playbackRate = 1;
 									}
 								}}
 							>
@@ -82,5 +82,5 @@ function DesignPage() {
 				</Link>
 			))}
 		</main>
-	)
+	);
 }

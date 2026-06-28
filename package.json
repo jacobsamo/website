@@ -9,9 +9,9 @@
     "preview": "vite preview",
     "deploy": "wrangler deploy",
     "test": "vitest run",
-    "format": "biome format",
-    "lint": "biome lint",
-    "check": "biome check"
+    "format": "oxfmt --no-error-on-unmatched-pattern 'src/**/*' '.vscode/**/*' index.html vite.config.js",
+    "lint": "oxlint --no-error-on-unmatched-pattern src .vscode index.html vite.config.js",
+    "check": "bun run lint && oxfmt --check --no-error-on-unmatched-pattern 'src/**/*' '.vscode/**/*' index.html vite.config.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -58,7 +58,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.1",
     "@content-collections/core": "^0.15.2",
     "@content-collections/markdown": "^0.1.4",
     "@content-collections/mdx": "^0.2.2",
@@ -73,6 +72,8 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "fumadocs-core": "^16.10.5",
     "jsdom": "^29.1.1",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.3",
     "rehype-slug": "^6.0.0",
