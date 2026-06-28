@@ -19,10 +19,10 @@ This is a personal portfolio website built with **TanStack Start** (a full-stack
 - `bun run start` - Start production server with Sentry instrumentation
 
 **Code Quality:**
-- `bun run lint` - Run Biome linter
-- `bun run format` - Run Biome formatter
-- `bun run check` - Run Biome checks (lint + format)
-- Biome uses **tab indentation** and **double quotes** (see biome.json)
+- `bun run lint` - Run Oxlint
+- `bun run format` - Run Oxfmt formatter
+- `bun run check` - Run Oxlint and Oxfmt checks
+- Oxfmt uses **tab indentation** and **double quotes** (see .oxfmtrc.json)
 
 **Testing:**
 - `bun run test` - Run tests with Vitest
@@ -56,7 +56,7 @@ This is a personal portfolio website built with **TanStack Start** (a full-stack
 - **React 19** with React Compiler enabled (babel-plugin-react-compiler)
 - **Vite 7** for bundling with TanStack Start plugin
 - **Tailwind CSS 4** via @tailwindcss/vite plugin
-- **Biome** for linting and formatting (NOT Prettier/ESLint)
+- **Oxc** for linting and formatting with Oxlint and Oxfmt (NOT Prettier/ESLint)
 - **Vitest** for testing with React Testing Library
 - **Cloudflare Workers** deployment target with nodejs_compat flags
 
