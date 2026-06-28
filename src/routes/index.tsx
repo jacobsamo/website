@@ -4,8 +4,30 @@ import { ProjectCard } from "@/components/project-card";
 import { Socials } from "@/components/socials";
 import { Marquee } from "@/components/ui/marquee";
 import { siteConfig, skills } from "@/lib/config";
+import { head } from "@/lib/head";
+import {
+	breadcrumbJsonLd,
+	jsonLdGraph,
+	jsonLdScript,
+	profilePageJsonLd,
+} from "@/lib/structured-data";
 
 export const Route = createFileRoute("/")({
+	head: () =>
+		head({
+			title: "Jacob Samorowski - Software Developer & Photographer",
+			description:
+				"Jacob Samorowski is a software developer and photographer based in Queensland, Australia, building web apps, creative tools, and digital experiences.",
+			image: siteConfig.og.url,
+			headScripts: [
+				jsonLdScript(
+					jsonLdGraph([
+						profilePageJsonLd(),
+						breadcrumbJsonLd([{ name: "Home", path: "/" }]),
+					]),
+				),
+			],
+		}),
 	component: MainPage,
 });
 

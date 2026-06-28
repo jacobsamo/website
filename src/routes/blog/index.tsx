@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { allPosts } from "content-collections";
 import { head } from "@/lib/head";
+import {
+	blogJsonLd,
+	breadcrumbJsonLd,
+	jsonLdGraph,
+	jsonLdScript,
+} from "@/lib/structured-data";
+
+const postsByDate = [...allPosts].sort(
+	(a, b) => b.pubDate.getTime() - a.pubDate.getTime(),
+);
 
 export const Route = createFileRoute("/blog/")({
 	component: BlogPage,
@@ -8,6 +19,17 @@ export const Route = createFileRoute("/blog/")({
 			title: "Blog - Jacob Samorowski",
 			description:
 				"Thoughts, tutorials, and stories from a software developer and photographer",
+			headScripts: [
+				jsonLdScript(
+					jsonLdGraph([
+						blogJsonLd(postsByDate),
+						breadcrumbJsonLd([
+							{ name: "Home", path: "/" },
+							{ name: "Blog", path: "/blog" },
+						]),
+					]),
+				),
+			],
 		}),
 });
 
@@ -19,5 +41,5 @@ function BlogPage() {
 				<p>Check back in later</p>
 			</div>
 		</main>
-	)
+	);
 }
