@@ -12,8 +12,14 @@ import { Header } from "@/components/header";
 import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
-import { siteConfig, socials, BASE_URL } from "@/lib/config";
+import { BASE_URL, siteConfig, socials } from "@/lib/config";
 import { head } from "@/lib/head";
+import {
+	jsonLdGraph,
+	jsonLdScript,
+	personJsonLd,
+	websiteJsonLd,
+} from "@/lib/structured-data";
 import appCss from "../styles.css?url";
 
 interface MyRouterContext {
@@ -104,6 +110,9 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				// Discovery
 				{ rel: "sitemap", href: "/sitemap.xml" },
 				{ rel: "manifest", href: "/manifest.webmanifest" },
+			],
+			headScripts: [
+				jsonLdScript(jsonLdGraph([personJsonLd(), websiteJsonLd()])),
 			],
 		});
 	},

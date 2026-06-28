@@ -3,6 +3,12 @@ import { allPosts } from "content-collections";
 import { Mdx } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
 import { head } from "@/lib/head";
+import {
+	blogPostingJsonLd,
+	breadcrumbJsonLd,
+	jsonLdGraph,
+	jsonLdScript,
+} from "@/lib/structured-data";
 import { upperCaseFirstLetter } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/$postId")({
@@ -20,6 +26,22 @@ export const Route = createFileRoute("/blog/$postId")({
 			title: loaderData.post.title ?? "Blog Post",
 			description: loaderData.post.description,
 			image: loaderData.post.image,
+			url: `/blog/${loaderData.post._meta.path}`,
+			headScripts: [
+				jsonLdScript(
+					jsonLdGraph([
+						blogPostingJsonLd(loaderData.post),
+						breadcrumbJsonLd([
+							{ name: "Home", path: "/" },
+							{ name: "Blog", path: "/blog" },
+							{
+								name: loaderData.post.title,
+								path: `/blog/${loaderData.post._meta.path}`,
+							},
+						]),
+					]),
+				),
+			],
 		});
 	},
 });

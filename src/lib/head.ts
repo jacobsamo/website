@@ -5,6 +5,7 @@ export interface HeadResult {
 	meta: NonNullable<AnyRouteMatch["meta"]>;
 	links?: NonNullable<AnyRouteMatch["links"]>;
 	scripts?: NonNullable<AnyRouteMatch["scripts"]>;
+	headScripts?: NonNullable<AnyRouteMatch["headScripts"]>;
 	styles?: NonNullable<AnyRouteMatch["styles"]>;
 }
 
@@ -39,6 +40,7 @@ export const head = ({
 	meta,
 	links,
 	scripts,
+	headScripts,
 	styles,
 }: HeadOptions): HeadResult => {
 	const imageUrl = image ? buildUrl(image) : undefined;
@@ -88,6 +90,7 @@ export const head = ({
 		],
 		links,
 		scripts,
+		headScripts,
 		styles,
 	};
 };
