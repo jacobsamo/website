@@ -2,17 +2,14 @@ import contentCollections from "@content-collections/vite";
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-import viteReact from '@vitejs/plugin-react'
-import tsConfigPaths from 'vite-tsconfig-paths'
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite'
 import { cloudflare } from '@cloudflare/vite-plugin'
 
 const config = defineConfig({
   plugins: [
     contentCollections(),
-      tsConfigPaths({
-        projects: ["./tsconfig.json"],
-      }),
       cloudflare({ viteEnvironment: { name: 'ssr' } }),
     tanstackStart({
       sitemap: {
@@ -25,10 +22,9 @@ const config = defineConfig({
       },
     }),
     devtools(),
-    viteReact({
-      babel: {
-        plugins: ['babel-plugin-react-compiler'],
-      },
+    react(),
+     babel({
+      presets: [reactCompilerPreset()]
     }),
     tailwindcss(),
   ],
