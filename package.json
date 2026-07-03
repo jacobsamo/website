@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "NODE_OPTIONS='--import ./instrument.server.mjs' vite dev --port 3000",
-    "build": "vite build && cp instrument.server.mjs dist/server",
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
     "start": "vite preview",
     "preview": "vite preview",
     "deploy": "wrangler deploy",
@@ -19,7 +19,6 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@posthog/react": "^1.10.3",
     "@rehype-pretty/transformers": "^0.13.2",
-    "@sentry/tanstackstart-react": "^10.62.0",
     "@shikijs/transformers": "^4.3.0",
     "@t3-oss/env-core": "^0.13.11",
     "@tailwindcss/vite": "^4.3.1",

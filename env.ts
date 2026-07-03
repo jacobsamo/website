@@ -14,8 +14,7 @@ export const env = createEnv({
   clientPrefix: 'VITE_',
   client: {
     VITE_POSTHOG_KEY: z.string().optional(),
-    VITE_POSTHOG_HOST: z.url().optional(),
-    VITE_SENTRY_DSN: z.string().optional()
+    VITE_POSTHOG_HOST: z.url().optional()
   },
   /**
    * By default, this library will feed the environment variables directly to
