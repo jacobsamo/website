@@ -442,7 +442,7 @@ export const unfurlUrl = createServerFn("POST")
 - Test on real devices
 
 #### 4.4 Performance Monitoring
-- Add Sentry performance tracking
+- Add PostHog performance tracking
 - Lazy load embeds with IntersectionObserver
 - Monitor bundle size
 - Virtual scrolling if needed (50+ items)

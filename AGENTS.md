@@ -9,14 +9,14 @@ This is a personal portfolio website built with **TanStack Start** (a full-stack
 ## Development Commands
 
 **Development:**
-- `bun run dev` - Start development server on port 3000 with Sentry instrumentation
+- `bun run dev` - Start development server on port 3000
 - Development server uses Vite with HMR enabled
 
 **Building & Deployment:**
-- `bun run build` - Build for production and copy Sentry instrumentation
+- `bun run build` - Build for production
 - `bun run preview` - Preview production build locally
 - `bun run deploy` - Deploy to Cloudflare Workers via wrangler
-- `bun run start` - Start production server with Sentry instrumentation
+- `bun run start` - Start production preview server
 
 **Code Quality:**
 - `bun run lint` - Run Oxlint
@@ -75,27 +75,14 @@ Use **T3 Env** for type-safe environment variables:
 - Schema defined in `env.ts` with Zod validation
 - Client vars must have `VITE_` prefix (enforced)
 - Import with `import { env } from 'env'`
-- Current env vars: `VITE_APP_TITLE`, `VITE_POSTHOG_KEY`, `VITE_POSTHOG_HOST`, `VITE_SENTRY_DSN`, `SERVER_URL`
+- Current env vars: `VITE_APP_TITLE`, `VITE_POSTHOG_KEY`, `VITE_POSTHOG_HOST`, `SERVER_URL`
 
-### Sentry Instrumentation
+### PostHog Analytics and Error Monitoring
 
-**Server-side setup:**
-- `instrument.server.mjs` initializes Sentry for server functions
-- Copied to `.output/server/` during build
-- NODE_OPTIONS imports it before server starts
-
-**Client-side setup:**
-- Initialized in `src/router.tsx` when `VITE_SENTRY_DSN` is set
-
-**Instrumenting server functions:**
-When using `createServerFn`, wrap implementation with Sentry span:
-```tsx
-import * as Sentry from '@sentry/tanstackstart-react'
-
-Sentry.startSpan({ name: 'Operation description' }, async () => {
-  // server function implementation
-})
-```
+- PostHog is initialized in `src/components/providers/posthog.tsx`
+- Browser analytics, session recording, heatmaps, and React error boundaries use PostHog
+- Route error pages manually call `posthog.captureException`
+- Exception autocapture should be enabled in PostHog project settings for unhandled browser errors
 
 ### Content Collections
 
@@ -165,7 +152,6 @@ TanStack Store available for state management:
 
 **Build Output:**
 - Vite builds to `.output/`
-- Server instrumentation copied during build
 
 ## TanStack Router Notes
 
@@ -191,9 +177,9 @@ TanStack Store available for state management:
 
 ## Notes from Cursor Rules
 
-**Sentry:**
-- All server functions should be instrumented with `Sentry.startSpan`
-- Error collection configured automatically in router
+**PostHog:**
+- Use PostHog for analytics and error monitoring
+- Use `posthog.captureException` for handled errors
 
 **shadcn:**
 - Always use latest version: `pnpm dlx shadcn@latest add <component>`
