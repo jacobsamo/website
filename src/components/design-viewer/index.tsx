@@ -65,22 +65,6 @@ interface DesignViewerProps {
 	};
 }
 
-interface DesignViewerContextValue {
-	theme: "light" | "dark";
-}
-
-const DesignViewerContext = React.createContext<
-	DesignViewerContextValue | undefined
->(undefined);
-
-export const useDesignViewer = () => {
-	const context = React.useContext(DesignViewerContext);
-	if (!context) {
-		throw new Error("useDesignViewer must be used within a DesignViewer");
-	}
-	return context;
-};
-
 export const DesignViewer: React.FC<DesignViewerProps> = ({
 	children,
 	theme: controlledTheme,
@@ -175,19 +159,17 @@ export const DesignViewer: React.FC<DesignViewerProps> = ({
 					</Button>
 				</div>
 			)}
-			<DesignViewerContext.Provider value={{ theme }}>
-				<div
-					// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state
-					key={refreshKey}
-					className={cn(
-						"flex h-full w-full items-center justify-center overflow-y-auto transition-colors duration-300",
-						"text-gray-900 dark:text-[oklch(0.985_0_0)]",
-						classes?.contentClassName,
-					)}
-				>
-					{children}
-				</div>
-			</DesignViewerContext.Provider>
+			<div
+				// The dynamic key when changed will force this children to unmount and remount, useful for refreshing an animation state
+				key={refreshKey}
+				className={cn(
+					"flex h-full w-full items-center justify-center overflow-y-auto transition-colors duration-300",
+					"text-gray-900 dark:text-[oklch(0.985_0_0)]",
+					classes?.contentClassName,
+				)}
+			>
+				{children}
+			</div>
 		</div>
 	);
 };

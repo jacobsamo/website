@@ -1,5 +1,6 @@
 import { Bell, Equal, Play, Plus } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -30,11 +31,11 @@ export const NotificationComponent = () => {
 			<div className="relative flex size-16 cursor-pointer items-center justify-center rounded-full bg-white p-2 shadow ring-2 ring-gray-200 dark:bg-secondary/80 dark:ring-secondary">
 				<AnimatePresence mode="popLayout">
 					{notificationCount !== 0 && (
-						<motion.span
-							initial={{ opacity: 0, scale: 0, x: 0 }}
+						<m.span
+							initial={{ opacity: 0, scale: 0.95, x: 0 }}
 							animate={{
 								opacity: 1,
-								scale: [0, 1.05, 1],
+								scale: [0.95, 1.05, 1],
 								x: 4,
 								transition: {
 									default: { duration: 0.3 },
@@ -50,20 +51,20 @@ export const NotificationComponent = () => {
 							layout
 							className="-top-2 -right-2 absolute flex size-8 items-center justify-center overflow-hidden rounded-full bg-red-500 p-2 text-white text-xs dark:bg-red-400"
 						>
-							<motion.span
+							<m.span
 								key={notificationCount}
-								initial={{ filter: "blur(1px)", opacity: 0, scale: 0 }}
+								initial={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 								animate={{
 									filter: "blur(0px)",
 									opacity: 1,
 									scale: 1,
 									transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
 								}}
-								exit={{ filter: "blur(1px)", opacity: 0, scale: 0 }}
+								exit={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 							>
 								{notificationCount <= 99 ? notificationCount : "99+"}
-							</motion.span>
-						</motion.span>
+							</m.span>
+						</m.span>
 					)}
 				</AnimatePresence>
 				<Bell className="size-8" />
@@ -77,25 +78,25 @@ export const NotificationComponent = () => {
 					className="relative overflow-hidden"
 					aria-label={isPaused ? "Resume notifications" : "Pause notifications"}
 				>
-					<motion.span
+					<m.span
 						key={`isPaused-${isPaused}`}
-						initial={{ filter: "blur(1px)", opacity: 0, scale: 0 }}
+						initial={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 						animate={{
 							filter: "blur(0px)",
 							opacity: 1,
 							scale: 1,
 							transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
 						}}
-						exit={{ filter: "blur(1px)", opacity: 0, scale: 0 }}
+						exit={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 					>
 						{isPaused ? (
 							<Play className="size-4" />
 						) : (
 							<Equal className="size-4 rotate-90" />
 						)}
-					</motion.span>
+					</m.span>
 				</Button>
-				<Button onClick={() => setNotificationCount(notificationCount + 1)}>
+				<Button onClick={() => setNotificationCount((count) => count + 1)}>
 					<Plus className="size-4" />
 					Increment Count
 				</Button>

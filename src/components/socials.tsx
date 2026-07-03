@@ -9,31 +9,33 @@ export const Socials = ({
 	size = 24,
 	platforms = allPlatforms,
 }: SocialProps) => {
+	const socialLinks = socials.flatMap((social) =>
+		platforms.includes(social.platform) ? [social] : [],
+	);
+
 	return (
 		<span
 			id="social-links"
 			className="flex flex-row items-center justify-center gap-4"
 		>
-			{socials
-				.filter((s) => platforms.includes(s.platform))
-				.map((s) => {
-					return (
-						<a
-							key={s.platform}
-							href={s.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="touch-hitbox"
-						>
-							<img
-								src={`/assets/icons/socials/${s.platform}.svg`}
-								alt={`${s.platform} icon`}
-								width={size}
-								height={size}
-							/>
-						</a>
-					);
-				})}
+			{socialLinks.map((s) => {
+				return (
+					<a
+						key={s.platform}
+						href={s.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="touch-hitbox"
+					>
+						<img
+							src={`/assets/icons/socials/${s.platform}.svg`}
+							alt={`${s.platform} icon`}
+							width={size}
+							height={size}
+						/>
+					</a>
+				);
+			})}
 		</span>
 	);
 };
