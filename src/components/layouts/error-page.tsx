@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/tanstackstart-react";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import posthog from "posthog-js";
 import { useEffect } from "react";
@@ -6,13 +5,11 @@ import { Button } from "@/components/ui/button";
 
 export default function ErrorPage({ error, reset, info }: ErrorComponentProps) {
 	useEffect(() => {
-		Sentry.captureException(error, {
-			data: {
-				info,
-			},
+		posthog.captureException(error, {
+			info,
+			source: "tanstack-router-error-page",
 		});
-		posthog.captureException(error);
-	}, []);
+	}, [error, info]);
 
 	return (
 		<main className="min-h-screen text-center flex items-center justify-center flex-col gap-2">
