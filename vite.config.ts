@@ -10,7 +10,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
 	plugins: [
-		contentCollections(),
+		contentCollections({ configPath: "content-collections.ts" }),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tanstackStart({
 			sitemap: {

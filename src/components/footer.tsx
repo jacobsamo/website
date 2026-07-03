@@ -4,7 +4,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { Socials } from "./socials";
 
 export const CopyRight = () => {
-	return <span>&copy; {new Date().getFullYear()}</span>;
+	return (
+		<span suppressHydrationWarning>&copy; {new Date().getFullYear()}</span>
+	);
 };
 
 export const Footer = () => {

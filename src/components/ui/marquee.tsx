@@ -20,6 +20,11 @@ export const Marquee = ({
 	fade = true,
 	children,
 }: MarqueeProps) => {
+	const marqueeCopies = Array.from(
+		{ length: repeat },
+		(_, copyNumber) => `marquee-copy-${copyNumber + 1}`,
+	);
+
 	return (
 		<div
 			className={cn(
@@ -37,21 +42,19 @@ export const Marquee = ({
 				className,
 			)}
 		>
-			{Array(repeat)
-				.fill(0)
-				.map((_, index) => (
-					<div
-						key={index}
-						className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-							"animate-marquee flex-row": !vertical,
-							"animate-marquee-vertical flex-col": vertical,
-							"group-hover:[animation-play-state:paused]": pauseOnHover,
-							"[animation-direction:reverse]": reverse,
-						})}
-					>
-						{children}
-					</div>
-				))}
+			{marqueeCopies.map((copyId) => (
+				<div
+					key={copyId}
+					className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
+						"animate-marquee flex-row": !vertical,
+						"animate-marquee-vertical flex-col": vertical,
+						"group-hover:[animation-play-state:paused]": pauseOnHover,
+						"[animation-direction:reverse]": reverse,
+					})}
+				>
+					{children}
+				</div>
+			))}
 		</div>
 	);
 };

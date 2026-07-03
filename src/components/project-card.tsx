@@ -4,7 +4,6 @@ export interface ProjectCardProps {
 	title: string;
 	description: string;
 	image: string;
-	details: string;
 	link: string;
 }
 
@@ -12,7 +11,6 @@ export const ProjectCard = ({
 	title,
 	description,
 	image,
-	details,
 	link,
 }: ProjectCardProps) => {
 	return (
