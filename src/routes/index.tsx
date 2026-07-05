@@ -70,13 +70,13 @@ function MainPage() {
 					<h2 className="mb-4 text-center text-4xl">Projects</h2>
 					<div id="projects" className="grid gap-6 sm:grid-cols-2">
 						{siteConfig.projects.map((project) => (
-								<ProjectCard
-									key={project.url}
-									title={project.title}
-									description={project.description}
-									image={project.image}
-									link={project.url}
-								/>
+							<ProjectCard
+								key={project.url}
+								title={project.title}
+								description={project.description}
+								image={project.image}
+								link={project.url}
+							/>
 						))}
 					</div>
 				</div>

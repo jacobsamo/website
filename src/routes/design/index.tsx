@@ -28,36 +28,19 @@ function DesignPage() {
 							<video
 								src={post.videoUrl}
 								poster={post.image}
-								autoPlay
 								loop
 								muted
 								playsInline
-								preload="auto"
+								preload="metadata"
 								disablePictureInPicture
 								disableRemotePlayback
 								className="h-full w-full rounded-md object-cover object-center"
-								onError={(e) => {
-									// Fallback to image if video fails to load
-									const video = e.target as HTMLVideoElement;
-									const container = video.parentElement;
-									if (container) {
-										container.innerHTML = "";
-										const img = document.createElement("img");
-										img.src = post.image;
-										img.alt = `${post.title} design preview`;
-										img.className =
-											"w-full h-full rounded-md object-cover object-center";
-										container.appendChild(img);
-									}
+								onPointerEnter={(event) => {
+									void event.currentTarget.play().catch(() => undefined);
 								}}
-								onLoadStart={() => {
-									// Ensure high quality playback
-									const video = document.querySelector(
-										"video",
-									) as HTMLVideoElement;
-									if (video) {
-										video.playbackRate = 1;
-									}
+								onPointerLeave={(event) => {
+									event.currentTarget.pause();
+									event.currentTarget.currentTime = 0;
 								}}
 							>
 								{/* Fallback text for browsers that don't support video */}
