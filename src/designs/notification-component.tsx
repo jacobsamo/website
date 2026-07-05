@@ -1,6 +1,5 @@
 import { Bell, Equal, Play, Plus } from "lucide-react";
-import { AnimatePresence } from "motion/react";
-import * as m from "motion/react-m";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -31,7 +30,7 @@ export const NotificationComponent = () => {
 			<div className="relative flex size-16 cursor-pointer items-center justify-center rounded-full bg-white p-2 shadow ring-2 ring-gray-200 dark:bg-secondary/80 dark:ring-secondary">
 				<AnimatePresence mode="popLayout">
 					{notificationCount !== 0 && (
-						<m.span
+						<motion.span
 							initial={{ opacity: 0, scale: 0.95, x: 0 }}
 							animate={{
 								opacity: 1,
@@ -51,7 +50,7 @@ export const NotificationComponent = () => {
 							layout
 							className="-top-2 -right-2 absolute flex size-8 items-center justify-center overflow-hidden rounded-full bg-red-500 p-2 text-white text-xs dark:bg-red-400"
 						>
-							<m.span
+							<motion.span
 								key={notificationCount}
 								initial={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 								animate={{
@@ -63,8 +62,8 @@ export const NotificationComponent = () => {
 								exit={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 							>
 								{notificationCount <= 99 ? notificationCount : "99+"}
-							</m.span>
-						</m.span>
+							</motion.span>
+						</motion.span>
 					)}
 				</AnimatePresence>
 				<Bell className="size-8" />
@@ -78,7 +77,7 @@ export const NotificationComponent = () => {
 					className="relative overflow-hidden"
 					aria-label={isPaused ? "Resume notifications" : "Pause notifications"}
 				>
-					<m.span
+					<motion.span
 						key={`isPaused-${isPaused}`}
 						initial={{ filter: "blur(1px)", opacity: 0, scale: 0.95 }}
 						animate={{
@@ -94,7 +93,7 @@ export const NotificationComponent = () => {
 						) : (
 							<Equal className="size-4 rotate-90" />
 						)}
-					</m.span>
+					</motion.span>
 				</Button>
 				<Button onClick={() => setNotificationCount((count) => count + 1)}>
 					<Plus className="size-4" />

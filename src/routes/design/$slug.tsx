@@ -1,7 +1,10 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { allDesigns } from "content-collections";
+import { Suspense } from "react";
+import { DesignViewer } from "@/components/design-viewer";
 import { Mdx } from "@/components/mdx-components";
 import { Badge } from "@/components/ui/badge";
+import { DesignDemo, hasDesignDemo } from "@/designs/registry";
 import { head } from "@/lib/head";
 import { upperCaseFirstLetter } from "@/lib/utils";
 
@@ -26,6 +29,7 @@ export const Route = createFileRoute("/design/$slug")({
 
 function RouteComponent() {
 	const { design } = Route.useLoaderData();
+
 	return (
 		<main className="container mx-auto min-h-screen px-4 pt-8 pb-16">
 			<h1 className="mt-2 scroll-m-20 font-bold text-4xl tracking-tight">
@@ -38,6 +42,19 @@ function RouteComponent() {
 					</Badge>
 				))}
 			</div>
+			{hasDesignDemo(design._meta.path) ? (
+				<DesignViewer>
+					<Suspense
+						fallback={
+							<div className="flex h-full w-full items-center justify-center text-muted-foreground text-sm">
+								Loading preview...
+							</div>
+						}
+					>
+						<DesignDemo slug={design._meta.path} />
+					</Suspense>
+				</DesignViewer>
+			) : null}
 			<Mdx code={design.mdx} />
 		</main>
 	);
