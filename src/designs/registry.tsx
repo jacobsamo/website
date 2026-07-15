@@ -1,6 +1,5 @@
 import { createElement, lazy, type ComponentType } from "react";
 
-
 const designDemos = defineDesignDemos({
 	"01-notification": {
 		component: lazyDesign(
@@ -9,7 +8,6 @@ const designDemos = defineDesignDemos({
 		),
 	},
 });
-
 
 interface DesignDemoDefinition {
 	component: ComponentType;
@@ -33,7 +31,6 @@ function lazyDesign<TModule, TExport extends keyof TModule & string>(
 		};
 	});
 }
-
 
 type DesignDemoSlug = keyof typeof designDemos;
 
