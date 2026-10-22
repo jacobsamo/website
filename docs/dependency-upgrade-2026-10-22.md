@@ -2,6 +2,8 @@
 
 All direct dependencies in `package.json` are listed below. Versions are the declared minimums before and after `bun update --latest`; `bun.lock` records the resolved versions. Release-history links point to each package’s upstream repository when available, or its npm package page. Packages with identical versions were already current. For changed packages, compare links show the exact upstream commits recorded in npm metadata when available; otherwise the link opens upstream release history.
 
+The Bun runtime was subsequently upgraded from 1.4.2 to 1.4.3 and pinned in `package.json` for consistent setup. See the [Bun 1.4.3 release notes](https://bun.com/blog/bun-v1.4.3) and [1.4.2 → 1.4.3 commit log](https://github.com/oven-sh/bun/compare/bun-v1.4.2...bun-v1.4.3).
+
 ## Notable migration notes
 
 - **Motion 12 → 14:** The [official upgrade guide](https://motion.dev/docs/upgrade-guide) reports no JavaScript breaking changes in versions 13 and 14, while tightening internal dependency versioning.
