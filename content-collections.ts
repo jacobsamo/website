@@ -50,11 +50,11 @@ const prettyCodeOptions: RehypePrettyCodeOptions = {
 	},
 };
 
-export interface TableOfContentsItem {
+export type TableOfContentsItem = {
 	id: string;
 	title: string;
 	depth: 2 | 3;
-}
+};
 
 function getTableOfContents(content: string): TableOfContentsItem[] {
 	const slugger = new GithubSlugger();
@@ -106,6 +106,7 @@ const posts = defineCollection({
 	directory: "src/content/posts",
 	include: ["**/*.md", "**/*.mdx"],
 	schema: z.object({
+		content: z.string(),
 		title: z.string(),
 		description: z.string(),
 		// Transform string to Date object
@@ -153,6 +154,7 @@ const designs = defineCollection({
 	directory: "src/content/designs",
 	include: ["**/*.md", "**/*.mdx"],
 	schema: z.object({
+		content: z.string(),
 		title: z.string(),
 		shortDescription: z.string(),
 		tags: z.string().array().min(1),
@@ -193,5 +195,5 @@ const designs = defineCollection({
 });
 
 export default defineConfig({
-	collections: [posts, designs],
+	content: [posts, designs],
 });
