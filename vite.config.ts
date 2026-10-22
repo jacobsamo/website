@@ -6,9 +6,9 @@ import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
+	resolve: { tsconfigPaths: true },
 	plugins: [
 		contentCollections({ configPath: "content-collections.ts" }),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
@@ -28,7 +28,6 @@ const config = defineConfig({
 			presets: [reactCompilerPreset()],
 		}),
 		tailwindcss(),
-		tsconfigPaths(),
 	],
 });
 
