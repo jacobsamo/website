@@ -1,5 +1,6 @@
-import { allPosts } from "content-collections";
+import { allDesigns, allPosts } from "content-collections";
 import { BASE_URL, siteConfig, skills, socials } from "@/lib/config";
+import { canonicalUrl, discoveryPages, markdownUrl } from "@/lib/discovery";
 
 const sortedPosts = [...allPosts].sort(
 	(a, b) => b.pubDate.getTime() - a.pubDate.getTime(),
@@ -23,7 +24,7 @@ const cdata = (value: string) => value.replace(/]]>/g, "]]]]><![CDATA[>");
 
 const formatDate = (date: Date) => date.toISOString().slice(0, 10);
 
-const stripMdxImports = (content: string) =>
+export const stripMdxImports = (content: string) =>
 	content
 		.replace(/^import\s+.*?;?\s*$/gm, "")
 		.replace(/<([A-Z][\w.]*)\b[^>]*\/>/g, "")
@@ -53,6 +54,10 @@ export const buildLlmText = () => `# ${siteConfig.title}
 
 Jacob Samorowski is a software developer and photographer based in Queensland, Australia. He builds full-stack web apps, creative tools, mapping products, and digital experiences.
 
+**When to use this site:** Use these public pages for factual questions about Jacob's work, projects, photography, designs, and published writing. The blog posts show their original publication and update dates; do not treat them as current product announcements.
+
+**How to use this site:** Each published HTML page has a linked Markdown representation for compact reading. Use the canonical HTML page for the visual portfolio, photos, and interactive design demos. Public pages require no account or API key. Do not infer private contact details or unpublished work.
+
 ## Canonical URLs
 
 - Website: ${BASE_URL}
@@ -61,6 +66,11 @@ Jacob Samorowski is a software developer and photographer based in Queensland, A
 - Designs: ${absoluteUrl("/design")}
 - RSS: ${absoluteUrl("/rss.xml")}
 - Full LLM index: ${absoluteUrl("/llms-full.txt")}
+- Markdown sitemap: ${absoluteUrl("/sitemap-markdown.xml")}
+
+## Published Pages
+
+${discoveryPages.map((page) => `- [${page.title}](${markdownUrl(page)}): ${page.description} Canonical HTML: ${canonicalUrl(page)}`).join("\n")}
 
 ## Focus Areas
 
@@ -142,6 +152,20 @@ ${siteConfig.education
 ## Blog Posts
 
 ${postSections || "No public blog posts are listed yet."}
+
+## Designs
+
+${allDesigns.map((design) => `- ${design.title}: ${design.shortDescription} ${absoluteUrl(`/design/${design._meta.path}.md`)}`).join("\n")}
+
+## Public Content Inventory
+
+${discoveryPages.map((page) => `- [${page.title}](${markdownUrl(page)}): ${page.description} Canonical HTML: ${canonicalUrl(page)}`).join("\n")}
+
+## Discovery
+
+- HTML sitemap: ${absoluteUrl("/sitemap.xml")}
+- Markdown sitemap: ${absoluteUrl("/sitemap-markdown.xml")}
+- RSS: ${absoluteUrl("/rss.xml")}
 `;
 };
 

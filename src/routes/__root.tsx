@@ -13,6 +13,7 @@ import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
 import { BASE_URL, siteConfig, socials } from "@/lib/config";
+import { findPageByCanonicalPath, markdownUrl } from "@/lib/discovery";
 import { head } from "@/lib/head";
 import {
 	jsonLdGraph,
@@ -56,9 +57,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		// Get current pathname from deepest match
 		const currentMatch = matches[matches.length - 1];
 		const pathname = currentMatch?.pathname ?? "/";
+		const discoveryPage = findPageByCanonicalPath(pathname);
 
 		// Always generate canonical URL
-		const canonicalUrl = `${BASE_URL}${pathname === "/" ? "" : pathname.replace(/\/$/, "")}`;
+		const canonicalUrl = `${BASE_URL}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
 
 		// Auto-generate title from pathname as fallback
 		// TanStack dedupes meta tags - child routes' titles will override this
@@ -100,6 +102,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			links: [
 				// Canonical link (always generated from current pathname)
 				{ rel: "canonical", href: canonicalUrl },
+				...(discoveryPage
+					? [
+							{
+								rel: "alternate",
+								type: "text/markdown",
+								href: markdownUrl(discoveryPage),
+							},
+						]
+					: []),
 				// Stylesheet
 				{ rel: "stylesheet", href: appCss },
 				// Font preload for faster loading
