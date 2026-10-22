@@ -60,7 +60,7 @@ Jacob Samorowski is a software developer and photographer based in Queensland, A
 - Photography: ${absoluteUrl("/photography")}
 - Designs: ${absoluteUrl("/design")}
 - RSS: ${absoluteUrl("/rss.xml")}
-- Full LLM index: ${absoluteUrl("/llm-full.txt")}
+- Full LLM index: ${absoluteUrl("/llms-full.txt")}
 
 ## Focus Areas
 

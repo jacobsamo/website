@@ -18,6 +18,10 @@ export interface HeadOptions extends Partial<HeadResult> {
 	keywords?: string[];
 	/** Image URL for social sharing (relative or absolute) */
 	image?: string;
+	/** Accessible description of the social image */
+	imageAlt?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	/** URL for social sharing (relative or absolute) */
 	url?: string;
 }
@@ -35,6 +39,9 @@ export const head = ({
 	description,
 	keywords,
 	image,
+	imageAlt,
+	imageWidth,
+	imageHeight,
 	url,
 	// Extra head elements
 	meta,
@@ -44,6 +51,13 @@ export const head = ({
 	styles,
 }: HeadOptions): HeadResult => {
 	const imageUrl = image ? buildUrl(image) : undefined;
+	const imageType = imageUrl?.match(/\.png(?:\?|$)/i)
+		? "image/png"
+		: imageUrl?.match(/\.webp(?:\?|$)/i)
+			? "image/webp"
+			: imageUrl?.match(/\.jpe?g(?:\?|$)/i)
+				? "image/jpeg"
+				: undefined;
 
 	// remove trailing slash
 	const normalizedUrl = url ? buildUrl(url).trim() : undefined;
@@ -73,9 +87,18 @@ export const head = ({
 			...(imageUrl
 				? [
 						{ property: "og:image", content: imageUrl },
-						{ property: "og:image:type", content: "image/jpg" },
+						...(imageType
+							? [{ property: "og:image:type", content: imageType }]
+							: []),
+						{ property: "og:image:alt", content: imageAlt ?? title },
+						...(imageWidth
+							? [{ property: "og:image:width", content: String(imageWidth) }]
+							: []),
+						...(imageHeight
+							? [{ property: "og:image:height", content: String(imageHeight) }]
+							: []),
 						{ name: "twitter:image", content: imageUrl },
-						{ name: "twitter:image:alt", content: title },
+						{ name: "twitter:image:alt", content: imageAlt ?? title },
 					]
 				: []),
 

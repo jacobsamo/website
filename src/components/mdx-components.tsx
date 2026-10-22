@@ -1,8 +1,8 @@
 "use client";
 
-import { useMDXComponent } from "@content-collections/mdx/react";
 import { lazy, Suspense } from "react";
 import type * as React from "react";
+import { getMdxComponent } from "@/lib/mdx-modules";
 import { cn } from "@/lib/utils";
 import type { TweetCardProps } from "./tweet-card";
 
@@ -182,11 +182,12 @@ const components = {
 };
 
 interface MdxProps {
-	code: string;
+	collection: "posts" | "designs";
+	filePath: string;
 }
 
-export function Mdx({ code }: MdxProps) {
-	const Component = useMDXComponent(code);
+export function Mdx({ collection, filePath }: MdxProps) {
+	const Component = getMdxComponent(collection, filePath);
 
 	return (
 		<div className="mdx">

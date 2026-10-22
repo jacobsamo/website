@@ -1,54 +1,6 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
-import { compileMDX } from "@content-collections/mdx";
-import {
-	transformerNotationDiff,
-	transformerNotationFocus,
-	transformerNotationHighlight,
-	transformerNotationWordHighlight,
-} from "@shikijs/transformers";
-import { remarkHeading } from "fumadocs-core/mdx-plugins";
 import GithubSlugger from "github-slugger";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode, {
-	type Options as RehypePrettyCodeOptions,
-} from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import { z } from "zod";
-
-const prettyCodeOptions: RehypePrettyCodeOptions = {
-	theme: "github-dark-dimmed",
-	defaultLang: "typescript",
-	keepBackground: true,
-	transformers: [
-		transformerNotationDiff({
-			matchAlgorithm: "v3",
-		}),
-		transformerNotationHighlight(),
-		transformerNotationWordHighlight(),
-		transformerNotationFocus(),
-		// transformerCopyButton({
-		//   visibility: 'hover',
-		//   feedbackDuration: 3_000,
-		// })
-	],
-	onVisitLine(node: any) {
-		// Prevent lines from collapsing in `display: grid` mode, and allow empty
-		// lines to be copy/pasted
-		if (node.children.length === 0) {
-			node.children = [{ type: "text", value: " " }];
-		}
-	},
-	onVisitHighlightedLine(node: any) {
-		if (!node.properties.className) {
-			node.properties.className = [];
-		}
-		node.properties.className.push("line--highlighted");
-	},
-	onVisitHighlightedChars(node: any) {
-		node.properties.className = ["word--highlighted"];
-	},
-};
 
 export type TableOfContentsItem = {
 	id: string;
@@ -122,27 +74,9 @@ const posts = defineCollection({
 		 */
 		videoUrl: z.string().optional(),
 	}),
-	transform: async (document, context) => {
-		const mdx = await compileMDX(context, document, {
-			cwd: process.cwd(),
-			remarkPlugins: [remarkGfm, remarkHeading],
-			rehypePlugins: [
-				rehypeSlug,
-				[rehypePrettyCode, prettyCodeOptions],
-				[
-					rehypeAutolinkHeadings,
-					{
-						properties: {
-							className: ["subheading-anchor"],
-							ariaLabel: "Link to section",
-						},
-					},
-				],
-			],
-		});
+	transform: (document) => {
 		return {
 			...document,
-			mdx,
 			toc: getTableOfContents(document.content),
 			slug: document.title.toLowerCase().replace(/ /g, "-"),
 		};
@@ -167,27 +101,9 @@ const designs = defineCollection({
 		 */
 		videoUrl: z.string().optional(),
 	}),
-	transform: async (document, context) => {
-		const mdx = await compileMDX(context, document, {
-			cwd: process.cwd(),
-			remarkPlugins: [remarkGfm, remarkHeading],
-			rehypePlugins: [
-				rehypeSlug,
-				[rehypePrettyCode, prettyCodeOptions],
-				[
-					rehypeAutolinkHeadings,
-					{
-						properties: {
-							className: ["subheading-anchor"],
-							ariaLabel: "Link to section",
-						},
-					},
-				],
-			],
-		});
+	transform: (document) => {
 		return {
 			...document,
-			mdx,
 			toc: getTableOfContents(document.content),
 			slug: document.title.toLowerCase().replace(/ /g, "-"),
 		};
