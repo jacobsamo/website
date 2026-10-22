@@ -1,5 +1,6 @@
 import { allDesigns, allPosts } from "content-collections";
-import { BASE_URL, siteConfig } from "./config";
+import { BASE_URL, siteConfig } from "@/lib/config";
+import { pageCopy } from "../site";
 
 export interface DiscoveryPage {
 	path: string;
@@ -14,32 +15,31 @@ const staticPages: DiscoveryPage[] = [
 		path: "/",
 		markdownPath: "/index.md",
 		title: siteConfig.title,
-		description: siteConfig.description,
+		description: pageCopy.home.description,
 	},
 	{
 		path: "/blog",
 		markdownPath: "/blog.md",
 		title: "Blog",
-		description:
-			"Writing about software, design, and what I learn along the way.",
+		description: pageCopy.blog.description,
 	},
 	{
 		path: "/design",
 		markdownPath: "/design.md",
 		title: "Designs",
-		description: "Interactive UI designs and component showcases.",
+		description: pageCopy.design.description,
 	},
 	{
 		path: "/photography",
 		markdownPath: "/photography.md",
 		title: "Photography",
-		description: "Photography by Jacob Samorowski.",
+		description: pageCopy.photography.description,
 	},
 	{
 		path: "/links",
 		markdownPath: "/links.md",
 		title: "Links",
-		description: "Social links and ways to connect with Jacob Samorowski.",
+		description: pageCopy.links.description,
 	},
 ];
 
@@ -74,28 +74,3 @@ export const findPageByCanonicalPath = (path: string) =>
 
 export const findPageByMarkdownPath = (path: string) =>
 	discoveryPages.find((page) => page.markdownPath === normalizePath(path));
-
-export function buildSitemapXml() {
-	const urls = discoveryPages
-		.map((page) => {
-			const url = canonicalUrl(page);
-			const lastmod = page.lastModified
-				? `<lastmod>${page.lastModified.toISOString().slice(0, 10)}</lastmod>`
-				: "";
-			return `  <url><loc>${url}</loc>${lastmod}</url>`;
-		})
-		.join("\n");
-	return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
-}
-
-export function buildMarkdownSitemapXml() {
-	const urls = discoveryPages
-		.map((page) => {
-			const lastmod = page.lastModified
-				? `<lastmod>${page.lastModified.toISOString().slice(0, 10)}</lastmod>`
-				: "";
-			return `  <url><loc>${markdownUrl(page)}</loc>${lastmod}</url>`;
-		})
-		.join("\n");
-	return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
-}

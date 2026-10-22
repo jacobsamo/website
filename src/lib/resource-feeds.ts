@@ -1,6 +1,6 @@
-import { allDesigns, allPosts } from "content-collections";
-import { BASE_URL, siteConfig, skills, socials } from "@/lib/config";
-import { canonicalUrl, discoveryPages, markdownUrl } from "@/lib/discovery";
+import { allPosts } from "content-collections";
+import { cleanMdxForMarkdown } from "@/content/discovery/clean-mdx";
+import { BASE_URL, siteConfig } from "@/lib/config";
 
 const sortedPosts = [...allPosts].sort(
 	(a, b) => b.pubDate.getTime() - a.pubDate.getTime(),
@@ -8,7 +8,6 @@ const sortedPosts = [...allPosts].sort(
 
 const absoluteUrl = (path: string) => {
 	if (path.startsWith("http")) return path;
-
 	return new URL(path, BASE_URL).toString().replace(/\/$/, "");
 };
 
@@ -21,153 +20,6 @@ const escapeXml = (value: string) =>
 		.replace(/'/g, "&apos;");
 
 const cdata = (value: string) => value.replace(/]]>/g, "]]]]><![CDATA[>");
-
-const formatDate = (date: Date) => date.toISOString().slice(0, 10);
-
-export const stripMdxImports = (content: string) =>
-	content
-		.replace(/^import\s+.*?;?\s*$/gm, "")
-		.replace(/<([A-Z][\w.]*)\b[^>]*\/>/g, "")
-		.replace(/<([A-Z][\w.]*)\b[^>]*>[\s\S]*?<\/\1>/g, "")
-		.trim();
-
-const projectLines = siteConfig.projects
-	.map(
-		(project) => `- ${project.title}: ${project.description} (${project.url})`,
-	)
-	.join("\n");
-
-const socialLines = socials
-	.map((social) => `- ${social.platform}: ${social.handle} (${social.url})`)
-	.join("\n");
-
-const postLines = sortedPosts
-	.map(
-		(post) =>
-			`- ${post.title} (${formatDate(post.pubDate)}): ${post.description} ${absoluteUrl(`/blog/${post._meta.path}`)}`,
-	)
-	.join("\n");
-
-export const buildLlmText = () => `# ${siteConfig.title}
-
-> ${siteConfig.description}
-
-Jacob Samorowski is a software developer and photographer based in Queensland, Australia. He builds full-stack web apps, creative tools, mapping products, and digital experiences.
-
-**When to use this site:** Use these public pages for factual questions about Jacob's work, projects, photography, designs, and published writing. The blog posts show their original publication and update dates; do not treat them as current product announcements.
-
-**How to use this site:** Each published HTML page has a linked Markdown representation for compact reading. Use the canonical HTML page for the visual portfolio, photos, and interactive design demos. Public pages require no account or API key. Do not infer private contact details or unpublished work.
-
-## Canonical URLs
-
-- Website: ${BASE_URL}
-- Blog: ${absoluteUrl("/blog")}
-- Photography: ${absoluteUrl("/photography")}
-- Designs: ${absoluteUrl("/design")}
-- RSS: ${absoluteUrl("/rss.xml")}
-- Full LLM index: ${absoluteUrl("/llms-full.txt")}
-- Markdown sitemap: ${absoluteUrl("/sitemap-markdown.xml")}
-
-## Published Pages
-
-${discoveryPages.map((page) => `- [${page.title}](${markdownUrl(page)}): ${page.description} Canonical HTML: ${canonicalUrl(page)}`).join("\n")}
-
-## Focus Areas
-
-${skills.map((skill) => `- ${skill}`).join("\n")}
-
-## Projects
-
-${projectLines}
-
-## Writing
-
-${postLines || "- No public blog posts are listed yet."}
-
-## Profiles
-
-${socialLines}
-`;
-
-export const buildLlmFullText = () => {
-	const postSections = sortedPosts
-		.map(
-			(post) => `## ${post.title}
-
-URL: ${absoluteUrl(`/blog/${post._meta.path}`)}
-Published: ${formatDate(post.pubDate)}
-Updated: ${formatDate(post.updatedDate ?? post.pubDate)}
-Tags: ${post.tags.join(", ")}
-Description: ${post.description}
-Image: ${absoluteUrl(post.image)}
-
-${stripMdxImports(post.content)}
-`,
-		)
-		.join("\n---\n\n");
-
-	return `# ${siteConfig.title} Full LLM Index
-
-This is a machine-readable index of Jacob Samorowski's personal website content.
-
-## Identity
-
-Name: Jacob Samorowski
-Location: Queensland, Australia
-Primary roles: Software Developer, Photographer
-Website: ${BASE_URL}
-Description: ${siteConfig.description}
-Keywords: ${siteConfig.keywords.join(", ")}
-
-## Profiles
-
-${socialLines}
-
-## Projects
-
-${projectLines}
-
-## Skills
-
-${skills.join(", ")}
-
-## Work
-
-${siteConfig.work
-	.map(
-		(work) =>
-			`- ${work.jobTitle}, ${work.companyName} (${formatDate(work.startDate)} - ${work.endDate ? formatDate(work.endDate) : "present"}): ${work.description}`,
-	)
-	.join("\n")}
-
-## Education
-
-${siteConfig.education
-	.map(
-		(education) =>
-			`- ${education.degree}, ${education.schoolName} (${formatDate(education.startDate)} - ${education.endDate ? formatDate(education.endDate) : "present"})${education.description ? `: ${education.description}` : ""}`,
-	)
-	.join("\n")}
-
-## Blog Posts
-
-${postSections || "No public blog posts are listed yet."}
-
-## Designs
-
-${allDesigns.map((design) => `- ${design.title}: ${design.shortDescription} ${absoluteUrl(`/design/${design._meta.path}.md`)}`).join("\n")}
-
-## Public Content Inventory
-
-${discoveryPages.map((page) => `- [${page.title}](${markdownUrl(page)}): ${page.description} Canonical HTML: ${canonicalUrl(page)}`).join("\n")}
-
-## Discovery
-
-- HTML sitemap: ${absoluteUrl("/sitemap.xml")}
-- Markdown sitemap: ${absoluteUrl("/sitemap-markdown.xml")}
-- RSS: ${absoluteUrl("/rss.xml")}
-`;
-};
 
 export const buildRssXml = () => {
 	const lastBuildDate =
@@ -186,7 +38,7 @@ export const buildRssXml = () => {
 			<pubDate>${post.pubDate.toUTCString()}</pubDate>
 			<dc:creator>${escapeXml(siteConfig.title)}</dc:creator>
 ${post.tags.map((tag) => `			<category>${escapeXml(tag)}</category>`).join("\n")}
-				<content:encoded><![CDATA[${cdata(stripMdxImports(post.content))}]]></content:encoded>
+				<content:encoded><![CDATA[${cdata(cleanMdxForMarkdown(post.content))}]]></content:encoded>
 			<atom:updated>${date.toISOString()}</atom:updated>
 		</item>`;
 		})

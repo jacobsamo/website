@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { buildLlmFullText, textResponse } from "@/lib/resource-feeds";
+import { buildLlmFullText } from "@/content/discovery/agents";
+import { textResponse } from "@/lib/resource-feeds";
 
 export const Route = createFileRoute("/llm-full.txt")({
 	server: {

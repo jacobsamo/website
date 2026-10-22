@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { allPosts } from "content-collections";
+import { pageCopy } from "@/content/site";
 import { head } from "@/lib/head";
 import {
 	blogJsonLd,
@@ -17,8 +18,7 @@ export const Route = createFileRoute("/blog/")({
 	head: () =>
 		head({
 			title: "Blog - Jacob Samorowski",
-			description:
-				"Thoughts, tutorials, and stories from a software developer and photographer",
+			description: pageCopy.blog.description,
 			headScripts: [
 				jsonLdScript(
 					jsonLdGraph([
