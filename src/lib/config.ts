@@ -62,7 +62,8 @@ export const socials: Social[] = [
 
 export const siteConfig = {
 	title: "Jacob Samorowski",
-	description: "Jacob Samorowski's personal website",
+	description:
+		"Jacob Samorowski is a Queensland software developer and photographer building web apps, creative tools, and digital experiences.",
 	socials: socials,
 	og: {
 		url: "/og.jpg",

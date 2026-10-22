@@ -4,6 +4,7 @@ import type {
 	BreadcrumbList,
 	Graph,
 	ListItem,
+	Organization,
 	Person,
 	ProfilePage,
 	Thing,
@@ -16,6 +17,7 @@ type JsonLdNode = Thing | WithContext<Thing> | Graph;
 
 const personId = `${BASE_URL}/#person`;
 const websiteId = `${BASE_URL}/#website`;
+const organizationId = `${BASE_URL}/#organization`;
 const blogId = `${BASE_URL}/blog/#blog`;
 
 const absoluteUrl = (path: string) => {
@@ -48,6 +50,26 @@ export const personJsonLd = (): Person => ({
 		"Jacob Samorowski is a software developer and photographer based in Queensland, Australia.",
 	knowsAbout: siteConfig.keywords,
 	sameAs: socials.map((social) => social.url),
+});
+
+export const organizationJsonLd = (): Organization => ({
+	"@type": "Organization",
+	"@id": organizationId,
+	name: "Jacob Samorowski",
+	url: BASE_URL,
+	description: siteConfig.description,
+	founder: { "@id": personId },
+	sameAs: socials.map((social) => social.url),
+	contactPoint: {
+		"@type": "ContactPoint",
+		contactType: "general inquiries",
+		email: "jacob@jacobsamo.com",
+	},
+	address: {
+		"@type": "PostalAddress",
+		addressRegion: "Queensland",
+		addressCountry: "AU",
+	},
 });
 
 export const websiteJsonLd = (): WebSite => ({

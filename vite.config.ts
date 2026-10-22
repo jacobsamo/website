@@ -19,8 +19,7 @@ const config = defineConfig({
 				enabled: false,
 			},
 			prerender: {
-				enabled: true,
-				crawlLinks: true,
+				enabled: false,
 			},
 		}),
 		devtools(),

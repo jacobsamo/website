@@ -6,12 +6,6 @@ import { Marquee } from "@/components/ui/marquee";
 import { pageCopy } from "@/content/site";
 import { siteConfig, skills } from "@/lib/config";
 import { head } from "@/lib/head";
-import {
-	breadcrumbJsonLd,
-	jsonLdGraph,
-	jsonLdScript,
-	profilePageJsonLd,
-} from "@/lib/structured-data";
 
 export const Route = createFileRoute("/")({
 	head: () =>
@@ -19,14 +13,6 @@ export const Route = createFileRoute("/")({
 			title: "Jacob Samorowski - Software Developer & Photographer",
 			description: pageCopy.home.description,
 			image: siteConfig.og.url,
-			headScripts: [
-				jsonLdScript(
-					jsonLdGraph([
-						profilePageJsonLd(),
-						breadcrumbJsonLd([{ name: "Home", path: "/" }]),
-					]),
-				),
-			],
 		}),
 	component: MainPage,
 });
