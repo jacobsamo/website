@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { allDesigns } from "content-collections";
+import { pageCopy } from "@/content/site";
 import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/design/")({
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/design/")({
 	head: () =>
 		head({
 			title: "Designs - Jacob Samorowski",
-			description: "Interactive UI designs and component showcases",
+			description: pageCopy.design.description,
 		}),
 });
 

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import images from "@/lib/data";
+import { pageCopy } from "@/content/site";
 import { head } from "@/lib/head";
 
 export const Route = createFileRoute("/photography")({
@@ -8,8 +9,7 @@ export const Route = createFileRoute("/photography")({
 	head: () =>
 		head({
 			title: "Photography - Jacob Samorowski",
-			description:
-				"A collection of my photography work capturing moments and stories",
+			description: pageCopy.photography.description,
 		}),
 });
 

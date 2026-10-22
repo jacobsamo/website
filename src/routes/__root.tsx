@@ -13,7 +13,10 @@ import ErrorPage from "@/components/layouts/error-page";
 import NotFound from "@/components/layouts/not-found";
 import TanStackQueryDevtools from "@/components/providers/devtools";
 import { BASE_URL, siteConfig, socials } from "@/lib/config";
-import { findPageByCanonicalPath, markdownUrl } from "@/lib/discovery";
+import {
+	findPageByCanonicalPath,
+	markdownUrl,
+} from "@/content/discovery/registry";
 import { head } from "@/lib/head";
 import {
 	jsonLdGraph,

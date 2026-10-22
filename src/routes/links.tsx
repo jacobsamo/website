@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { ExternalLink, Globe2 } from "lucide-react";
 import { CopyRight } from "@/components/footer";
+import { pageCopy } from "@/content/site";
 import { socials } from "@/lib/config";
 import { head } from "@/lib/head";
 
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/links")({
 	head: () =>
 		head({
 			title: "Links - Jacob Samorowski",
-			description: "All my social links and ways to connect with me",
+			description: pageCopy.links.description,
 		}),
 });
 
