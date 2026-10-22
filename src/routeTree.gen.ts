@@ -9,41 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
-import { Route as PlaygroundRouteImport } from './routes/playground'
-import { Route as PhotographyRouteImport } from './routes/photography'
-import { Route as LlmDottxtRouteImport } from './routes/llm[.]txt'
-import { Route as LlmFullDottxtRouteImport } from './routes/llm-full[.]txt'
-import { Route as LinksRouteImport } from './routes/links'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DesignIndexRouteImport } from './routes/design/index'
+import { Route as LinksRouteImport } from './routes/links'
+import { Route as LlmFullDottxtRouteImport } from './routes/llm-full[.]txt'
+import { Route as LlmDottxtRouteImport } from './routes/llm[.]txt'
+import { Route as PhotographyRouteImport } from './routes/photography'
+import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as DesignSlugRouteImport } from './routes/design/$slug'
 import { Route as BlogPostIdRouteImport } from './routes/blog/$postId'
+import { Route as DesignIndexRouteImport } from './routes/design/index'
+import { Route as DesignSlugRouteImport } from './routes/design/$slug'
+import { Route as PlaygroundIndexRouteImport } from './routes/playground/index'
+import { Route as PlaygroundCaptureRouteImport } from './routes/playground/capture'
 
-const RssDotxmlRoute = RssDotxmlRouteImport.update({
-  id: '/rss.xml',
-  path: '/rss.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlaygroundRoute = PlaygroundRouteImport.update({
-  id: '/playground',
-  path: '/playground',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PhotographyRoute = PhotographyRouteImport.update({
-  id: '/photography',
-  path: '/photography',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LlmDottxtRoute = LlmDottxtRouteImport.update({
-  id: '/llm.txt',
-  path: '/llm.txt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LlmFullDottxtRoute = LlmFullDottxtRouteImport.update({
-  id: '/llm-full.txt',
-  path: '/llm-full.txt',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LinksRoute = LinksRouteImport.update({
@@ -51,14 +32,24 @@ const LinksRoute = LinksRouteImport.update({
   path: '/links',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const LlmFullDottxtRoute = LlmFullDottxtRouteImport.update({
+  id: '/llm-full.txt',
+  path: '/llm-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DesignIndexRoute = DesignIndexRouteImport.update({
-  id: '/design/',
-  path: '/design/',
+const LlmDottxtRoute = LlmDottxtRouteImport.update({
+  id: '/llm.txt',
+  path: '/llm.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhotographyRoute = PhotographyRouteImport.update({
+  id: '/photography',
+  path: '/photography',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RssDotxmlRoute = RssDotxmlRouteImport.update({
+  id: '/rss.xml',
+  path: '/rss.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -66,14 +57,29 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogPostIdRoute = BlogPostIdRouteImport.update({
+  id: '/blog/$postId',
+  path: '/blog/$postId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignIndexRoute = DesignIndexRouteImport.update({
+  id: '/design/',
+  path: '/design/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DesignSlugRoute = DesignSlugRouteImport.update({
   id: '/design/$slug',
   path: '/design/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogPostIdRoute = BlogPostIdRouteImport.update({
-  id: '/blog/$postId',
-  path: '/blog/$postId',
+const PlaygroundIndexRoute = PlaygroundIndexRouteImport.update({
+  id: '/playground/',
+  path: '/playground/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundCaptureRoute = PlaygroundCaptureRouteImport.update({
+  id: '/playground/capture',
+  path: '/playground/capture',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -83,12 +89,13 @@ export interface FileRoutesByFullPath {
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
   '/photography': typeof PhotographyRoute
-  '/playground': typeof PlaygroundRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
+  '/playground/capture': typeof PlaygroundCaptureRoute
   '/blog/': typeof BlogIndexRoute
   '/design/': typeof DesignIndexRoute
+  '/playground/': typeof PlaygroundIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -96,12 +103,13 @@ export interface FileRoutesByTo {
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
   '/photography': typeof PhotographyRoute
-  '/playground': typeof PlaygroundRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
+  '/playground/capture': typeof PlaygroundCaptureRoute
   '/blog': typeof BlogIndexRoute
   '/design': typeof DesignIndexRoute
+  '/playground': typeof PlaygroundIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -110,12 +118,13 @@ export interface FileRoutesById {
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
   '/photography': typeof PhotographyRoute
-  '/playground': typeof PlaygroundRoute
   '/rss.xml': typeof RssDotxmlRoute
   '/blog/$postId': typeof BlogPostIdRoute
   '/design/$slug': typeof DesignSlugRoute
+  '/playground/capture': typeof PlaygroundCaptureRoute
   '/blog/': typeof BlogIndexRoute
   '/design/': typeof DesignIndexRoute
+  '/playground/': typeof PlaygroundIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,12 +134,13 @@ export interface FileRouteTypes {
     | '/llm-full.txt'
     | '/llm.txt'
     | '/photography'
-    | '/playground'
     | '/rss.xml'
     | '/blog/$postId'
     | '/design/$slug'
+    | '/playground/capture'
     | '/blog/'
     | '/design/'
+    | '/playground/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -138,12 +148,13 @@ export interface FileRouteTypes {
     | '/llm-full.txt'
     | '/llm.txt'
     | '/photography'
-    | '/playground'
     | '/rss.xml'
     | '/blog/$postId'
     | '/design/$slug'
+    | '/playground/capture'
     | '/blog'
     | '/design'
+    | '/playground'
   id:
     | '__root__'
     | '/'
@@ -151,12 +162,13 @@ export interface FileRouteTypes {
     | '/llm-full.txt'
     | '/llm.txt'
     | '/photography'
-    | '/playground'
     | '/rss.xml'
     | '/blog/$postId'
     | '/design/$slug'
+    | '/playground/capture'
     | '/blog/'
     | '/design/'
+    | '/playground/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,49 +177,22 @@ export interface RootRouteChildren {
   LlmFullDottxtRoute: typeof LlmFullDottxtRoute
   LlmDottxtRoute: typeof LlmDottxtRoute
   PhotographyRoute: typeof PhotographyRoute
-  PlaygroundRoute: typeof PlaygroundRoute
   RssDotxmlRoute: typeof RssDotxmlRoute
   BlogPostIdRoute: typeof BlogPostIdRoute
   DesignSlugRoute: typeof DesignSlugRoute
+  PlaygroundCaptureRoute: typeof PlaygroundCaptureRoute
   BlogIndexRoute: typeof BlogIndexRoute
   DesignIndexRoute: typeof DesignIndexRoute
+  PlaygroundIndexRoute: typeof PlaygroundIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/rss.xml': {
-      id: '/rss.xml'
-      path: '/rss.xml'
-      fullPath: '/rss.xml'
-      preLoaderRoute: typeof RssDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/playground': {
-      id: '/playground'
-      path: '/playground'
-      fullPath: '/playground'
-      preLoaderRoute: typeof PlaygroundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/photography': {
-      id: '/photography'
-      path: '/photography'
-      fullPath: '/photography'
-      preLoaderRoute: typeof PhotographyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/llm.txt': {
-      id: '/llm.txt'
-      path: '/llm.txt'
-      fullPath: '/llm.txt'
-      preLoaderRoute: typeof LlmDottxtRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/llm-full.txt': {
-      id: '/llm-full.txt'
-      path: '/llm-full.txt'
-      fullPath: '/llm-full.txt'
-      preLoaderRoute: typeof LlmFullDottxtRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/links': {
@@ -217,18 +202,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinksRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/llm-full.txt': {
+      id: '/llm-full.txt'
+      path: '/llm-full.txt'
+      fullPath: '/llm-full.txt'
+      preLoaderRoute: typeof LlmFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/design/': {
-      id: '/design/'
-      path: '/design'
-      fullPath: '/design/'
-      preLoaderRoute: typeof DesignIndexRouteImport
+    '/llm.txt': {
+      id: '/llm.txt'
+      path: '/llm.txt'
+      fullPath: '/llm.txt'
+      preLoaderRoute: typeof LlmDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/photography': {
+      id: '/photography'
+      path: '/photography'
+      fullPath: '/photography'
+      preLoaderRoute: typeof PhotographyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rss.xml': {
+      id: '/rss.xml'
+      path: '/rss.xml'
+      fullPath: '/rss.xml'
+      preLoaderRoute: typeof RssDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -238,6 +237,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$postId': {
+      id: '/blog/$postId'
+      path: '/blog/$postId'
+      fullPath: '/blog/$postId'
+      preLoaderRoute: typeof BlogPostIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design/': {
+      id: '/design/'
+      path: '/design'
+      fullPath: '/design/'
+      preLoaderRoute: typeof DesignIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/design/$slug': {
       id: '/design/$slug'
       path: '/design/$slug'
@@ -245,11 +258,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DesignSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$postId': {
-      id: '/blog/$postId'
-      path: '/blog/$postId'
-      fullPath: '/blog/$postId'
-      preLoaderRoute: typeof BlogPostIdRouteImport
+    '/playground/': {
+      id: '/playground/'
+      path: '/playground'
+      fullPath: '/playground/'
+      preLoaderRoute: typeof PlaygroundIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground/capture': {
+      id: '/playground/capture'
+      path: '/playground/capture'
+      fullPath: '/playground/capture'
+      preLoaderRoute: typeof PlaygroundCaptureRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -261,12 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
   LlmFullDottxtRoute: LlmFullDottxtRoute,
   LlmDottxtRoute: LlmDottxtRoute,
   PhotographyRoute: PhotographyRoute,
-  PlaygroundRoute: PlaygroundRoute,
   RssDotxmlRoute: RssDotxmlRoute,
   BlogPostIdRoute: BlogPostIdRoute,
   DesignSlugRoute: DesignSlugRoute,
+  PlaygroundCaptureRoute: PlaygroundCaptureRoute,
   BlogIndexRoute: BlogIndexRoute,
   DesignIndexRoute: DesignIndexRoute,
+  PlaygroundIndexRoute: PlaygroundIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

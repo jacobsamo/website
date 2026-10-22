@@ -19,9 +19,12 @@ import {
 } from "@/content/discovery/registry";
 import { head } from "@/lib/head";
 import {
+	breadcrumbJsonLd,
 	jsonLdGraph,
 	jsonLdScript,
+	organizationJsonLd,
 	personJsonLd,
+	profilePageJsonLd,
 	websiteJsonLd,
 } from "@/lib/structured-data";
 import appCss from "../styles.css?url";
@@ -143,9 +146,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				},
 				{ rel: "manifest", href: "/manifest.webmanifest" },
 			],
-			headScripts: [
-				jsonLdScript(jsonLdGraph([personJsonLd(), websiteJsonLd()])),
-			],
 		});
 	},
 	shellComponent: RootDocument,
@@ -158,11 +158,25 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 	const currentRoute = matches[matches.length - 1];
 	// Check if the current route has showLayout metadata (default: true)
 	const showLayout = currentRoute?.staticData?.meta?.showLayout ?? true;
+	const structuredData = jsonLdScript(
+		jsonLdGraph([
+			personJsonLd(),
+			organizationJsonLd(),
+			websiteJsonLd(),
+			...(currentRoute?.pathname === "/"
+				? [profilePageJsonLd(), breadcrumbJsonLd([{ name: "Home", path: "/" }])]
+				: []),
+		]),
+	);
 
 	return (
 		<html lang="en">
 			<head>
 				<HeadContent />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: structuredData.children }}
+				/>
 			</head>
 			<body>
 				{showLayout && <Header />}

@@ -9,8 +9,13 @@ import {
 	markdownUrl,
 } from "./registry";
 import { renderDiscoveryMarkdown } from "./markdown";
-import { getDiscoveryResponse } from "./response";
+import {
+	getDiscoveryResponse,
+	getNegotiatedResponse,
+	withMissingPageRobots,
+} from "./response";
 import { buildHtmlSitemapXml, buildMarkdownSitemapXml } from "./sitemaps";
+import { organizationJsonLd, personJsonLd } from "@/lib/structured-data";
 
 describe("published discovery pages", () => {
 	it("gives every canonical page a unique Markdown representation", () => {
@@ -99,5 +104,102 @@ describe("published discovery pages", () => {
 		);
 		expect(missing?.status).toBe(404);
 		expect(missing?.headers.get("X-Robots-Tag")).toBe("noindex");
+	});
+
+	it("negotiates Markdown on the canonical homepage and leaves HTML requests to the router", async () => {
+		const url = "https://jacobsamo.com/";
+		const markdown = getNegotiatedResponse(
+			new Request(url, { headers: { Accept: "text/markdown" } }),
+		);
+		expect(markdown?.status).toBe(200);
+		expect(markdown?.headers.get("Content-Type")).toBe(
+			"text/markdown; charset=utf-8",
+		);
+		expect(markdown?.headers.get("Vary")).toBe("Accept");
+		expect(await markdown?.text()).toContain("# Jacob Samorowski");
+		expect(
+			getNegotiatedResponse(
+				new Request(url, { headers: { Accept: "text/html" } }),
+			),
+		).toBeNull();
+		const unknown = getNegotiatedResponse(
+			new Request("https://jacobsamo.com/does-not-exist", {
+				headers: { Accept: "text/markdown" },
+			}),
+		);
+		expect(unknown?.status).toBe(404);
+		expect(unknown?.headers.get("Content-Type")).toBe(
+			"text/markdown; charset=utf-8",
+		);
+		expect(await unknown?.text()).toContain("/llms.txt");
+		expect(
+			getNegotiatedResponse(
+				new Request(url, { headers: { Accept: "text/markdown;q=0" } }),
+			),
+		).toBeNull();
+		const head = getNegotiatedResponse(
+			new Request(url, {
+				method: "HEAD",
+				headers: { Accept: "text/markdown" },
+			}),
+		);
+		expect(await head?.text()).toBe("");
+	});
+
+	it("returns a useful Markdown body for missing paths and retains HTML 404s", async () => {
+		const url = "https://jacobsamo.com/does-not-exist";
+		const missing = new Response("<h1>Not found</h1>", {
+			status: 404,
+			headers: { "Content-Type": "text/html" },
+		});
+		const markdown = withMissingPageRobots(
+			new Request(url, { headers: { Accept: "text/markdown" } }),
+			missing,
+		);
+		expect(markdown.status).toBe(404);
+		expect(markdown.headers.get("Content-Type")).toBe(
+			"text/markdown; charset=utf-8",
+		);
+		expect(markdown.headers.get("Vary")).toBe("Accept");
+		expect(await markdown.text()).toContain("/llms.txt");
+		const html = withMissingPageRobots(
+			new Request(url, { headers: { Accept: "text/html" } }),
+			missing,
+		);
+		expect(html.status).toBe(404);
+		expect(html.headers.get("Content-Type")).toBe("text/html");
+	});
+
+	it("marks published HTML responses as varying by Accept", () => {
+		const response = withMissingPageRobots(
+			new Request("https://jacobsamo.com/", {
+				headers: { Accept: "text/html" },
+			}),
+			new Response("<main>Home</main>", {
+				headers: { "Content-Type": "text/html" },
+			}),
+		);
+		expect(response.headers.get("Vary")).toBe("Accept");
+		expect(response.headers.get("Content-Type")).toBe("text/html");
+	});
+
+	it("does not publish removed trust pages", () => {
+		for (const name of ["about", "contact", "privacy"]) {
+			expect(findPageByCanonicalPath(`/${name}`)).toBeUndefined();
+			expect(findPageByMarkdownPath(`/${name}.md`)).toBeUndefined();
+			expect(buildHtmlSitemapXml()).not.toContain(`/${name}<`);
+			expect(buildMarkdownSitemapXml()).not.toContain(`/${name}.md<`);
+			expect(buildLlmText()).not.toContain(`/${name}.md`);
+		}
+	});
+
+	it("identifies the person and provides an organization contact and regional address", () => {
+		expect(personJsonLd()).toMatchObject({ name: "Jacob Samorowski" });
+		const organization = organizationJsonLd();
+		expect(organization).toMatchObject({
+			"@type": "Organization",
+			contactPoint: { email: "jacob@jacobsamo.com" },
+			address: { addressCountry: "AU" },
+		});
 	});
 });

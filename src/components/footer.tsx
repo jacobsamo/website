@@ -43,7 +43,6 @@ export const Footer = () => {
 								Links
 							</Link>
 							{/* Future navigation links */}
-							{/* <Link to="/about" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">About</Link> */}
 							{/* <Link to="/blog" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">Blog</Link> */}
 							{/* <Link to="/portfolio" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">Portfolio</Link> */}
 							{/* <Link to="/services" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">Services</Link> */}

@@ -1,12 +1,12 @@
+import { DesignViewer } from "@/components/design-viewer";
+import { Button } from "@/components/ui/button";
+import { CaptureLicense } from "@/designs/capture-license";
+import { cn } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { Camera, Moon, Paintbrush, RotateCw, Sun } from "lucide-react";
 import { useState } from "react";
-import { DesignViewer } from "@/components/design-viewer";
-import { Button } from "@/components/ui/button";
-import { NotificationComponent } from "@/designs/notification-component.tsx";
-import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/playground")({
+export const Route = createFileRoute("/playground/capture")({
 	component: RouteComponent,
 });
 
@@ -120,7 +120,7 @@ function RouteComponent() {
 						),
 					}}
 				>
-					<NotificationComponent />
+					<CaptureLicense />
 				</DesignViewer>
 			</div>
 		</main>
