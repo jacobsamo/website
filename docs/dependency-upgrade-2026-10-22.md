@@ -91,6 +91,6 @@ The Bun runtime was subsequently upgraded from 1.4.2 to 1.4.3 and pinned in `pac
 - `bun outdated`: no remaining direct dependency updates.
 - `bun run build`, `bun run lint`, `bun run test`, and `wrangler deploy --dry-run`: completed. The test runner found no test files.
 - `tsc --noEmit --noUnusedLocals false`: completed. The normal type check still reports three unused declarations in the uncommitted capture-license files, which are outside this upgrade.
-- The build logs a pre-existing MDX rendering error for `/design/01-notification`: `new Function` is disallowed in the Workers runtime. The prerender process currently exits successfully despite this error; the route needs a separate build-time MDX compilation change.
+- Follow-up on this branch: MDX now compiles into Vite modules at build time. The design page and both blog articles prerender successfully in the Workers runtime without runtime `new Function` evaluation.
 
 Sources: [Cloudflare Wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/), [Vite plugin static assets](https://developers.cloudflare.com/workers/vite-plugin/reference/static-assets/), [Workers traces](https://developers.cloudflare.com/workers/observability/traces/).

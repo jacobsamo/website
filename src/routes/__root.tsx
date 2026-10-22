@@ -71,6 +71,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			title: fallbackTitle,
 			description: siteConfig.description,
 			image: siteConfig.og.url,
+			imageAlt: siteConfig.og.alt,
 			keywords: siteConfig.keywords,
 			url: canonicalUrl,
 			meta: [
@@ -78,7 +79,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				{ charSet: "utf-8" },
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				{ httpEquiv: "Content-Language", content: "en" },
-				{ name: "robots", content: "index, follow" },
+				{
+					name: "robots",
+					content: pathname.startsWith("/playground")
+						? "noindex, nofollow"
+						: "index, follow, max-image-preview:large",
+				},
 				{ name: "author", content: "Jacob Samorowski" },
 
 				// Open Graph - Static site-wide values
@@ -119,7 +125,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 					rel: "alternate",
 					type: "text/plain",
 					title: `${siteConfig.title} LLM Summary`,
-					href: "/llm.txt",
+					href: "/llms.txt",
 				},
 				{ rel: "manifest", href: "/manifest.webmanifest" },
 			],

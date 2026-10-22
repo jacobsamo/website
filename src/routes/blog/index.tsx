@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { allPosts } from "content-collections";
 import { head } from "@/lib/head";
 import {
@@ -35,10 +35,36 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogPage() {
 	return (
-		<main className="relative flex h-full w-full flex-col items-center justify-center">
-			<div className="items-center justify-center text-center">
-				<h1>No blog posts from me just yet</h1>
-				<p>Check back in later</p>
+		<main className="container mx-auto min-h-screen px-4 pt-12 pb-20">
+			<h1 className="text-4xl font-bold tracking-tight">Blog</h1>
+			<p className="mt-3 text-muted-foreground">
+				Writing about software, design, and what I learn along the way.
+			</p>
+			<div className="mt-10 grid gap-6">
+				{postsByDate.map((post) => (
+					<article key={post._meta.path}>
+						<Link
+							to="/blog/$postId"
+							params={{ postId: post._meta.path }}
+							className="group block rounded-lg border p-6 hover:bg-muted/30"
+						>
+							<time
+								dateTime={post.pubDate.toISOString()}
+								className="text-sm text-muted-foreground"
+							>
+								{post.pubDate.toLocaleDateString("en-AU", {
+									day: "numeric",
+									month: "long",
+									year: "numeric",
+								})}
+							</time>
+							<h2 className="mt-2 text-2xl font-semibold group-hover:underline">
+								{post.title}
+							</h2>
+							<p className="mt-2 text-muted-foreground">{post.description}</p>
+						</Link>
+					</article>
+				))}
 			</div>
 		</main>
 	);

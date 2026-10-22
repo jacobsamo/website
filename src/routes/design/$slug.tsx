@@ -23,6 +23,8 @@ export const Route = createFileRoute("/design/$slug")({
 			title: loaderData.design.title ?? "Design",
 			description: loaderData.design.shortDescription,
 			image: loaderData.design.image,
+			imageAlt: `${loaderData.design.title} design preview`,
+			url: `/design/${loaderData.design._meta.path}`,
 		});
 	},
 });
@@ -55,7 +57,7 @@ function RouteComponent() {
 					</Suspense>
 				</DesignViewer>
 			) : null}
-			<Mdx code={design.mdx} />
+			<Mdx collection="designs" filePath={design._meta.filePath} />
 		</main>
 	);
 }

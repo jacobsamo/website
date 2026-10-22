@@ -6,16 +6,17 @@ import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { contentMdxModules } from "./src/lib/mdx-plugin.ts";
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
 	plugins: [
+		contentMdxModules(),
 		contentCollections({ configPath: "content-collections.ts" }),
 		cloudflare({ viteEnvironment: { name: "ssr" } }),
 		tanstackStart({
 			sitemap: {
-				enabled: true,
-				host: "https://jacobsamo.com",
+				enabled: false,
 			},
 			prerender: {
 				enabled: true,

@@ -26,6 +26,7 @@ export const Route = createFileRoute("/blog/$postId")({
 			title: loaderData.post.title ?? "Blog Post",
 			description: loaderData.post.description,
 			image: loaderData.post.image,
+			imageAlt: loaderData.post.title,
 			url: `/blog/${loaderData.post._meta.path}`,
 			headScripts: [
 				jsonLdScript(
@@ -61,7 +62,7 @@ function BlogPostPage() {
 					</Badge>
 				))}
 			</div>
-			<Mdx code={post.mdx} />
+			<Mdx collection="posts" filePath={post._meta.filePath} />
 		</main>
 	);
 }
