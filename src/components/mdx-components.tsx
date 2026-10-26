@@ -4,6 +4,11 @@ import { lazy, Suspense } from "react";
 import type * as React from "react";
 import { getMdxComponent } from "@/lib/mdx-modules";
 import { cn } from "@/lib/utils";
+import {
+	QuestionList,
+	QuestionsDownloads,
+	QuestionsLaunchCard,
+} from "./closer-questions-post";
 import type { TweetCardProps } from "./tweet-card";
 
 const LazyTweetCard = lazy(() =>
@@ -179,6 +184,9 @@ const components = {
 		/>
 	),
 	TweetCard: TweetCardEmbed,
+	QuestionList,
+	QuestionsDownloads,
+	QuestionsLaunchCard,
 };
 
 interface MdxProps {

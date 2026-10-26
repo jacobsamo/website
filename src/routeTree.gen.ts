@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R36QuestionsRouteImport } from './routes/36-questions'
 import { Route as LinksRouteImport } from './routes/links'
 import { Route as LlmFullDottxtRouteImport } from './routes/llm-full[.]txt'
 import { Route as LlmDottxtRouteImport } from './routes/llm[.]txt'
@@ -25,6 +26,11 @@ import { Route as PlaygroundCaptureRouteImport } from './routes/playground/captu
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R36QuestionsRoute = R36QuestionsRouteImport.update({
+  id: '/36-questions',
+  path: '/36-questions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LinksRoute = LinksRouteImport.update({
@@ -85,6 +91,7 @@ const PlaygroundCaptureRoute = PlaygroundCaptureRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/36-questions': typeof R36QuestionsRoute
   '/links': typeof LinksRoute
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/36-questions': typeof R36QuestionsRoute
   '/links': typeof LinksRoute
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
@@ -114,6 +122,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/36-questions': typeof R36QuestionsRoute
   '/links': typeof LinksRoute
   '/llm-full.txt': typeof LlmFullDottxtRoute
   '/llm.txt': typeof LlmDottxtRoute
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/36-questions'
     | '/links'
     | '/llm-full.txt'
     | '/llm.txt'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/36-questions'
     | '/links'
     | '/llm-full.txt'
     | '/llm.txt'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/36-questions'
     | '/links'
     | '/llm-full.txt'
     | '/llm.txt'
@@ -173,6 +185,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R36QuestionsRoute: typeof R36QuestionsRoute
   LinksRoute: typeof LinksRoute
   LlmFullDottxtRoute: typeof LlmFullDottxtRoute
   LlmDottxtRoute: typeof LlmDottxtRoute
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/36-questions': {
+      id: '/36-questions'
+      path: '/36-questions'
+      fullPath: '/36-questions'
+      preLoaderRoute: typeof R36QuestionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/links': {
@@ -277,6 +297,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R36QuestionsRoute: R36QuestionsRoute,
   LinksRoute: LinksRoute,
   LlmFullDottxtRoute: LlmFullDottxtRoute,
   LlmDottxtRoute: LlmDottxtRoute,

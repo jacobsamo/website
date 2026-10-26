@@ -20,7 +20,6 @@ html {
 
 body {
   @apply m-0 h-screen bg-[#1a1a1a] text-white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -252,6 +251,13 @@ code {
   }
   html {
     @apply font-sans;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  input[type="button"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="reset"]:not(:disabled) {
+    cursor: pointer;
   }
 }
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">36 questions to get a little closer</title>
+  <desc id="desc">A dark editorial cover with three outlined question cards.</desc>
+  <defs>
+    <pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#515151" opacity=".34" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#1a1a1a" />
+  <rect width="1200" height="630" fill="url(#dots)" />
+  <text x="72" y="70" fill="#a6a6a6" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3">JACOB SAMOROWSKI / RESOURCE</text>
+  <line x1="72" y1="92" x2="1128" y2="92" stroke="#5a5a5a" />
+  <text x="72" y="267" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="104" font-weight="700" letter-spacing="-5">36 questions</text>
+  <text x="72" y="373" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="700" letter-spacing="-3">to get a little closer</text>
+  <text x="76" y="438" fill="#b7b7b7" font-family="Arial, Helvetica, sans-serif" font-size="24">Three sets. One conversation at a time.</text>
+  <g transform="translate(72 505)">
+    <rect x="0" y="0" width="232" height="72" rx="12" fill="#272727" stroke="#6a6a6a" />
+    <rect x="246" y="0" width="232" height="72" rx="12" fill="#272727" stroke="#6a6a6a" />
+    <rect x="492" y="0" width="232" height="72" rx="12" fill="#272727" stroke="#6a6a6a" />
+    <text x="24" y="45" fill="#eeeeee" font-family="Arial, Helvetica, sans-serif" font-size="22">01 — Begin</text>
+    <text x="270" y="45" fill="#eeeeee" font-family="Arial, Helvetica, sans-serif" font-size="22">02 — Explore</text>
+    <text x="516" y="45" fill="#eeeeee" font-family="Arial, Helvetica, sans-serif" font-size="22">03 — Connect</text>
+  </g>
+</svg>
