@@ -1,6 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TextMorph } from "torph/react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+	AnimatePresence,
+	motion,
+	useAnimate,
+	useReducedMotion,
+} from "motion/react";
 import {
 	ArrowLeft,
 	ArrowRight,
@@ -20,8 +25,8 @@ const lastIndex = allSteps.length - 1;
 const storageKey = "36-questions-current-step";
 const boundaries = new Set([0, 11, 23, 35, 36]);
 const endingColour = "#f6e7c8";
-const pillRadius = 9999;
-const panelRadius = 32;
+// Torph morph settings: spring easing at its default speed.
+const morphSpring = { stiffness: 200, damping: 20 };
 
 export const Route = createFileRoute("/36-questions")({
 	component: QuestionsExperience,
@@ -58,6 +63,8 @@ function QuestionsExperience() {
 	const scroller = useRef<HTMLDivElement | null>(null);
 	const activePoint = useRef<HTMLButtonElement | null>(null);
 	const reduceMotion = useReducedMotion();
+	const [blurScope, animateBlur] = useAnimate();
+	const shownText = useRef<string | null>(null);
 	const step = allSteps[stepIndex];
 	const set = questionSets[step.setIndex];
 	const colour = colourFor(stepIndex);
@@ -151,6 +158,20 @@ function QuestionsExperience() {
 		);
 	}, [stage, step.text, step.duration]);
 
+	// Torph has no blur of its own, so soften the text as each morph begins.
+	const questionText = fitted && restored ? fitted.text : null;
+	useEffect(() => {
+		const previous = shownText.current;
+		shownText.current = questionText;
+		if (reduceMotion || previous === null || previous === questionText) return;
+		if (!blurScope.current) return;
+		void animateBlur(
+			blurScope.current,
+			{ filter: ["blur(0px)", "blur(3px)", "blur(0px)"] },
+			{ duration: 0.5, times: [0, 0.3, 1], ease: "easeInOut" },
+		);
+	}, [questionText, reduceMotion, animateBlur, blurScope]);
+
 	function toggleTimer() {
 		if (running) {
 			setRemaining(
@@ -177,9 +198,9 @@ function QuestionsExperience() {
 	}
 
 	const formattedTime = `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(2, "0")}`;
-	const liquid = reduceMotion
+	const transition = reduceMotion
 		? { duration: 0 }
-		: { type: "spring" as const, stiffness: 210, damping: 21, mass: 0.95 };
+		: { type: "spring" as const, stiffness: 320, damping: 34 };
 
 	return (
 		<main
@@ -201,19 +222,13 @@ function QuestionsExperience() {
 						role="dialog"
 						aria-modal="true"
 						aria-label="All questions"
-						className="fixed inset-3 z-30 overflow-hidden border border-white/15 bg-[#222] shadow-2xl sm:inset-6"
-						style={{ borderRadius: panelRadius }}
-						transition={liquid}
+						className="fixed inset-3 z-30 overflow-y-auto rounded-[2rem] border border-white/15 bg-[#222] shadow-2xl sm:inset-6"
+						transition={transition}
+						initial={reduceMotion ? false : { opacity: 0.85 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
 					>
-						<motion.div
-							className="h-full overflow-y-auto"
-							initial={{ opacity: 0 }}
-							animate={{
-								opacity: 1,
-								transition: { delay: reduceMotion ? 0 : 0.18, duration: 0.25 },
-							}}
-							exit={{ opacity: 0, transition: { duration: 0.1 } }}
-						>
+						<div>
 							<div className="mx-auto max-w-4xl px-5 pb-20 pt-2 sm:px-10">
 								<p className="flex min-h-11 items-center text-sm font-semibold uppercase tracking-[0.17em]">
 									All questions
@@ -268,7 +283,7 @@ function QuestionsExperience() {
 									</div>
 								</section>
 							</div>
-						</motion.div>
+						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>
@@ -286,9 +301,8 @@ function QuestionsExperience() {
 						{!showDirectory && (
 							<motion.span
 								layoutId="directory-surface"
-								className="absolute inset-0 border border-white/20 bg-white/[0.04]"
-								style={{ borderRadius: pillRadius }}
-								transition={liquid}
+								className="absolute inset-0 rounded-full border border-white/20 bg-white/[0.04]"
+								transition={transition}
 							/>
 						)}
 						<span className="relative">
@@ -298,7 +312,7 @@ function QuestionsExperience() {
 								<List className="size-4" aria-hidden="true" />
 							)}
 						</span>
-						<TextMorph as="span" duration={350} className="relative">
+						<TextMorph as="span" ease={morphSpring} className="relative">
 							{showDirectory ? "Close" : "All questions"}
 						</TextMorph>
 					</button>
@@ -325,7 +339,7 @@ function QuestionsExperience() {
 							animate={{ backgroundColor: colour }}
 							transition={{ duration: reduceMotion ? 0 : 0.4 }}
 						/>
-						<TextMorph as="span" duration={380}>
+						<TextMorph as="span" ease={morphSpring}>
 							{setLabel}
 						</TextMorph>
 					</div>
@@ -337,17 +351,19 @@ function QuestionsExperience() {
 						className="relative flex h-full items-center justify-center text-center"
 					>
 						{fitted && restored ? (
-							<TextMorph
-								as="h1"
-								duration={520}
-								className="font-semibold tracking-[-0.04em] text-balance"
-								style={{
-									fontSize: fitted.fontSize,
-									lineHeight: fitted.lineHeight,
-								}}
-							>
-								{fitted.text}
-							</TextMorph>
+							<div ref={blurScope}>
+								<TextMorph
+									as="h1"
+									ease={morphSpring}
+									className="font-semibold tracking-[-0.04em] text-balance"
+									style={{
+										fontSize: fitted.fontSize,
+										lineHeight: fitted.lineHeight,
+									}}
+								>
+									{fitted.text}
+								</TextMorph>
+							</div>
 						) : (
 							<h1 className="sr-only">{step.text}</h1>
 						)}
@@ -366,7 +382,7 @@ function QuestionsExperience() {
 										aria-live={remaining === 0 ? "polite" : "off"}
 										className="flex min-w-20 justify-center font-mono text-2xl tabular-nums text-white/75"
 									>
-										<TextMorph as="span" duration={300}>
+										<TextMorph as="span" ease={morphSpring}>
 											{formattedTime}
 										</TextMorph>
 									</span>
@@ -406,7 +422,7 @@ function QuestionsExperience() {
 				<footer className="fixed inset-x-0 bottom-0 z-20 border-t border-white/10 bg-[#1a1a1a]/95 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur-xl sm:px-8 sm:pt-3">
 					<div className="mx-auto max-w-6xl">
 						<div className="mb-1 flex justify-center text-sm font-medium tabular-nums tracking-wide text-white/65 sm:mb-2 sm:text-xs sm:text-white/60">
-							<TextMorph as="p" duration={350}>
+							<TextMorph as="p" ease={morphSpring}>
 								{isEnding
 									? "Optional ending"
 									: `Question ${step.number} of ${totalQuestions} · ${set.name}`}
