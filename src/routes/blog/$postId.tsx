@@ -51,7 +51,7 @@ function BlogPostPage() {
 	const { post } = Route.useLoaderData();
 
 	return (
-		<main className="container mx-auto min-h-screen px-4 pt-8 pb-16">
+		<main className="mx-auto min-h-screen max-w-3xl px-5 pt-20 pb-20 sm:px-6">
 			<h1 className="mt-2 scroll-m-20 font-bold text-4xl tracking-tight">
 				{post.title}
 			</h1>
@@ -62,6 +62,11 @@ function BlogPostPage() {
 					</Badge>
 				))}
 			</div>
+			<img
+				src={post.image}
+				alt=""
+				className="mt-8 aspect-[1200/630] w-full rounded-xl border border-white/10 object-cover"
+			/>
 			<Mdx collection="posts" filePath={post._meta.filePath} />
 		</main>
 	);

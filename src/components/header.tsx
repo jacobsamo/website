@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 export const Header = () => {
 	return (
 		<nav className="fixed top-2 z-50 flex w-full items-center justify-between">
-			<div className="mx-auto flex items-center justify-center gap-4 rounded-lg bg-gradient-to-tr to-transparent p-2 shadow-lg backdrop-blur-lg backdrop-filter">
+			<div className="mx-auto flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#1a1a1a]/90 p-2 text-sm shadow-lg backdrop-blur-lg sm:gap-4 sm:text-base">
 				<Link
 					to="/"
 					activeProps={{
@@ -22,15 +22,15 @@ export const Header = () => {
 				>
 					Photography
 				</Link>
-				{/*<Link
-          to="/blog"
-          activeProps={{
-            className: "text-bold underline",
-          }}
-          className="inline-block decoration-0"
-        >
-          Blog
-        </Link>*/}
+				<Link
+					to="/blog"
+					activeProps={{
+						className: "text-bold underline",
+					}}
+					className="inline-block decoration-0"
+				>
+					Blog
+				</Link>
 				<Link
 					to="/design"
 					activeProps={{
